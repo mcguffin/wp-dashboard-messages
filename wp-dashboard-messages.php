@@ -16,13 +16,14 @@ Author URI: https://github.com/mcguffin
 
 if ( ! class_exists( 'DashboardMessages' ) ) :
 class DashboardMessages {
+	private static $_messages = null;
 	private static $color_codes = array(
 		'' 		 => array( "code"=>"" , "gradient" => "#f5f5f5,#f9f9f9"),
 		"f5f5b5" => array( "code"=>"f5f5b5" , "gradient" => array("from"=>"#f5f5b5","to"=>"#f9f9b9",'dark'=>'#e5e5a5')), 
 		"f5d5f5" => array( "code"=>"f5d5f5" , "gradient" => array("from"=>"#f5d5f5","to"=>"#f9d9f9",'dark'=>'#e5a5e5')), 
 		"f5d5d5" => array( "code"=>"f5d5d5" , "gradient" => array("from"=>"#f5d5d5","to"=>"#f9d9d9",'dark'=>'#e5a5a5')), 
 		"d5f5d5" => array( "code"=>"d5f5d5" , "gradient" => array("from"=>"#d5f5d5","to"=>"#d9f9d9",'dark'=>'#a5e5a5')),
-		"d5e5f5" => array( "code"=>"d5e5f5" , "gradient" => array("from"=>"#d5e5f5","to"=>"#d9e9f9",'dark'=>'#a5a5e5')),
+		"d5e5f5" => array( "code"=>"d5e5f5" , "gradient" => array("from"=>"#d5e5f5","to"=>"#d9e9f9",'dark'=>'#95b5e5')),
 		"d5f5f5" => array( "code"=>"d5f5f5" , "gradient" => array("from"=>"#d5f5f5","to"=>"#d9f9f9",'dark'=>'#a5e5e5')),
 	);
 
@@ -51,7 +52,8 @@ class DashboardMessages {
 	
 	
 	private static function get_box_id( $post ) {
-		return "dashboard_message_{$post->ID}";
+		$blog_id = get_current_blog_id();
+		return "dashboard_message_{$blog_id}_{$post->ID}";
 	}
 	
 	static function register_post_type( ) {
@@ -97,7 +99,7 @@ class DashboardMessages {
 		);
 		
 		?><div class="misc-pub-section"><?php
-			?><h2><?php _e('Color') ?></h2><?php
+			?><h2><?php _e('Background Color') ?></h2><?php
 			foreach ( $colors as $label=>$color ) {
 				extract( $color );
 				if ( $code ) {
@@ -115,7 +117,7 @@ class DashboardMessages {
 	
 		if ( is_multisite() && is_main_site() ) {
 			?><div class="misc-pub-section"><?php
-				?><h2><?php _e('Scope') ?></h2><?php
+				?><h2><?php _e('Scope','dashboardmessages') ?></h2><?php
 				// show 'all_blogs' 
 				$post_network_wide = get_post_meta( $post->ID , '_dashboard_network_wide' , true );
 
@@ -190,40 +192,63 @@ class DashboardMessages {
 ' . $content . '
 EOT;
 echo $str;';
-			add_meta_box( $uid , $post->post_title, create_function( '' , $fnc_body ) , 'dashboard' , 'normal' , 'high' );
+			add_meta_box( $post->dashboard_uid , $post->post_title, create_function( '' , $fnc_body ) , 'dashboard' , 'normal' , 'high' );
 		}
 	}
 	
 	static function get_dashboard_messages( ) {
 		// gets all posts from current blog
-		if ( is_multisite() ) {
-			// all network wide posts
-			if ( is_main_site() ) {
-				// posts from currentblog 
-				$network_posts = get_posts('post_type=dashboard_message&suppress_filters=0&meta_key=_dashboard_network_wide&meta_value=1&posts_per_page=-1');
-				$posts = get_posts( array( 
-						'posts_per_page' => -1,
-						'post_type' => 'dashboard_message',
-						'suppress_filters' => 0,
-						'meta_query' => array(
-							'key' => '_dashboard_network_wide',
-							'value' => '1',
-							'compare' => '!=',
-						),
-					) );
-			} else {
-				$posts = get_posts('post_type=dashboard_message&suppress_filters=0');
-				
-				$old_id = get_current_blog_id();
-				switch_to_blog( BLOG_ID_CURRENT_SITE );
-				$network_posts = get_posts('post_type=dashboard_message&suppress_filters=0&meta_key=_dashboard_network_wide&meta_value=1&posts_per_page=-1');
-				switch_to_blog( $old_id );
-			}
-			return array_merge( $network_posts , $posts );
+		if ( is_null( self::$_messages ) ) { // cache em
+			$network_posts = self::_get_network_posts();
+			$local_posts = self::_get_local_posts();
+			self::$_messages = array_merge( $network_posts , $local_posts );
+		}
+		return self::$_messages;
+	}
+	private static function _get_local_posts() {
+		if ( is_multisite() && is_main_site() ) {
+			$posts = get_posts( array( 
+					'posts_per_page' => -1,
+					'post_type' => 'dashboard_message',
+					'suppress_filters' => 0,
+					'meta_query' => array(
+						'key' => '_dashboard_network_wide',
+						'value' => '1',
+						'compare' => '!=',
+					),
+				) );
+		} else if ( is_multisite() ) {
+			$posts = get_posts('post_type=dashboard_message&suppress_filters=0');
 		} else {
-			return get_posts('post_type=dashboard_message&suppress_filters=0&posts_per_page=-1');
+			$posts = get_posts('post_type=dashboard_message&suppress_filters=0&posts_per_page=-1');
+		}
+		self::_handle_posts($posts);
+		return $posts;
+	}
+	private static function _get_network_posts() {
+		if ( ! is_multisite() )
+			return array();
+		
+		$old_id = get_current_blog_id();
+		if ( ! is_main_site() ) 
+			switch_to_blog( BLOG_ID_CURRENT_SITE );
+		$network_posts = get_posts('post_type=dashboard_message&suppress_filters=0&meta_key=_dashboard_network_wide&meta_value=1&posts_per_page=-1');
+		
+		self::_handle_posts($network_posts);
+		
+		if ($old_id != get_current_blog_id() ) 
+			switch_to_blog( $old_id );
+		
+		return $network_posts;
+	}
+	private static function _handle_posts( &$posts ) {
+		// add color & network wide uid
+		foreach ($posts as $i=>$post) {
+			$posts[$i]->dashboard_uid = self::get_box_id( $post );
+			$posts[$i]->dashboard_color = get_post_meta( $post->ID  ,'_dashboard_color' , true );
 		}
 	}
+	
 	static function admin_load_dashboard( ) {
 		add_action( 'admin_head' , array(__CLASS__ , 'admin_head_dashboard') , 10, 1 );
 	}
@@ -237,11 +262,10 @@ echo $str;';
 		}
 		$posts = self::get_dashboard_messages();
 		foreach ( $posts as $post ) {
-			$code = get_post_meta($post->ID , '_dashboard_color' , true );
-			if ( !isset($selectors[$code]) )
+			if ( !isset($selectors[$post->dashboard_color]) )
 				continue;
-			$uid = self::get_box_id( $post );
-			$selectors[$code][] = '#'.$uid;
+			$uid = $post->dashboard_uid;
+			$selectors[$post->dashboard_color][] = '#'.$uid;
 		}
 		
 		echo '<style type="text/css">';
