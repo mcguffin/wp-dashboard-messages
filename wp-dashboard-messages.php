@@ -26,6 +26,10 @@ class DashboardMessages {
 		"d5f5f5" => array( "code"=>"d5f5f5" , "gradient" => array("from"=>"#d5f5f5","to"=>"#d9f9f9",'dark'=>'#a5e5e5')),
 	);
 
+
+	// --------------------------------
+	//	Basics
+	// --------------------------------
 	static function init( ) {
 		// register post type
 		add_action('init',array(__CLASS__,'register_post_type' ) );
@@ -43,83 +47,11 @@ class DashboardMessages {
 		add_action( 'load-index.php' , array(__CLASS__ , 'admin_load_dashboard') , 10, 1 );
 		add_action( 'edit_post' , array(__CLASS__,'edit_post') ,10,2);
 	}
-	static function admin_load_dashboard( ) {
-		add_action( 'admin_head' , array(__CLASS__ , 'admin_head_dashboard') , 10, 1 );
-	}
-	static function admin_load_editor( ) {
-		add_action( 'admin_head' , array(__CLASS__ , 'admin_head_editor') , 10, 1 );
-	}
-	static function admin_head_dashboard( ) {
-		global $wpdb;
-		$selectors = array();
-		foreach ( self::$color_codes as $code => $color) {
-			if ( ! $code )
-				continue;
-			$selectors[$code] = array();
-		}
-		$posts = self::get_dashboard_messages();
-		foreach ( $posts as $post ) {
-			$code = get_post_meta($post->ID , '_dashboard_color' , true );
-			if ( !isset($selectors[$code]) )
-				continue;
-			$uid = self::get_box_id( $post );
-			$selectors[$code][] = '#'.$uid;
-		}
-		
-		echo '<style type="text/css">';
-		
-		foreach ($selectors as $code => $selector ) {
-			if ( ! (bool) $selector )
-				continue;
-			extract(self::$color_codes[$code]["gradient"]);
-			
-			?><?php echo implode(',',$selector) ?>{
-	background: #<?php echo $code ?>;
-	background-image: -webkit-gradient(linear,left bottom,left top,from(<?php echo $from ?>),to(<?php echo $to ?>));
-	background-image: -webkit-linear-gradient(bottom,<?php echo $from ?>,<?php echo $to ?>);
-	background-image: -moz-linear-gradient(bottom,<?php echo $from ?>,<?php echo $to ?>);
-	background-image: -o-linear-gradient(bottom,<?php echo $from ?>,<?php echo $to ?>);
-	background-image: linear-gradient(to top,<?php echo $from ?>,<?php echo $to ?>);
-			}
-			<?php
-
-			?><?php echo implode(' h3,',$selector) ?> h3{
-	background: #<?php echo $dark ?>;
-	background-image: -webkit-gradient(linear,left bottom,left top,from(<?php echo $to ?>),to(<?php echo $dark ?>));
-	background-image: -webkit-linear-gradient(bottom,<?php echo $to ?>,<?php echo $dark ?>);
-	background-image: -moz-linear-gradient(bottom,<?php echo $to ?>,<?php echo $dark ?>);
-	background-image: -o-linear-gradient(bottom,<?php echo $to ?>,<?php echo $dark ?>);
-	background-image: linear-gradient(to top,<?php echo $to ?>,<?php echo $dark ?>);
-			}
-			<?php
-		}
-		echo '</style>';
-	}
-	static function admin_head_editor( ) {
-		?><style type="text/css">
-		/*
-		Style ] page edit:
-		*/
-		#dashboard_options .inside {
-			margin:0;
-			padding:0;
-		}
-		#dashboard_options h2 {
-			margin:0;
-		}
-		#dashboard_options .colorselect {
-			float:left;
-			width:46%;
-			padding:1%;
-			margin:2% 2% 0 0;
-		}
-		#dashboard_options .colorfield {
-			display:inline-block;
-			color:#666666;
-			font-weight:bold;
-			margin-left:0.25em;
-		}		.
-		</style><?php
+	
+	
+	
+	private static function get_box_id( $post ) {
+		return "dashboard_message_{$post->ID}";
 	}
 	
 	static function register_post_type( ) {
@@ -139,6 +71,13 @@ class DashboardMessages {
 			'can_export' => false,
 		) );
 	}
+	
+	
+	
+	
+	// --------------------------------
+	//	Editing messages
+	// --------------------------------
 	static function add_meta_boxes( ) {
 		add_meta_box( 'dashboard_options' , __( 'Dashboard' ) , array(__CLASS__, 'dashboard_meta_box') , 'dashboard_message' , 'side' , 'default' );
 	}
@@ -201,9 +140,58 @@ class DashboardMessages {
 
 	}
 	
+	static function admin_head_editor( ) {
+		?><style type="text/css">
+		/*
+		Style ] page edit:
+		*/
+		#dashboard_options .inside {
+			margin:0;
+			padding:0;
+		}
+		#dashboard_options h2 {
+			margin:0;
+		}
+		#dashboard_options .colorselect {
+			float:left;
+			width:46%;
+			padding:1%;
+			margin:2% 2% 0 0;
+		}
+		#dashboard_options .colorfield {
+			display:inline-block;
+			color:#666666;
+			font-weight:bold;
+			margin-left:0.25em;
+		}		.
+		</style><?php
+	}
+	
+	
+	
+	
+	
+	
+	
+	// --------------------------------
+	//	Showing the messages
+	// --------------------------------
+	static function admin_load_editor( ) {
+		add_action( 'admin_head' , array(__CLASS__ , 'admin_head_editor') , 10, 1 );
+	}
+	
 	static function show_messages() {
 		// if network switch to main blog, self::show_blog_messages();, switch back.
-		self::show_blog_messages();
+		$posts = self::get_dashboard_messages( );
+		foreach ( $posts as $post ) {
+			$uid = self::get_box_id( $post );
+			$content = apply_filters( 'the_content' , $post->post_content );
+			$fnc_body = '$str = <<<EOT
+' . $content . '
+EOT;
+echo $str;';
+			add_meta_box( $uid , $post->post_title, create_function( '' , $fnc_body ) , 'dashboard' , 'normal' , 'high' );
+		}
 	}
 	
 	static function get_dashboard_messages( ) {
@@ -236,23 +224,56 @@ class DashboardMessages {
 			return get_posts('post_type=dashboard_message&suppress_filters=0&posts_per_page=-1');
 		}
 	}
-	
-	static function show_blog_messages(){
-		$posts = self::get_dashboard_messages( );
-		foreach ( $posts as $post ) {
-			$uid = self::get_box_id( $post );
-			$content = apply_filters( 'the_content' , $post->post_content );
-			$fnc_body = '$str = <<<EOT
-' . $content . '
-EOT;
-echo $str;';
-			add_meta_box( $uid , $post->post_title, create_function( '' , $fnc_body ) , 'dashboard' , 'normal' , 'high' );
+	static function admin_load_dashboard( ) {
+		add_action( 'admin_head' , array(__CLASS__ , 'admin_head_dashboard') , 10, 1 );
+	}
+	static function admin_head_dashboard( ) {
+		global $wpdb;
+		$selectors = array();
+		foreach ( self::$color_codes as $code => $color) {
+			if ( ! $code )
+				continue;
+			$selectors[$code] = array();
 		}
+		$posts = self::get_dashboard_messages();
+		foreach ( $posts as $post ) {
+			$code = get_post_meta($post->ID , '_dashboard_color' , true );
+			if ( !isset($selectors[$code]) )
+				continue;
+			$uid = self::get_box_id( $post );
+			$selectors[$code][] = '#'.$uid;
+		}
+		
+		echo '<style type="text/css">';
+		
+		foreach ($selectors as $code => $selector ) {
+			if ( ! (bool) $selector )
+				continue;
+			extract(self::$color_codes[$code]["gradient"]);
+			
+			?><?php echo implode(',',$selector) ?>{
+	background: #<?php echo $code ?>;
+	background-image: -webkit-gradient(linear,left bottom,left top,from(<?php echo $from ?>),to(<?php echo $to ?>));
+	background-image: -webkit-linear-gradient(bottom,<?php echo $from ?>,<?php echo $to ?>);
+	background-image: -moz-linear-gradient(bottom,<?php echo $from ?>,<?php echo $to ?>);
+	background-image: -o-linear-gradient(bottom,<?php echo $from ?>,<?php echo $to ?>);
+	background-image: linear-gradient(to top,<?php echo $from ?>,<?php echo $to ?>);
+			}
+			<?php
+
+			?><?php echo implode(' h3,',$selector) ?> h3{
+	background: #<?php echo $dark ?>;
+	background-image: -webkit-gradient(linear,left bottom,left top,from(<?php echo $to ?>),to(<?php echo $dark ?>));
+	background-image: -webkit-linear-gradient(bottom,<?php echo $to ?>,<?php echo $dark ?>);
+	background-image: -moz-linear-gradient(bottom,<?php echo $to ?>,<?php echo $dark ?>);
+	background-image: -o-linear-gradient(bottom,<?php echo $to ?>,<?php echo $dark ?>);
+	background-image: linear-gradient(to top,<?php echo $to ?>,<?php echo $dark ?>);
+			}
+			<?php
+		}
+		echo '</style>';
 	}
 	
-	private static function get_box_id( $post ) {
-		return "dashboard_message_{$post->ID}";
-	}
 	
 }
 DashboardMessages::init();
