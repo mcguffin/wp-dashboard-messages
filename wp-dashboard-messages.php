@@ -192,6 +192,11 @@ class DashboardMessages {
 ' . $content . '
 EOT;
 echo $str;';
+			if ( current_user_can_for_blog( $post->blog_id , 'edit_post' , $post->ID ) ) {
+				$fnc_body .= "\nswitch_to_blog( {$post->blog_id} );";
+				$fnc_body .= "\nedit_post_link( __('Edit this') , '<p>' , '</p>' , {$post->ID} );";
+				$fnc_body .= "\nrestore_current_blog( );";
+			}
 			add_meta_box( $post->dashboard_uid , $post->post_title, create_function( '' , $fnc_body ) , 'dashboard' , 'normal' , 'high' );
 		}
 	}
@@ -234,16 +239,19 @@ echo $str;';
 			switch_to_blog( BLOG_ID_CURRENT_SITE );
 		$network_posts = get_posts('post_type=dashboard_message&suppress_filters=0&meta_key=_dashboard_network_wide&meta_value=1&posts_per_page=-1');
 		
-		self::_handle_posts($network_posts);
+		self::_handle_posts( $network_posts , BLOG_ID_CURRENT_SITE );
 		
 		if ($old_id != get_current_blog_id() ) 
 			switch_to_blog( $old_id );
 		
 		return $network_posts;
 	}
-	private static function _handle_posts( &$posts ) {
+	private static function _handle_posts( &$posts , $blog_id = null ) {
 		// add color & network wide uid
+		if ( is_null( $blog_id ) )
+			$blog_id = get_current_blog_id();
 		foreach ($posts as $i=>$post) {
+			$posts[$i]->blog_id = $blog_id;
 			$posts[$i]->dashboard_uid = self::get_box_id( $post );
 			$posts[$i]->dashboard_color = get_post_meta( $post->ID  ,'_dashboard_color' , true );
 		}
