@@ -11,6 +11,9 @@ Description: Add messages to other User's dashbards.
 Author: Joern Lund
 Version: 0.9.0b
 Author URI: https://github.com/mcguffin
+
+Text Domain: dashboardmessages
+Domain Path: /lang/
 */
 
 
