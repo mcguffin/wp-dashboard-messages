@@ -6,11 +6,14 @@
 
 /*
 Plugin Name: WP-Dashboard Messages
-Plugin URI: http://wordpress.org/plugins/
+Plugin URI: https://github.com/mcguffin/wp-dashboard-messages
 Description: Add messages to other User's dashbards.
-Author: Joern Lund
+Author: Jörn Lund
 Version: 0.9.0b
 Author URI: https://github.com/mcguffin
+
+Text Domain: dashboardmessages
+Domain Path: /lang/
 */
 
 
