@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WP-Dashboard Messages v0.9.0b\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-07-25 12:58:52+0000\n"
+"PO-Revision-Date: 2013-10-04 08:02:16+0000\n"
 "Last-Translator: admin <joern@flyingletters.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,73 +20,109 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes"
 
-#: wp-dashboard-messages.php:59
+#: wp-dashboard-messages.php:64
 #@ dashboardmessages
 msgid "Dashboard Messages"
 msgstr "Dashboard Nachrichten"
 
-#: wp-dashboard-messages.php:60
+#: wp-dashboard-messages.php:65
 #@ dashboardmessages
 msgid "With Dashboard Messages an Administrator can put up Messages to the WordPress dashboard."
 msgstr "Nachrichten auf dem WordPress-Dashboard anderer Blog-Benutzer hinterlassen."
 
-#: wp-dashboard-messages.php:82
+#: wp-dashboard-messages.php:87
 #@ default
 msgid "Dashboard"
 msgstr ""
 
-#: wp-dashboard-messages.php:90
+#: wp-dashboard-messages.php:95
 #@ default
 msgid "Default"
 msgstr ""
 
-#: wp-dashboard-messages.php:91
+#: wp-dashboard-messages.php:96
 #@ default
 msgid "Yellow"
 msgstr ""
 
-#: wp-dashboard-messages.php:92
+#: wp-dashboard-messages.php:97
 #@ default
 msgid "Purple"
 msgstr ""
 
-#: wp-dashboard-messages.php:93
+#: wp-dashboard-messages.php:98
 #@ default
 msgid "Red"
 msgstr ""
 
-#: wp-dashboard-messages.php:94
+#: wp-dashboard-messages.php:99
 #@ default
 msgid "Green"
 msgstr ""
 
-#: wp-dashboard-messages.php:95
+#: wp-dashboard-messages.php:100
 #@ default
 msgid "Blue"
 msgstr ""
 
-#: wp-dashboard-messages.php:96
+#: wp-dashboard-messages.php:101
 #@ default
 msgid "Cyan"
 msgstr ""
 
-#: wp-dashboard-messages.php:118
+#: wp-dashboard-messages.php:123
 #@ dashboardmessages
 msgid "Scope"
 msgstr "Wo anzeigen:"
 
-#: wp-dashboard-messages.php:123
+#: wp-dashboard-messages.php:128
 #@ dashboardmessages
 msgid "Show message only on this blog."
 msgstr " nur auf diesem Blog."
 
-#: wp-dashboard-messages.php:126
+#: wp-dashboard-messages.php:131
 #@ dashboardmessages
 msgid "Show message on the entire network."
 msgstr " auf allen Blogs im Netzwerk."
 
-#: wp-dashboard-messages.php:100
+#: wp-dashboard-messages.php:105
 #@ default
 msgid "Background Color"
+msgstr ""
+
+#. translators: plugin header field 'Name'
+#: wp-dashboard-messages.php:0
+#@ dashboardmessages
+msgid "WP-Dashboard Messages"
+msgstr ""
+
+#. translators: plugin header field 'PluginURI'
+#: wp-dashboard-messages.php:0
+#@ dashboardmessages
+msgid "http://wordpress.org/plugins/"
+msgstr ""
+
+#. translators: plugin header field 'Description'
+#: wp-dashboard-messages.php:0
+#@ dashboardmessages
+msgid "Add messages to other User's dashbards."
+msgstr "Nchrichten zum Dashboard anderer Benutzer hinzufügen."
+
+#. translators: plugin header field 'Author'
+#: wp-dashboard-messages.php:0
+#@ dashboardmessages
+msgid "Joern Lund"
+msgstr ""
+
+#. translators: plugin header field 'AuthorURI'
+#: wp-dashboard-messages.php:0
+#@ dashboardmessages
+msgid "https://github.com/mcguffin"
+msgstr ""
+
+#. translators: plugin header field 'Version'
+#: wp-dashboard-messages.php:0
+#@ dashboardmessages
+msgid "0.9.0b"
 msgstr ""
 
