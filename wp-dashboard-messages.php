@@ -63,17 +63,20 @@ class DashboardMessages {
 		register_post_type( 'dashboard_message' , array( 
 			'label' => __( 'Dashboard Messages' , 'dashboardmessages' ),
 			'description' => __( 'With Dashboard Messages an Administrator can put up Messages to the WordPress dashboard.' , 'dashboardmessages' ),
-			'public' => false,
-			'show_ui' => true,
-			'show_in_menu' => true,
-			'menu_position' => 71,
-//			'menu_icon' => ...,
-			'capability_type' => 'posts',
-			'hierarchical' => false,
-			'supports' => array(
+			'public'			=> false,
+			'has_archive'		=> false,
+
+			'show_ui'			=> true,
+			'show_in_menu'		=> true,
+			'menu_position' 	=> 41,
+			'menu_icon'			=> 'dashicons-megaphone',
+			'capability_type'	=> 'post',
+			'map_meta_cap'		=> true,
+			'hierarchical'		=> false,
+			'can_export' 		=> false,
+			'supports' 			=> array(
 				'title','editor','author'
 			),
-			'can_export' => false,
 		) );
 	}
 	
