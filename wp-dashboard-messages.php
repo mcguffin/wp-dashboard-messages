@@ -128,7 +128,8 @@ class DashboardMessages {
 			}
 			?><div style="clear:both;"></div><?php
 		?></div><?php
-	
+		// select dashicon, output '<span class="dashicons dashicons-megaphone"></span>' before title.
+		
 		if ( is_multisite() && is_main_site() ) {
 			?><div class="misc-pub-section"><?php
 				?><h2><?php _e('Scope','dashboardmessages') ?></h2><?php
