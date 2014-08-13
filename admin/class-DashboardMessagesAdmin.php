@@ -30,6 +30,7 @@ class DashboardMessagesAdmin {
 		
 		add_action('add_meta_boxes',array( &$this ,'add_meta_boxes' ) );
 		add_action('wp_dashboard_setup',array( &$this ,'show_messages' ) , 1 );
+
 	}
 	
 	// --------------------------------
@@ -47,6 +48,25 @@ class DashboardMessagesAdmin {
 		add_action( 'load-post-new.php' , array( &$this  , 'admin_load_editor') , 10, 1 );
 		add_action( 'load-index.php' , array( &$this  , 'admin_load_dashboard') , 10, 1 );
 		add_action( 'edit_post' , array( &$this ,'edit_post') ,10,2);
+
+		if ( is_multisite() && current_user_can('manage_sites') ) {
+			add_filter('manage_dashboard_message_posts_columns' , array(&$this , 'add_scope_column'));
+			add_filter('manage_dashboard_message_posts_custom_column' , array(&$this , 'manage_scope_column') , 10 ,2 );
+		}
+	}
+	
+	public function add_scope_column( $columns ) {
+		$columns['scope'] = __('Scope','dashboardmessages');
+		return $columns;
+	}
+	public function manage_scope_column( $column , $post_ID ) {
+		if ( $column == 'scope' ) {
+			if ( get_post_meta( $post_ID , '_dashboard_network_wide' , true) ) {
+				?><span class="dashicons dashicons-admin-site"></span><?php
+			} else {
+				?><span class="dashicons dashicons-admin-home"></span><?php
+			}
+		}
 	}
 	
 	/**
@@ -60,7 +80,7 @@ class DashboardMessagesAdmin {
 	 *					(text color, css color value).
 	 *
 	 */
-	public function get_color_schemes(){
+	public function get_color_schemes() {
 		$colors = array(
 			""			=> array( 'label' => __('Default'),	"background"=>"" , 		  "color" => ""), // white
 			"yellow" 	=> array( 'label' => __('Yellow'),	"background"=>"#ccaf0b" , "color" => "#333"), // yellow
@@ -122,6 +142,7 @@ class DashboardMessagesAdmin {
 		// select dashicon, output '<span class="dashicons dashicons-megaphone"></span>' before title.
 		$dashicons = $this->get_dashicons( );
 		array_unshift($dashicons,'');
+		
 		?><div class="misc-pub-section"><?php
 			?><h2><?php _e('Icon') ?></h2><?php
 			
@@ -136,14 +157,14 @@ class DashboardMessagesAdmin {
 			?></div><?php
 		?></div><?php
 		
-		if ( is_multisite() && is_main_site() ) {
+		if ( is_multisite() && is_main_site() && current_user_can('manage_sites') ) {
 			?><div class="misc-pub-section"><?php
 				?><h2><?php _e('Scope','dashboardmessages') ?></h2><?php
 				// show 'all_blogs' 
 				$post_network_wide = get_post_meta( $post->ID , '_dashboard_network_wide' , true );
 
 				?><input type="radio" name="_dashboard_network_wide" value="" id="local-scope" <?php checked( (bool) $post_network_wide , false , true ) ?> /><?php
-				?><label for=local-scope" > <?php _e('Show message only on this blog.','dashboardmessages') ?></label><br /><?php
+				?><label for="local-scope" > <?php _e('Show message only on this blog.','dashboardmessages') ?></label><br /><?php
 
 				?><input type="radio" name="_dashboard_network_wide" value="1" id="network-scope" <?php checked( (bool) $post_network_wide , true , true ) ?> /><?php
 				?><label for="network-scope"> <?php _e('Show message on the entire network.','dashboardmessages') ?></label><br /><?php
@@ -170,7 +191,7 @@ class DashboardMessagesAdmin {
 		if ( isset( $_POST['_dashboard_icon'] ) )
 			update_post_meta( $post_ID , '_dashboard_icon' , $_POST['_dashboard_icon'] );
 
-		if ( isset( $_POST['_dashboard_network_wide'] ) )
+		if ( is_multisite() && is_main_site() && current_user_can('manage_sites') && isset( $_POST['_dashboard_network_wide'] ) )
 			update_post_meta( $post_ID , '_dashboard_network_wide' , (int) $_POST['_dashboard_network_wide'] );
 	}
 	
@@ -275,7 +296,7 @@ class DashboardMessagesAdmin {
 					if ($target.has('.select-dashicon').length) {
 						console.log('hide',event.target)
 						$('.select-dashicon').removeClass('active');
-					} else if ( $target.parents('.select-dashicon') && $target.is('label') ) {
+					} else if ( $target.parents('.select-dashicon').length && $target.is('label') ) {
 						$('.select-dashicon').toggleClass('active');
 						event.stopPropagation();
 					}
@@ -389,22 +410,21 @@ class DashboardMessagesAdmin {
 	 *	@return	array	Array containing local Dashboard Message post objects.
 	 */
 	private function _get_local_posts() {
+		// multisite main site
+		$get_posts_args = array( 
+			'posts_per_page' => -1,
+			'post_type' => 'dashboard_message',
+			'suppress_filters' => 0,
+		);
+
 		if ( is_multisite() && is_main_site() ) {
-			$posts = get_posts( array( 
-					'posts_per_page' => -1,
-					'post_type' => 'dashboard_message',
-					'suppress_filters' => 0,
-					'meta_query' => array(
-						'key' => '_dashboard_network_wide',
-						'value' => '1',
-						'compare' => '!=',
-					),
-				) );
-		} else if ( is_multisite() ) {
-			$posts = get_posts('post_type=dashboard_message&suppress_filters=0');
-		} else {
-			$posts = get_posts('post_type=dashboard_message&suppress_filters=0&posts_per_page=-1');
+			$get_posts_args['meta_query'] = array( 
+				'key' => '_dashboard_network_wide',
+				'value' => '1',
+				'compare' => '!=',
+			);
 		}
+		$posts = get_posts( $get_posts_args );
 		$this->_handle_posts($posts);
 		return $posts;
 	}
@@ -420,7 +440,16 @@ class DashboardMessagesAdmin {
 		$old_id = get_current_blog_id();
 		if ( ! is_main_site() ) 
 			switch_to_blog( BLOG_ID_CURRENT_SITE );
-		$network_posts = get_posts('post_type=dashboard_message&suppress_filters=0&meta_key=_dashboard_network_wide&meta_value=1&posts_per_page=-1');
+		$get_posts_args = array( 
+			'posts_per_page' => -1,
+			'post_type' => 'dashboard_message',
+			'suppress_filters' => 0,
+			'meta_query' => array( 
+				'key' => '_dashboard_network_wide',
+				'value' => '1',
+			),
+		);
+		$network_posts = get_posts( $get_posts_args );
 		
 		$this->_handle_posts( $network_posts , BLOG_ID_CURRENT_SITE );
 		
