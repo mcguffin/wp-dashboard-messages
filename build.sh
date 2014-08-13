@@ -7,4 +7,5 @@ outer_pattern='\.dashicons-([a-z0-9\-]+):'
 result=$(grep -ioE -e "$outer_pattern" "$DASHICONS_CSS")
 
 #echo ${$result/.*/hump}
-echo $result | sed -e 's/\.dashicons-/"/g' -e 's/:/"/g' -e 's/" "/","/g' -e 's/^/[/g' -e 's/$/]/g' > $DASHICONS_DATAFILE
+echo $result
+echo $result | sed -e 's/\.dashicons-before: //g' -e 's/\.dashicons-/"/g' -e 's/:/"/g' -e 's/" "/","/g' -e 's/^/[/g' -e 's/$/]/g' > $DASHICONS_DATAFILE

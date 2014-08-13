@@ -103,7 +103,6 @@ class DashboardMessagesAdmin {
 		$post_color = get_post_meta( $post->ID , '_dashboard_color' , true );
 		$post_icon = get_post_meta( $post->ID , '_dashboard_icon' , true );
 
-		
 		?><div class="misc-pub-section"><?php
 			?><h2><?php _e('Background Color') ?></h2><?php
 			foreach ( $this->get_color_schemes() as $code => $item ) {
@@ -122,6 +121,7 @@ class DashboardMessagesAdmin {
 		?></div><?php
 		// select dashicon, output '<span class="dashicons dashicons-megaphone"></span>' before title.
 		$dashicons = $this->get_dashicons( );
+		array_unshift($dashicons,'');
 		?><div class="misc-pub-section"><?php
 			?><h2><?php _e('Icon') ?></h2><?php
 			
