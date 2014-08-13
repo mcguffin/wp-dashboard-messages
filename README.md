@@ -13,3 +13,6 @@ Features
 - Edit and style Dashboard messages
 - German translation
 
+Planned
+-------
+- Custom Color schemes

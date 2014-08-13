@@ -1,13 +1,12 @@
 <?php
 /**
 * @package DashboardMessages
-* @version 0.1
 */
 
 /*
 Plugin Name: WP-Dashboard Messages
 Plugin URI: https://github.com/mcguffin/wp-dashboard-messages
-Description: Add messages to other User's dashbards.
+Description: Add messages to other Users dashboards.
 Author: Jörn Lund
 Version: 0.9.0
 Author URI: https://github.com/mcguffin
@@ -18,6 +17,7 @@ Domain Path: /lang/
 
 
 if ( ! class_exists( 'DashboardMessages' ) ) :
+
 class DashboardMessages {
 	private static $_instance = null;
 	private $_messages = null;
@@ -44,6 +44,8 @@ class DashboardMessages {
 	private function __construct() {
 		add_action( 'init' , array( &$this , 'register_post_type' ) );
 		add_action( 'plugins_loaded' , array( &$this , 'load_plugin_textdomain' ) );
+		
+//		register_activation_hook();
 	}
 	/**
 	 * Load plugin textdomain. Fired on 'plugins_loaded'
@@ -51,7 +53,6 @@ class DashboardMessages {
 	public function load_plugin_textdomain( ) {
 		load_plugin_textdomain( 'dashboardmessages' , false, dirname( plugin_basename( __FILE__ )) . '/lang');
 	}
-	
 	
 	/**
 	 * Register Dashboard messages post type. Fired on 'init'
@@ -78,11 +79,8 @@ class DashboardMessages {
 	}
 }
 DashboardMessages::instance();
+
 endif;
-
-function dashboardmessages_get_post( $post_ID , $blog_id ) {
-
-}
 
 if ( is_admin() )
 	require_once( 'admin/class-DashboardMessagesAdmin.php' );

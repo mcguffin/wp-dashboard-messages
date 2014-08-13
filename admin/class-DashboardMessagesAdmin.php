@@ -1,4 +1,7 @@
 <?php
+/**
+* @package DashboardMessages
+*/
 
 
 if ( ! class_exists( 'DashboardMessagesAdmin' ) ) :
