@@ -3,7 +3,7 @@ Contributors: podpirate
 Donate link: 
 Tags: dashboard, admin
 Requires at least: 3.5
-Tested up to: 3.6.1
+Tested up to: 4.0-beta3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -16,7 +16,8 @@ Put messages on Your Wordpress user's dashboards.
 - Translation ready
 
 == Installation ==
-Do as usual
+
+Just follow the standard [WordPress plugin installation procedere](http://codex.wordpress.org/Managing_Plugins).
 
 == Frequently asked questions ==
 

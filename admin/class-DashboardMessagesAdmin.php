@@ -30,8 +30,6 @@ class DashboardMessagesAdmin {
 		
 		add_action('add_meta_boxes',array( &$this ,'add_meta_boxes' ) );
 		add_action('wp_dashboard_setup',array( &$this ,'show_messages' ) , 1 );
-		
-		
 	}
 	
 	// --------------------------------
