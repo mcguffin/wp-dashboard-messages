@@ -12,7 +12,7 @@ Put messages on Your Wordpress user's dashboards.
 
 == Description ==
 Put messages on Your Wordpress user's dashboards.
-- Works fine with wp-revision-request
+
 - Translation ready
 
 == Installation ==
