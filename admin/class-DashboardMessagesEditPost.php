@@ -12,7 +12,7 @@ class DashboardMessagesEditPost {
 	/**
 	 * Getting a singleton.
 	 *
-	 * @return object single instance of DashboardMessagesAdmin
+	 * @return object single instance of DashboardMessagesEditPost
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) )
@@ -553,5 +553,5 @@ class DashboardMessagesEditPost {
 
 }
 
-DashboardMessagesAdmin::instance();
+DashboardMessagesEditPost::instance();
 endif;
