@@ -83,7 +83,7 @@ DashboardMessages::instance();
 endif;
 
 if ( is_admin() )
-	require_once( 'admin/class-DashboardMessagesAdmin.php' );
+	require_once( 'admin/class-DashboardMessagesEditPost.php' );
 
 
 ?>

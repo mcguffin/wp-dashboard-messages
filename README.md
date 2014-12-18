@@ -13,6 +13,11 @@ Features
 - Edit and style Dashboard messages
 - German translation
 
-Planned
--------
-- Custom Color schemes
+Plugin-API
+----------
+
+- Filter dashboardmessages_color_schemes
+
+To Do
+-----
+- change textdomain an lang folder name

@@ -4,8 +4,8 @@
 */
 
 
-if ( ! class_exists( 'DashboardMessagesAdmin' ) ) :
-class DashboardMessagesAdmin {
+if ( ! class_exists( 'DashboardMessagesEditPost' ) ) :
+class DashboardMessagesEditPost {
 	private static $_instance = null;
 	private $_messages = null;
 	
@@ -52,7 +52,7 @@ class DashboardMessagesAdmin {
 		add_action( 'load-index.php' , array( &$this  , 'admin_load_dashboard') , 10, 1 );
 		add_action( 'edit_post' , array( &$this ,'edit_post') ,10,2);
 
-		if ( is_multisite() && current_user_can('manage_sites') ) {
+		if ( is_multisite() && current_user_can('manage_sites') && is_main_site() ) {
 			add_filter('manage_dashboard_message_posts_columns' , array(&$this , 'add_scope_column'));
 			add_filter('manage_dashboard_message_posts_custom_column' , array(&$this , 'manage_scope_column') , 10 ,2 );
 		}
@@ -447,13 +447,10 @@ class DashboardMessagesAdmin {
 			'posts_per_page' => -1,
 			'post_type' => 'dashboard_message',
 			'suppress_filters' => 0,
-			'meta_query' => array( 
-				'key' => '_dashboard_network_wide',
-				'value' => '1',
-			),
+			'meta_key' => '_dashboard_network_wide',
+			'meta_value' => '1',
 		);
 		$network_posts = get_posts( $get_posts_args );
-		
 		$this->_handle_posts( $network_posts , BLOG_ID_CURRENT_SITE );
 		
 		if ($old_id != get_current_blog_id() ) 
