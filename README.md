@@ -16,5 +16,17 @@ Features
 Plugin-API
 ----------
 
-### Filter `dashboardmessages_color_schemes`
+##### Filter `dashboardmessages_color_schemes`
 
+Example:
+```
+function add_a_nice_color( $colors ) {
+    $colors['nice'] = array(
+        'label' => 'Niiiice!!!',
+        'background' => '#ff0000',
+        'color' => 'rgba(255,128,0,0.5)',
+    );
+    return $colors;
+}
+add_filter('dashboardmessages_color_schemes','add_a_nice_color');
+```
