@@ -57,7 +57,7 @@ class DashboardMessagesEditPost {
 	}
 	
 	public function add_scope_column( $columns ) {
-		$columns['scope'] = __('Scope','dashboardmessages');
+		$columns['scope'] = __('Scope','wp-dashboard-messages');
 		return $columns;
 	}
 	public function manage_scope_column( $column , $post_ID ) {
@@ -103,7 +103,7 @@ class DashboardMessagesEditPost {
 		$post_icon = get_post_meta( $post->ID , '_dashboard_icon' , true );
 
 		?><div class="misc-pub-section"><?php
-			?><h2><?php _e('Background Color') ?></h2><?php
+			?><h2><?php _e('Color Scheme','wp-dashboard-messages') ?></h2><?php
 			foreach ( DashboardMessages::instance()->get_color_schemes() as $code => $item ) {
 				extract( $item );
 				if ( $background && $color ) {
@@ -138,15 +138,15 @@ class DashboardMessagesEditPost {
 		
 		if ( is_multisite() && is_main_site() && current_user_can('manage_sites') ) {
 			?><div class="misc-pub-section"><?php
-				?><h2><?php _e('Scope','dashboardmessages') ?></h2><?php
+				?><h2><?php _e('Scope','wp-dashboard-messages') ?></h2><?php
 				// show 'all_blogs' 
 				$post_network_wide = get_post_meta( $post->ID , '_dashboard_network_wide' , true );
 
 				?><input type="radio" name="_dashboard_network_wide" value="" id="local-scope" <?php checked( (bool) $post_network_wide , false , true ) ?> /><?php
-				?><label for="local-scope" > <?php _e('Show message only on this blog.','dashboardmessages') ?></label><br /><?php
+				?><label for="local-scope" > <?php _e('Show message only on this blog.','wp-dashboard-messages') ?></label><br /><?php
 
 				?><input type="radio" name="_dashboard_network_wide" value="1" id="network-scope" <?php checked( (bool) $post_network_wide , true , true ) ?> /><?php
-				?><label for="network-scope"> <?php _e('Show message on the entire network.','dashboardmessages') ?></label><br /><?php
+				?><label for="network-scope"> <?php _e('Show message on the entire network.','wp-dashboard-messages') ?></label><br /><?php
 			
 			?></div><?php
 		}

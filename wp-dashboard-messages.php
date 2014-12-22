@@ -11,10 +11,23 @@ Author: Jörn Lund
 Version: 0.9.0
 Author URI: https://github.com/mcguffin
 
-Text Domain: dashboardmessages
-Domain Path: /lang/
 */
 
+/*  Copyright 2014  Jörn Lund  (email : joern AT podpirate DOT org)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License, version 2, as 
+    published by the Free Software Foundation.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
 
 if ( ! class_exists( 'DashboardMessages' ) ) :
 
@@ -53,7 +66,7 @@ class DashboardMessages {
 	 * Load plugin textdomain. Fired on 'plugins_loaded'
 	 */
 	public function load_plugin_textdomain( ) {
-		load_plugin_textdomain( 'dashboardmessages' , false, dirname( plugin_basename( __FILE__ )) . '/lang');
+		load_plugin_textdomain( 'wp-dashboard-messages' , false, dirname( plugin_basename( __FILE__ )) . '/languages');
 	}
 	
 	/**
@@ -61,8 +74,8 @@ class DashboardMessages {
 	 */
 	public function register_post_type( ) {
 		register_post_type( 'dashboard_message' , array( 
-			'label' => __( 'Dashboard Messages' , 'dashboardmessages' ),
-			'description' => __( 'With Dashboard Messages an Administrator can put up Messages to the WordPress dashboard.' , 'dashboardmessages' ),
+			'label' => __( 'Dashboard Messages' , 'wp-dashboard-messages' ),
+			'description' => __( 'With Dashboard Messages an Administrator can put up Messages to the WordPress dashboard.' , 'wp-dashboard-messages' ),
 			'public'			=> false,
 			'has_archive'		=> false,
 

@@ -16,8 +16,5 @@ Features
 Plugin-API
 ----------
 
-- Filter `dashboardmessages_color_schemes`
+### Filter `dashboardmessages_color_schemes`
 
-To Do
------
-- change textdomain an lang folder name
