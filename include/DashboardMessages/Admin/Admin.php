@@ -27,7 +27,6 @@ class Admin extends Core\Singleton {
 		$this->core = Core\Core::instance();
 
 		add_action( 'wp_dashboard_setup', array( $this ,'show_messages' ) , 1 );
-	//	add_action( 'load-index.php' , array( $this  , 'admin_load_dashboard') , 10, 1 );
 
 		add_action( 'admin_init', array( $this , 'admin_init' ) );
 		add_action( 'admin_enqueue_scripts', array( $this , 'enqueue_assets' ), 1 );
@@ -57,6 +56,17 @@ class Admin extends Core\Singleton {
 
 			$content = apply_filters( 'the_content' , $post->post_content );
 
+			$context = $post->dashboard_context;
+			if ( empty( $context ) ) {
+				$context = 'normal';
+			}
+
+			$prio = $post->dashboard_priority;
+			if ( empty( $prio ) ) {
+				$prio = 'high';
+			}
+
+
 			$before_title = '';
 
 			if ( $post->dashboard_icon ) {
@@ -64,7 +74,7 @@ class Admin extends Core\Singleton {
 				$before_title = '<span class="dashicons dashicons-'.$post->dashboard_icon.'"></span>';
 
 			}
-			add_meta_box( $post->dashboard_uid , $before_title . $post->post_title, array( $this , 'print_message_content' ) , 'dashboard' , 'normal' , 'high' , $post );
+			add_meta_box( $post->dashboard_uid , $before_title . $post->post_title, array( $this, 'print_message_content' ), 'dashboard', $context, $prio, $post );
 		}
 	}
 	/**
@@ -112,7 +122,7 @@ class Admin extends Core\Singleton {
 		$rules = array();
 		$color_schemes = Core\Core::instance()->get_color_schemes();
 		$css = '/* Dashboard Messages Colors */'."\n";
-		
+
 		foreach ( $posts as $post ) {
 			if ( ! $post->dashboard_color || ! isset( $color_schemes[ $post->dashboard_color ] ) ) {
 				continue;

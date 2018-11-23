@@ -87,7 +87,6 @@ class WPMU extends Core\PluginComponent {
 	 */
 	public function metabox( $post ) {
 		?>
-		<hr />
 		<div class="dashboard-messages-scope">
 			<h4><?php _e('Scope','wp-dashboard-messages') ?></h4>
 			<?php
@@ -96,7 +95,7 @@ class WPMU extends Core\PluginComponent {
 			$post_network_wide = get_post_meta( $post->ID , '_dashboard_network_wide' , true );
 
 			?>
-			<div class="select-scope">
+			<div class="dashboard-messages-select-radio">
 				<?php
 				printf( '<input type="radio" id="local-scope" name="_dashboard_network_wide" value="" %s />', checked( (bool) $post_network_wide, false, false ) );
 				?>
@@ -107,7 +106,7 @@ class WPMU extends Core\PluginComponent {
 				</label>
 			</div>
 
-			<div class="select-scope">
+			<div class="dashboard-messages-select-radio">
 				<?php
 				printf( '<input type="radio" id="network-scope" name="_dashboard_network_wide" value="1" %s />', checked( (bool) $post_network_wide, true, false ) );
 				?>

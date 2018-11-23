@@ -140,9 +140,16 @@ class PostTypeDashboardMessage extends PostType {
 		}
 
 		if ( isset( $_POST['_dashboard_icon'] ) && ('' === $_POST['_dashboard_icon'] || isset( $dashicons[ $_POST['_dashboard_icon'] ] )) ) {
-			// validate!
 			update_post_meta( $post_ID , '_dashboard_icon' , $_POST['_dashboard_icon'] );
 		}
+
+
+		if ( isset( $_POST['_dashboard_context'] ) && in_array( $_POST['_dashboard_context'], array( 'normal', 'side' ) ) ) {
+			// validate!
+			update_post_meta( $post_ID , '_dashboard_context' , $_POST['_dashboard_context'] );
+		}
+
+
 	}
 
 	/**
@@ -185,10 +192,6 @@ class PostTypeDashboardMessage extends PostType {
 				?>
 			</div>
 		</div><!-- .misc-pub-section -->
-		<?php
-
-
-		?>
 		<hr />
 		<div class="dashicon">
 			<h4><?php _e('Icon','wp-dashboard-messages') ?></h4>
@@ -210,7 +213,74 @@ class PostTypeDashboardMessage extends PostType {
 				?>
 				</div>
 			</div>
-		</div><!-- .misc-pub-section -->
+		</div><!-- .icon -->
+		<div class="dashboard-messages-placements">
+			<div class="context">
+				<h4><?php _e('Context','wp-dashboard-messages') ?></h4>
+				<?php
+
+				// show 'all_blogs'
+				$post_context = get_post_meta( $post->ID , '_dashboard_context', true );
+				if ( empty( $post_context ) ) {
+					$post_context = 'normal';
+				}
+				$contexts = array(
+					'normal'	=> __('Normal','wp-dashboard-messages'),
+					'side'		=> __('Side','wp-dashboard-messages')
+				);
+				foreach ( $contexts as $value => $label ) {
+				?>
+				<div class="dashboard-messages-select-radio">
+					<?php
+					printf( '<input type="radio" id="context-%1$s" name="_dashboard_context" value="%1$s" %2$s />', $value, checked( $post_context, $value, false ) );
+					?>
+					<label for="context-<?php echo $value; ?>" >
+						<?php
+						echo $label;
+						?>
+					</label>
+				</div>
+				<?php
+
+				}
+
+				?>
+			</div>
+
+			<div class="priority">
+				<h4><?php _e('Priority','wp-dashboard-messages') ?></h4>
+				<?php
+
+				// show 'all_blogs'
+				$post_prio = get_post_meta( $post->ID , '_dashboard_priority', true );
+				if ( empty( $post_prio ) ) {
+					$post_prio = 'high';
+				}
+				$prios = array(
+					'high'		=> __( 'High', 'wp-dashboard-messages' ),
+					'default'	=> __( 'Default', 'wp-dashboard-messages' ),
+					'low'		=> __( 'Low', 'wp-dashboard-messages' ),
+				);
+				foreach ( $prios as $value => $label ) {
+				?>
+				<div class="dashboard-messages-select-radio">
+					<?php
+					printf( '<input type="radio" id="context-%1$s" name="_dashboard_priority" value="%1$s" %2$s />', $value, checked( $post_prio, $value, false ) );
+					?>
+					<label for="context-<?php echo $value; ?>" >
+						<?php
+						echo $label;
+						?>
+					</label>
+				</div>
+				<?php
+
+				}
+
+				?>
+			</div>
+		</div>
+
 		<?php
 
 		do_action( 'dashboard_messages_metabox', $post );
@@ -229,10 +299,13 @@ class PostTypeDashboardMessage extends PostType {
 	 */
 	private function handle_post( $post ) {
 		$blog_id = get_current_blog_id();
-		$post->blog_id = $blog_id;
-		$post->dashboard_uid = sprintf( 'dashboard-message-%d-%d', $blog_id, $post->ID );
-		$post->dashboard_color = get_post_meta( $post->ID  ,'_dashboard_color' , true );
-		$post->dashboard_icon = get_post_meta( $post->ID  ,'_dashboard_icon' , true );
+
+		$post->blog_id 				= $blog_id;
+		$post->dashboard_uid		= sprintf( 'dashboard-message-%d-%d', $blog_id, $post->ID );
+		$post->dashboard_color		= get_post_meta( $post->ID, '_dashboard_color', true );
+		$post->dashboard_icon		= get_post_meta( $post->ID, '_dashboard_icon', true );
+		$post->dashboard_context	= get_post_meta( $post->ID, '_dashboard_context', true );
+		$post->dashboard_priority	= get_post_meta( $post->ID, '_dashboard_priority', true );
 
 		return apply_filters( 'dashboard_messages_handle_post', $post );
 	}
