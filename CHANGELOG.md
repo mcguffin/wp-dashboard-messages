@@ -2,6 +2,10 @@ WordPress Dashboard Messages
 ============================
 
 
+1.0.2
+-----
+ - fix icon select not visible
+
 1.0.1
 -----
  - fix style loading when SCRIPT_DEBUG is enabled

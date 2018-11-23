@@ -5,7 +5,7 @@ Plugin Name: WP-Dashboard Messages
 Plugin URI: https://github.com/mcguffin/wp-dashboard-messages
 Description: Add messages to other Users dashboards.
 Author: Jörn Lund
-Version: 1.0.1
+Version: 1.0.2
 Author URI: https://github.com/mcguffin
 License: GPL3
 Github Repository: mcguffin/wp-dashboard-messages
