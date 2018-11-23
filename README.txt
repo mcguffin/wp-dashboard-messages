@@ -5,7 +5,7 @@ Tags: dashboard, admin
 Requires at least: 4.8
 Requires PHP: 5.6
 Tested up to: 4.9.8
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
