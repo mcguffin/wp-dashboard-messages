@@ -86,19 +86,40 @@ class WPMU extends Core\PluginComponent {
 	 *	@action dashboard_messages_metabox
 	 */
 	public function metabox( $post ) {
-		?><div class="scope"><?php
-			?><h2><?php _e('Scope','wp-dashboard-messages') ?></h2><?php
+		?>
+		<hr />
+		<div class="dashboard-messages-scope">
+			<h4><?php _e('Scope','wp-dashboard-messages') ?></h4>
+			<?php
 
 			// show 'all_blogs'
 			$post_network_wide = get_post_meta( $post->ID , '_dashboard_network_wide' , true );
 
-			?><input type="radio" name="_dashboard_network_wide" value="" id="local-scope" <?php checked( (bool) $post_network_wide , false , true ) ?> /><?php
-			?><label for="local-scope" > <?php _e('Show message only on this blog.','wp-dashboard-messages') ?></label><br /><?php
+			?>
+			<div class="select-scope">
+				<?php
+				printf( '<input type="radio" id="local-scope" name="_dashboard_network_wide" value="" %s />', checked( (bool) $post_network_wide, false, false ) );
+				?>
+				<label for="local-scope" >
+					<?php
+					_e('Show message only on this blog.','wp-dashboard-messages');
+					?>
+				</label>
+			</div>
 
-			?><input type="radio" name="_dashboard_network_wide" value="1" id="network-scope" <?php checked( (bool) $post_network_wide , true , true ) ?> /><?php
-			?><label for="network-scope"> <?php _e('Show message on the entire network.','wp-dashboard-messages') ?></label><br /><?php
+			<div class="select-scope">
+				<?php
+				printf( '<input type="radio" id="network-scope" name="_dashboard_network_wide" value="1" %s />', checked( (bool) $post_network_wide, true, false ) );
+				?>
 
-		?></div><?php
+				<label for="network-scope" >
+					<?php
+					_e('Show message on the entire network.','wp-dashboard-messages');
+					?>
+				</label>
+			</div>
+		</div>
+		<?php
 
 	}
 

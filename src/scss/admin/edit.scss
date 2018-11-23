@@ -79,9 +79,45 @@
 		height:40px;
 		padding:5px;
 	}
+	.dashicons- {
+		position: relative;
+		&::before {
+			content:'';
+			border-radius:50%;
+			border:0.2em solid mix($wp-gray-dark,$wp-gray);
+			width:1em;
+			height:1em;
+			display:inline-block;
+			box-sizing: border-box;
+		}
+		&::after {
+			content:'';
+			position: absolute;
+			left:50%;
+			top:50%;
+
+			height:0.2em;
+			width:1em;
+			margin-left:-0.5em;
+			margin-top:-0.1em;
+			background:mix($wp-gray-dark,$wp-gray);
+			transform:rotate(45deg);
+
+			display:inline-block;
+			box-sizing: border-box;
+		}
+	}
 }
 
-
+.dashboard-messages-scope {
+	.select-scope {
+		display: flex;
+		[type="radio"] {
+			margin-top:0;
+		}
+		padding:0 0 10px 0;
+	}
+}
 
 [id^="dashboard-message-"] {
 	h2 {

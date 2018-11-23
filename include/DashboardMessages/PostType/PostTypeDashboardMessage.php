@@ -139,7 +139,7 @@ class PostTypeDashboardMessage extends PostType {
 			update_post_meta( $post_ID , '_dashboard_color' , $_POST['_dashboard_color'] );
 		}
 
-		if ( isset( $_POST['_dashboard_icon'] ) && isset( $dashicons[ $_POST['_dashboard_icon'] ] ) ) {
+		if ( isset( $_POST['_dashboard_icon'] ) && ('' === $_POST['_dashboard_icon'] || isset( $dashicons[ $_POST['_dashboard_icon'] ] )) ) {
 			// validate!
 			update_post_meta( $post_ID , '_dashboard_icon' , $_POST['_dashboard_icon'] );
 		}
@@ -188,7 +188,9 @@ class PostTypeDashboardMessage extends PostType {
 		<?php
 
 
-		?><div class="dashicon">
+		?>
+		<hr />
+		<div class="dashicon">
 			<h4><?php _e('Icon','wp-dashboard-messages') ?></h4>
 			<div class="dashboard-messages-icons select-window">
 				<div class="select">
