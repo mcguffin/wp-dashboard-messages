@@ -193,10 +193,10 @@ class PostTypeDashboardMessage extends PostType {
 			<div class="dashboard-messages-icons select-window">
 				<div class="select">
 				<?php
-				foreach ( $core->get_dashicons( ) as $icon => $codepoint ) {
+				foreach ( array( '' => '') + $core->get_dashicons( ) as $icon => $codepoint ) {
 
 					$inp_id = esc_attr('dashicon-' . $icon);
-					$icon_label = ucwords( implode(' ',explode('-',$icon) ));
+					$icon_label = $icon ? ucwords( implode(' ',explode('-',$icon) )) : __('No Icon','wp-dashboard-messages');
 
 					printf( '<input type="radio" name="_dashboard_icon" id="%s" value="%s" %s >',
 						$inp_id,
