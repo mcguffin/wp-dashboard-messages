@@ -144,7 +144,7 @@ class PostTypeDashboardMessage extends PostType {
 		}
 
 
-		if ( isset( $_POST['_dashboard_context'] ) && in_array( $_POST['_dashboard_context'], array( 'normal', 'side' ) ) ) {
+		if ( isset( $_POST['_dashboard_context'] ) && in_array( $_POST['_dashboard_context'], array( 'normal', 'side', 'column3', 'column4' ) ) ) {
 			// validate!
 			update_post_meta( $post_ID , '_dashboard_context' , $_POST['_dashboard_context'] );
 		}
@@ -231,7 +231,9 @@ class PostTypeDashboardMessage extends PostType {
 				}
 				$contexts = array(
 					'normal'	=> __('Normal','wp-dashboard-messages'),
-					'side'		=> __('Side','wp-dashboard-messages')
+					'side'		=> __('Side','wp-dashboard-messages'),
+					'column3'	=> __( 'Column 3', 'wp-dasboard-messages' ),
+					'column4'	=> __( 'Column 4', 'wp-dasboard-messages' ),
 				);
 				foreach ( $contexts as $value => $label ) {
 				?>
