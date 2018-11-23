@@ -128,9 +128,11 @@ class WPMU extends Core\PluginComponent {
 	public function exclude_network_args( $query_args ) {
 		// exclude network messages
 		$query_args['meta_query'] = array(
-			'key' => '_dashboard_network_wide',
-			'value' => '1',
-			'compare' => '!=',
+			array(
+				'key' => '_dashboard_network_wide',
+				'value' => '1',
+				'compare' => '!=',
+			)
 		);
 		return $query_args;
 	}
@@ -141,9 +143,11 @@ class WPMU extends Core\PluginComponent {
 	 */
 	public function network_only_args( $query_args ) {
 		$query_args['meta_query'] = array(
-			'key' => '_dashboard_network_wide',
-			'value' => '1',
-			'compare' => '=',
+			array(
+				'key' => '_dashboard_network_wide',
+				'value' => '1',
+				
+			)
 		);
 		return $query_args;
 	}

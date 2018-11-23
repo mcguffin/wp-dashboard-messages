@@ -28,13 +28,7 @@ class Admin extends Core\Singleton {
 
 		add_action( 'wp_dashboard_setup', array( $this ,'show_messages' ) , 1 );
 
-		add_action( 'admin_init', array( $this , 'admin_init' ) );
 		add_action( 'admin_enqueue_scripts', array( $this , 'enqueue_assets' ), 1 );
-
-
-	}
-
-	public function disable_block_editor( $is_enabled, $post_type ) {
 
 	}
 
@@ -106,13 +100,6 @@ class Admin extends Core\Singleton {
 	}
 
 	/**
-	 *	Admin init
-	 *	@action admin_init
-	 */
-	public function admin_init() {
-	}
-
-	/**
 	 *	Enqueue options Assets
 	 *	@action admin_print_scripts
 	 */
@@ -144,8 +131,7 @@ class Admin extends Core\Singleton {
 		wp_enqueue_style( 'dashboard-messages-edit' , $this->core->get_asset_url( '/css/admin/edit.css' ) );
 
 		wp_enqueue_script( 'dashboard-messages-edit' , $this->core->get_asset_url( 'js/admin/edit.js' ) );
-		wp_localize_script('dashboard-messages-edit' , 'dashboard_messages_admin' , array(
-		) );
+
 	}
 
 }

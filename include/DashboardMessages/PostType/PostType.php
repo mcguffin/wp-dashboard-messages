@@ -150,6 +150,9 @@ abstract class PostType extends Core\PluginComponent {
 
 
 
+	/**
+	 *	Add custom capabilities to admin role
+	 */
 	protected function add_custom_capabilities() {
 		if ( ! is_null( $this->post_type_caps ) ) {
 			$admin_role = get_role('administrator');

@@ -36,10 +36,13 @@ class Core extends Plugin {
 	 *
 	 *	@use public
 	 *
-	 *	@return array	Assoc containing all avaliable color schemes.
-	 *					keys: color scheme slug, values array with keys label (short
-	 *					descriptive name), background (css background value), color
-	 *					(text color, css color value).
+	 *	@return array	Assoc containing all available color schemes.
+	 *					array(
+	 *						'color-scheme-slug'	=> array(
+	 *							'label'	=> 'Funky',
+	 *							'css'	=> 'color:tamato;backgrond:cucumber;'
+	 *						)
+	 *					)
 	 *
 	 */
 	public function get_color_schemes() {
