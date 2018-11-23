@@ -149,6 +149,11 @@ class PostTypeDashboardMessage extends PostType {
 			update_post_meta( $post_ID , '_dashboard_context' , $_POST['_dashboard_context'] );
 		}
 
+		if ( isset( $_POST['_dashboard_priority'] ) && in_array( $_POST['_dashboard_priority'], array( 'high', 'default', 'low' ) ) ) {
+			// validate!
+			update_post_meta( $post_ID , '_dashboard_priority' , $_POST['_dashboard_priority'] );
+		}
+
 
 	}
 
