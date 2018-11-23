@@ -13,13 +13,13 @@ function do_scss( src ) {
 	var dir = src.substring( 0, src.lastIndexOf('/') );
 	return gulp.src( './src/scss/' + src + '.scss' )
 		.pipe( sourcemaps.init() )
-		.pipe( sass( { outputStyle: 'nested' } ).on('error', sass.logError) )
+		.pipe( sass( { outputStyle: 'compressed' } ).on('error', sass.logError) )
 		.pipe( autoprefixer({
 			browsers:['last 2 versions']
 		}) )
 		.pipe( gulp.dest( './css/' + dir ) )
         .pipe( sass( { outputStyle: 'compressed' } ).on('error', sass.logError) )
-		.pipe( rename( { suffix: '.min' } ) )
+		.pipe( rename( { suffix: '.dev' } ) )
         .pipe( sourcemaps.write() )
         .pipe( gulp.dest( './css/' + dir ) );
 
