@@ -1,10 +1,11 @@
 === WP Dashboard Messages ===
 Contributors: podpirate
-Donate link: 
+Donate link:
 Tags: dashboard, admin
-Requires at least: 3.5
-Tested up to: 4.0-beta3
-Stable tag: trunk
+Requires at least: 4.8
+Requires PHP: 5.6
+Tested up to: 4.9.8
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +39,9 @@ Use the GitHub Repo rather than the WordPress Plugin. Do as follows:
 Either post it on [GitHub](https://github.com/mcguffin/wp-dashboard-messages) or—if you are working on a cloned repository—send me a pull request.
 
 == Changelog ==
+
+= 1.0.0 =
+4 years later: Rewrite from scratch
 
 = 0.9.0 =
 Initial Release

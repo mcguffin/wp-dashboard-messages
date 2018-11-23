@@ -1,198 +1,169 @@
+# Copyright (C) 2018 joern
+# This file is distributed under the GNU General Public License v2 or later.
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: WP-Dashboard Messages v0.9.0b\n"
+"Project-Id-Version: WP-Dashboard Messages v0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-23T12:17:45+00:00\n"
-"PO-Revision-Date: 2018-11-23 13:27+0100\n"
-"Last-Translator: admin <joern@flyingletters.com>\n"
+"PO-Revision-Date: 2018-11-23T12:17:45+00:00\n"
 "Language-Team: \n"
-"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.0.8\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: WP Make Pot\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
-"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"_n_noop:1,2;_c;_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
+"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
+"esc_html_x:1,2c\n"
 "X-Textdomain-Support: yes\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Basepath: ./\n"
+"Last-Translator: \n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
 
 #: include/DashboardMessages/Admin/Admin.php:88
 msgid "Edit"
-msgstr "Bearbeiten"
+msgstr ""
 
-# @ dashboardmessages
 #: include/DashboardMessages/Compat/WPMU.php:46
 #: include/DashboardMessages/Compat/WPMU.php:90
 msgid "Scope"
-msgstr "Reichweite"
+msgstr ""
 
 #: include/DashboardMessages/Compat/WPMU.php:58
 msgid "Network"
-msgstr "Netzwerk"
+msgstr ""
 
 #: include/DashboardMessages/Compat/WPMU.php:63
 msgid "This Blog"
-msgstr "Dieser Blog"
+msgstr ""
 
-# @ dashboardmessages
 #: include/DashboardMessages/Compat/WPMU.php:96
 msgid "Show message only on this blog."
-msgstr "Meldung nur auf diesem Blog anzeigen."
+msgstr ""
 
-# @ dashboardmessages
 #: include/DashboardMessages/Compat/WPMU.php:99
 msgid "Show message on the entire network."
-msgstr "Meldung auf allen Blogs im Netzwerk anzeigen."
+msgstr ""
 
-# @ default
 #: include/DashboardMessages/Core/Core.php:66
 msgid "Default"
-msgstr "Standard"
+msgstr ""
 
 #: include/DashboardMessages/Core/Core.php:67
 msgid "Success"
-msgstr "Erfolg"
+msgstr ""
 
 #: include/DashboardMessages/Core/Core.php:68
 msgid "Info"
-msgstr "Info"
+msgstr ""
 
 #: include/DashboardMessages/Core/Core.php:69
 msgid "Warning"
-msgstr "Warnung"
+msgstr ""
 
 #: include/DashboardMessages/Core/Core.php:70
 msgid "Error"
-msgstr "Fehler"
+msgstr ""
 
-# @ default
 #: include/DashboardMessages/Core/Core.php:71
 msgid "Yellow"
-msgstr "Gelb"
+msgstr ""
 
-# @ default
 #: include/DashboardMessages/Core/Core.php:72
 msgid "Purple"
-msgstr "Purpur"
+msgstr ""
 
-# @ default
 #: include/DashboardMessages/Core/Core.php:73
 msgid "Red"
-msgstr "Rot"
+msgstr ""
 
-# @ default
 #: include/DashboardMessages/Core/Core.php:74
 msgid "Green"
-msgstr "Grün"
+msgstr ""
 
-# @ default
 #: include/DashboardMessages/Core/Core.php:75
 msgid "Blue"
-msgstr "Blau"
+msgstr ""
 
-# @ default
 #: include/DashboardMessages/Core/Core.php:76
 msgid "Cyan"
-msgstr "Cyan"
+msgstr ""
 
-# @ dashboardmessages
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:55
-msgctxt "Post Type General Name"
 msgid "Dashboard Messages"
-msgstr "Dashboard Meldungen"
+msgctxt "Post Type General Name"
+msgstr ""
 
-# @ dashboardmessages
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:56
-msgctxt "Post Type Singular Name"
 msgid "Dashboard Message"
-msgstr "Dashboard Meldung"
+msgctxt "Post Type Singular Name"
+msgstr ""
 
-# @ dashboardmessages
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:57
 msgid "Dashboard Messages"
-msgstr "Dashboard Meldung"
+msgstr ""
 
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:58
 msgid "Parent Message:"
-msgstr "Übergeordnete Meldung:"
+msgstr ""
 
-# @ dashboardmessages
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:59
 msgid "All Messages"
-msgstr "Alle Meldungen"
+msgstr ""
 
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:60
 msgid "View Message"
-msgstr "Meldung ansehen"
+msgstr ""
 
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:61
 msgid "Add New Message"
-msgstr "Neue Meldung hinzufügen"
+msgstr ""
 
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:62
 msgid "Add New"
-msgstr "Neue Meldung"
+msgstr ""
 
-# @ dashboardmessages
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:63
 msgid "Edit Message"
-msgstr "Meldung bearbeiten"
+msgstr ""
 
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:64
 msgid "Update Message"
-msgstr "Meldung aktualisieren"
+msgstr ""
 
-# @ dashboardmessages
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:65
 msgid "Search Message"
-msgstr "Meldung suchen"
+msgstr ""
 
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:66
 msgid "Not found"
-msgstr "Nichts gefunden"
+msgstr ""
 
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:67
 msgid "Not found in Trash"
-msgstr "Nichts im Papierkorb gefunden"
+msgstr ""
 
-# @ dashboardmessages
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:72
 msgid "Dashboard Message"
-msgstr "Dashboard Meldung"
-
-# @ dashboardmessages
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:73
-msgid ""
-"With Dashboard Messages an Administrator can put up Messages to the "
-"WordPress dashboard."
 msgstr ""
-"Meldungen auf dem WordPress-Dashboard anderer Blog-Benutzer hinterlassen."
 
-# @ default
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:73
+msgid "With Dashboard Messages an Administrator can put up Messages to the WordPress dashboard."
+msgstr ""
+
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:154
 msgid "Dashboard"
-msgstr "Dashboard"
+msgstr ""
 
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:172
 msgid "Color Scheme"
-msgstr "Farbeschema"
+msgstr ""
 
-# @ default
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:192
 msgid "Icon"
-msgstr "Icon"
+msgstr ""
 
-#~ msgid "All Items"
-#~ msgstr "Alle Beiträge"
-
-#~ msgid "View Item"
-#~ msgstr "Beitrag ansehen"
-
-#~ msgid "Edit Item"
-#~ msgstr "Nachricht bearbeiten"
-
-# @ dashboardmessages
-#~ msgid "Add messages to other User's dashbards."
-#~ msgstr "Nachrichten zum Dashboard anderer Benutzer hinzufügen."

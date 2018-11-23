@@ -1,0 +1,103 @@
+@import '../variables/variables';
+
+@import '../mixins/mixins';
+
+.dashboard-messages-colors,
+.dashboard-messages-icons {
+	display:flex;
+	flex-wrap:wrap;
+	[type="radio"] {
+		display:none;
+	}
+	label {
+		margin:5px;
+	}
+}
+
+.dashboard-messages-colors {
+	label {
+		outline:1px solid $wp-gray;
+		flex:1 1 20%;
+
+		padding:5px 10px;
+	}
+	:checked + label {
+		box-shadow:0 0 3px 3px $wp-blue;
+	}
+}
+.dashboard-messages-icons {
+	position: relative;
+	label {
+		display:none;
+		outline:1px solid $wp-gray;
+		flex:1 0;
+
+		align-items: center;
+		margin:0;
+		padding:5px 10px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		box-sizing: border-box;
+	}
+	.select {
+		flex:1 0;
+	}
+	:checked + label,
+	&.active label {
+		display:flex;
+	}
+	&.active {
+		display:block;
+		position:fixed;
+		left:0;
+		top:0;
+		bottom:0;
+		right:0;
+		padding-bottom:50px;
+		z-index:9999;
+		margin:auto;
+		background-color:rgba(0,0,0,0.7);
+		overflow:auto;
+		.select {
+			background:#fff;
+			max-width:80vw;
+			display: flex;
+			flex-wrap: wrap;
+			margin:50px auto;
+		}
+		label {
+			min-width:200px;
+		}
+		:checked + label {
+			color:#fff;
+			background-color:$wp-blue;
+		}
+	}
+	.dashicons {
+		font-size:40px;
+		width:40px;
+		height:40px;
+		padding:5px;
+	}
+}
+
+
+
+[id^="dashboard-message-"] {
+	h2 {
+		color:inherit;
+		.dashicons {
+			font-size:30px;
+			width:30px;
+			height:30px;
+			margin:-5px;
+			margin-right:5px;
+		}
+	}
+}
+
+th {
+	&#scope {
+		width:100px;
+	}
+}
