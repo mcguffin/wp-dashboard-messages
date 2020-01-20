@@ -1,7 +1,7 @@
 {
   "name": "wp-dashboard-messages",
-  "version": "0.0.1",
-  "description": "Plugin description",
+  "version": "1.0.7",
+  "description": "Add messages to other Users dashboards.",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,16 +16,39 @@
     "url": "https://github.com//wp-dashboard-messages/issues"
   },
   "homepage": "https://github.com//wp-dashboard-messages#readme",
-  "devDependencies": {
-    "fs": "0.0.1-security",
-    "gulp": "^4.0.0",
-    "gulp-autoprefixer": "*",
-    "gulp-concat": "*",
-    "gulp-rename": "*",
-    "gulp-sass": "*",
-    "gulp-sourcemaps": "*",
-    "gulp-uglify": "*",
-    "gulp-util": "*",
+  "devDependencies": {},
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "gulp-util": "^3.0.8",
     "request": "^2.88.0"
+  },
+  "wporg": {
+    "steps": [
+      "build",
+      "git",
+      "github"
+    ],
+    "type": "plugin",
+    "build": {
+      "prebuild": [
+        "wp i18n make-pot . languages/wp-dashboard-messages.pot --domain=wp-dashboard-messages --exclude=tmp"
+      ],
+      "build": [
+        "gulp build"
+      ]
+    },
+    "git": {
+      "host": "github.com",
+      "user": "mcguffin"
+    },
+    "wporg": {
+      "assets": ".wporg"
+    }
   }
 }
