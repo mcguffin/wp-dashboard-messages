@@ -1,0 +1,29 @@
+{
+  "name": "mcguffin/wp-dashboard-messages",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "description": "Add messages to other Users dashboards.",
+  "homepage": "https://github.com/mcguffin/multisite-blog-alias",
+  "require": {
+    "composer/installers": "~1.2"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "*",
+    "wp-coding-standards/wpcs": "*",
+    "phpcompatibility/php-compatibility": "*",
+	"pheromone/phpcs-security-audit":"*"
+  },
+  "keywords": [
+    "messages", 
+    "plugin",
+    "wordpress"
+  ],
+  "scripts": {
+    "post-install-cmd": [
+      "[ -f vendor/bin/phpcs ] && \"vendor/bin/phpcs\" --config-set installed_paths vendor/wp-coding-standards/wpcs,vendor/pheromone/phpcs-security-audit || true"
+    ],
+    "post-update-cmd": [
+      "[ -f vendor/bin/phpcs ] && \"vendor/bin/phpcs\" --config-set installed_paths vendor/wp-coding-standards/wpcs,vendor/pheromone/phpcs-security-audit || true"
+    ]
+  }
+}
