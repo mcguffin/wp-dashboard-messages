@@ -23,6 +23,9 @@ class Plugin extends PluginComponent {
 	/** @var array metadata from plugin file */
 	private $plugin_meta;
 
+	/** @var string current version */
+	private $_version = null;
+
 	/** @var string plugin components which might need upgrade */
 	private static $components = array(
 		'DashboardMessages\Compat\WPMU',
@@ -46,6 +49,19 @@ class Plugin extends PluginComponent {
 
 		parent::__construct();
 	}
+
+	
+	/**
+	 *	@return string plugin version
+	 */
+	public function version() {
+		if ( is_null( $this->_version ) ) {
+			$this->_version = include_once trailingslashit( $this->get_plugin_dir() ) . 'include/version.php';
+		}
+		return $this->_version;
+	}
+
+
 
 	/**
 	 *	@filter extra_plugin_headers

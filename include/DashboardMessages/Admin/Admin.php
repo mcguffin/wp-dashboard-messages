@@ -84,9 +84,12 @@ class Admin extends Core\Singleton {
 	 */
 	public function print_message_content( $str , $param ) {
 		if ( $post = $param['args'] ) {
-			if ( is_multisite() )
+
+			if ( is_multisite() ) {
 				switch_to_blog( $post->blog_id );
-			echo apply_filters('the_content',$post->post_content);
+			}
+
+			echo wp_kses_post( apply_filters( 'the_content', $post->post_content ) );
 
 			if (current_user_can_for_blog( $post->blog_id , 'edit_post' , $post->ID ) ) {
 				edit_post_link( __( 'Edit', 'wp-dashboard-messages' ) , '<p>' , '</p>' , $post->ID );
@@ -104,6 +107,7 @@ class Admin extends Core\Singleton {
 	 *	@action admin_print_scripts
 	 */
 	public function enqueue_assets() {
+		$core = Core\Core::instance();
 		$posttype = PostType\PostTypeDashboardMessage::instance();
 		$posts = $posttype->get_posts();
 		$rules = array();
@@ -116,7 +120,7 @@ class Admin extends Core\Singleton {
 			}
 			if ( ! isset( $rules[ $post->dashboard_color ] ) ) {
 				$rules[ $post->dashboard_color ] = array(
-					'selector'	=> array(),
+					'selector'	=> [],
 					'css'		=> $color_schemes[ $post->dashboard_color ]['css'],
 				);
 			}
@@ -126,11 +130,23 @@ class Admin extends Core\Singleton {
 			$css .= sprintf('%s { %s }' . "\n", implode(',',$rule['selector']), $rule['css'] );
 		}
 
+		foreach ( $color_schemes as $scheme => $style ) {
+			if ( empty( $style['css'] ) ) {
+				continue;
+			}
+			$css .= sprintf(
+				'.dashboard-colorset-%1$s { %2$s }' . "\n", 
+				sanitize_key( $scheme ),
+				$style['css']
+			);
+		}
+
 		wp_add_inline_style( 'common', $css, 'after' );
 
-		wp_enqueue_style( 'dashboard-messages-edit' , $this->core->get_asset_url( '/css/admin/edit.css' ) );
+		wp_enqueue_style( 'dashboard-messages-edit' , $this->core->get_asset_url( '/css/admin/edit.css' ), [], $core->version() );
 
-		wp_enqueue_script( 'dashboard-messages-edit' , $this->core->get_asset_url( 'js/admin/edit.js' ) );
+		wp_enqueue_script( 'dashboard-messages-edit' , $this->core->get_asset_url( 'js/admin/edit.js' ), [], $core->version() );
+
 
 	}
 

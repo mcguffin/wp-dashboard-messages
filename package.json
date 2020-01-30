@@ -1,9 +1,10 @@
 {
   "name": "wp-dashboard-messages",
-  "version": "0.0.1",
-  "description": "Plugin description",
+  "version": "1.0.7",
+  "description": "Add messages to other Users dashboards.",
   "private": true,
   "scripts": {
+    "ver": "echo \"<?php return $(jq .version < ./package.json);\" > include/version.php",
     "postinstall": "composer install",
     "audit": "./vendor/squizlabs/php_codesniffer/bin/phpcs . --report=code --standard=./phpcs-security.ruleset.xml -n -s > ./phpcs-report.txt || exit 0",
     "audit-fix": "./vendor/squizlabs/php_codesniffer/bin/phpcbf . --standard=./phpcs.ruleset.xml || exit 0"
@@ -29,5 +30,30 @@
     "gulp-uglify": "*",
     "gulp-util": "*",
     "request": "^2.88.0"
+  },
+  "wporg": {
+    "steps": [
+      "build",
+      "git",
+      "github",
+      "pack"
+    ],
+    "type": "plugin",
+    "build": {
+      "prebuild": [
+        "wp i18n make-pot . languages/wp-dashboard-messages.pot --domain=wp-dashboard-messages --exclude=tmp"
+      ],
+      "build": [
+        "gulp build"
+      ]
+    },
+    "git": {
+      "host": "github.com",
+      "user": "mcguffin"
+    },
+    "wporg": {
+      "assets": ".wporg",
+      "svn_user": "podpirate"
+    }
   }
 }

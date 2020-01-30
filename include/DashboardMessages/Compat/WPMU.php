@@ -22,28 +22,40 @@ class WPMU extends Core\PluginComponent {
 	 *	@inheritdoc
 	 */
 	protected function __construct() {
+
 		if ( is_main_site() ) {
 
-			add_filter('dashboard_messages_query', array( $this, 'exclude_network_args' ) );
+		//	add_filter( 'dashboard_messages_query', [ $this, 'exclude_network_args' ] );
 
-			if ( current_user_can('manage_network_users') ) {
+			if ( current_user_can( 'manage_network_users' ) ) {
 
-				add_action( 'save_post_dashboard_message', array( $this ,'save_post') ,10,2);
+				add_action( 'save_post_dashboard_message', [ $this ,'save_post' ], 10, 2 );
 
-				add_action( 'dashboard_messages_metabox', array( $this, 'metabox' ));
+				add_action( 'add_meta_boxes', [ $this, 'add_meta_boxes' ]);
 
-				add_filter( 'manage_dashboard_message_posts_columns' , array( $this , 'add_scope_column'));
-				add_filter( 'manage_dashboard_message_posts_custom_column' , array( $this , 'manage_scope_column') , 10 ,2 );
+				add_filter( 'manage_dashboard_message_posts_columns', [ $this , 'add_scope_column' ] );
+				add_filter( 'manage_dashboard_message_posts_custom_column', [ $this , 'manage_scope_column' ], 10, 2 );
 			}
 		}
-		add_filter('dashboard_messages', array( $this, 'add_network_messages' ) );
+		add_filter( 'dashboard_messages', [ $this, 'add_network_messages' ] );
 	}
+
+
+	/**
+	 *	Add Meta Box to post edit screen.
+	 *
+	 *	@action add_meta_boxes
+	 */
+	public function add_meta_boxes( ) {
+		add_meta_box( 'dashboard_network_options', __( 'Dashboard', 'wp-dashboard-messages' ), array( $this, 'dashboard_meta_box'), 'dashboard_message', 'side', 'default' );
+	}
+
 
 	/**
 	 *	@filter manage_dashboard_message_posts_columns
 	 */
 	public function add_scope_column( $columns ) {
-		$columns['scope'] 	= __('Scope','wp-dashboard-messages');
+		$columns['scope'] = __('Scope','wp-dashboard-messages');
 		return $columns;
 	}
 
@@ -55,12 +67,12 @@ class WPMU extends Core\PluginComponent {
 			if ( get_post_meta( $post_ID , '_dashboard_network_wide' , true ) ) {
 				?>
 				<span class="dashicons dashicons-admin-site"></span>
-				<?php _e('Network','wp-dashboard-messages'); ?>
+				<?php esc_html_e('Network','wp-dashboard-messages'); ?>
 				<?php
 			} else {
 				?>
 				<span class="dashicons dashicons-admin-home"></span>
-				<?php _e('This Blog','wp-dashboard-messages'); ?>
+				<?php esc_html_e('This Blog','wp-dashboard-messages'); ?>
 				<?php
 			}
 		}
@@ -75,20 +87,24 @@ class WPMU extends Core\PluginComponent {
 	 *	@param int  	$post_ID   ID of Current post being edited
 	 *	@param object	$post	   Current post object being edited
 	 */
-	public function save_post( $post_ID, $post ) {
+	public function save_post( $post_id, $post ) {
+		
+		if ( ! check_ajax_referer( 'ms-save-dashboard-message-post-' . $post_id, '_ms_dashboard_post_nonce', false ) ) {
+			return;
+		}
 
 		if ( isset( $_POST['_dashboard_network_wide'] ) ) {
-			update_post_meta( $post_ID , '_dashboard_network_wide' , absint( $_POST['_dashboard_network_wide'] ) );
+			update_post_meta( $post_id , '_dashboard_network_wide' , absint( $_POST['_dashboard_network_wide'] ) );
 		}
 	}
 
 	/**
 	 *	@action dashboard_messages_metabox
 	 */
-	public function metabox( $post ) {
+	public function dashboard_meta_box( $post ) {
 		?>
 		<div class="dashboard-messages-scope">
-			<h4><?php _e('Scope','wp-dashboard-messages') ?></h4>
+			<h4><?php esc_html_e( 'Scope', 'wp-dashboard-messages' ) ?></h4>
 			<?php
 
 			// show 'all_blogs'
@@ -97,23 +113,29 @@ class WPMU extends Core\PluginComponent {
 			?>
 			<div class="dashboard-messages-select-radio">
 				<?php
-				printf( '<input type="radio" id="local-scope" name="_dashboard_network_wide" value="" %s />', checked( (bool) $post_network_wide, false, false ) );
+				wp_nonce_field( 'ms-save-dashboard-message-post-'.$post->ID, '_ms_dashboard_post_nonce' );
+				printf( 
+					'<input type="radio" id="local-scope" name="_dashboard_network_wide" value="" %s />', 
+					checked( (bool) $post_network_wide, false, false ) 
+				);
 				?>
 				<label for="local-scope" >
 					<?php
-					_e('Show message only on this blog.','wp-dashboard-messages');
+					esc_html_e('Show message only on this blog.','wp-dashboard-messages');
 					?>
 				</label>
 			</div>
 
 			<div class="dashboard-messages-select-radio">
 				<?php
-				printf( '<input type="radio" id="network-scope" name="_dashboard_network_wide" value="1" %s />', checked( (bool) $post_network_wide, true, false ) );
+				printf( '<input type="radio" id="network-scope" name="_dashboard_network_wide" value="1" %s />', 
+					checked( (bool) $post_network_wide, true, false ) 
+				);
 				?>
 
 				<label for="network-scope" >
 					<?php
-					_e('Show message on the entire network.','wp-dashboard-messages');
+					esc_html_e('Show message on the entire network.','wp-dashboard-messages');
 					?>
 				</label>
 			</div>
