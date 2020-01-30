@@ -40,11 +40,13 @@
     ],
     "type": "plugin",
     "build": {
+      "versionedFiles": null,
       "prebuild": [
         "wp i18n make-pot . languages/wp-dashboard-messages.pot --domain=wp-dashboard-messages --exclude=tmp"
       ],
       "build": [
-        "gulp build"
+        "gulp build",
+        "npm run ver"
       ]
     },
     "git": {
