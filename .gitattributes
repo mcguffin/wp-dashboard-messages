@@ -7,3 +7,5 @@ package*.json export-ignore
 /src export-ignore
 wp-plugin-boilerplate.json export-ignore
 *.md export-ignore
+phpcs* export-ignore
+composer* export-ignore
