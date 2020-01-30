@@ -1,6 +1,6 @@
 {
   "name": "wp-dashboard-messages",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Add messages to other Users dashboards.",
   "private": true,
   "scripts": {

@@ -1,106 +1,122 @@
-# Copyright (C) 2018 joern
-# This file is distributed under the GNU General Public License v2 or later.
-#, fuzzy
+# Copyright (C) 2020 Jörn Lund
+# This file is distributed under the same license as the WP-Dashboard Messages plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP-Dashboard Messages v0.0.1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23T12:17:45+00:00\n"
-"PO-Revision-Date: 2018-11-23T12:17:45+00:00\n"
-"Language-Team: \n"
+"Project-Id-Version: WP-Dashboard Messages 1.0.8\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-dashboard-messages\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: WP Make Pot\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
-"_n_noop:1,2;_c;_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
-"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
-"esc_html_x:1,2c\n"
-"X-Textdomain-Support: yes\n"
-"X-Poedit-Basepath: ./\n"
-"Last-Translator: \n"
-"X-Poedit-SearchPath-0: ..\n"
-"X-Poedit-SearchPathExcluded-0: node_modules\n"
+"POT-Creation-Date: 2020-01-30T17:35:19+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: wp-dashboard-messages\n"
 
-#: include/DashboardMessages/Admin/Admin.php:88
+#. Plugin Name of the plugin
+msgid "WP-Dashboard Messages"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/mcguffin/wp-dashboard-messages"
+msgstr ""
+
+#. Description of the plugin
+msgid "Add messages to other Users dashboards."
+msgstr ""
+
+#. Author of the plugin
+msgid "Jörn Lund"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/mcguffin"
+msgstr ""
+
+#: include/DashboardMessages/Admin/Admin.php:95
 msgid "Edit"
 msgstr ""
 
-#: include/DashboardMessages/Compat/WPMU.php:46
-#: include/DashboardMessages/Compat/WPMU.php:90
-msgid "Scope"
+#: include/DashboardMessages/Compat/WPMU.php:50
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:184
+msgid "Dashboard"
 msgstr ""
 
 #: include/DashboardMessages/Compat/WPMU.php:58
+#: include/DashboardMessages/Compat/WPMU.php:107
+msgid "Scope"
+msgstr ""
+
+#: include/DashboardMessages/Compat/WPMU.php:70
 msgid "Network"
 msgstr ""
 
-#: include/DashboardMessages/Compat/WPMU.php:63
+#: include/DashboardMessages/Compat/WPMU.php:75
 msgid "This Blog"
 msgstr ""
 
-#: include/DashboardMessages/Compat/WPMU.php:96
+#: include/DashboardMessages/Compat/WPMU.php:124
 msgid "Show message only on this blog."
 msgstr ""
 
-#: include/DashboardMessages/Compat/WPMU.php:99
+#: include/DashboardMessages/Compat/WPMU.php:138
 msgid "Show message on the entire network."
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:66
+#: include/DashboardMessages/Core/Core.php:69
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:301
 msgid "Default"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:67
+#: include/DashboardMessages/Core/Core.php:70
 msgid "Success"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:68
+#: include/DashboardMessages/Core/Core.php:71
 msgid "Info"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:69
+#: include/DashboardMessages/Core/Core.php:72
 msgid "Warning"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:70
+#: include/DashboardMessages/Core/Core.php:73
 msgid "Error"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:71
+#: include/DashboardMessages/Core/Core.php:74
 msgid "Yellow"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:72
+#: include/DashboardMessages/Core/Core.php:75
 msgid "Purple"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:73
+#: include/DashboardMessages/Core/Core.php:76
 msgid "Red"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:74
+#: include/DashboardMessages/Core/Core.php:77
 msgid "Green"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:75
+#: include/DashboardMessages/Core/Core.php:78
 msgid "Blue"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:76
+#: include/DashboardMessages/Core/Core.php:79
 msgid "Cyan"
 msgstr ""
 
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:55
-msgid "Dashboard Messages"
 msgctxt "Post Type General Name"
+msgid "Dashboard Messages"
 msgstr ""
 
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:56
-msgid "Dashboard Message"
 msgctxt "Post Type Singular Name"
+msgid "Dashboard Message"
 msgstr ""
 
 #: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:57
@@ -155,15 +171,38 @@ msgstr ""
 msgid "With Dashboard Messages an Administrator can put up Messages to the WordPress dashboard."
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:154
-msgid "Dashboard"
-msgstr ""
-
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:172
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:204
 msgid "Color Scheme"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:192
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:226
 msgid "Icon"
 msgstr ""
 
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:233
+msgid "No Icon"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:253
+msgid "Context"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:262
+msgid "Normal"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:263
+msgid "Side"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:291
+msgid "Priority"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:300
+msgid "High"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:302
+msgid "Low"
+msgstr ""
