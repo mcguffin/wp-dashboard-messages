@@ -136,22 +136,26 @@ class PostTypeDashboardMessage extends PostType {
 		$colors = $core->get_color_schemes();
 
 		$param = wp_unslash( wp_parse_args( $_POST, [
+			'_dashboard_layout'		=> false,
 			'_dashboard_color'		=> false,
 			'_dashboard_icon'		=> false,
 			'_dashboard_context'	=> false,
 			'_dashboard_priority'	=> false,
 		]));
 
+		$dashboard_layout	= wp_unslash( $param['_dashboard_layout'] );
 		$dashboard_color	= wp_unslash( $param['_dashboard_color'] );
 		$dashboard_icon		= wp_unslash( $param['_dashboard_icon'] );
 		$dashboard_context	= wp_unslash( $param['_dashboard_context'] );
 		$dashboard_priority	= wp_unslash( $param['_dashboard_priority'] );
 
+		$dashboard_layout	= $this->sanitize_layout( $dashboard_layout );
 		$dashboard_color	= $this->sanitize_color( $dashboard_color );
 		$dashboard_icon		= $this->sanitize_icon( $dashboard_icon );
 		$dashboard_context	= $this->sanitize_context( $dashboard_context );
 		$dashboard_priority	= $this->sanitize_priority( $dashboard_priority );
 
+		update_post_meta( $post_id, '_dashboard_layout', $dashboard_layout );
 		update_post_meta( $post_id, '_dashboard_color', $dashboard_color );
 		update_post_meta( $post_id, '_dashboard_icon', $dashboard_icon );
 		update_post_meta( $post_id, '_dashboard_context', $dashboard_context );
@@ -207,7 +211,47 @@ class PostTypeDashboardMessage extends PostType {
 				?>
 			</div>
 		</div><!-- .misc-pub-section -->
-		<hr />
+
+		<div class="layout">
+			<h4><?php esc_html_e( 'Layout', 'wp-dashboard-messages' ); ?></h4>
+			<div class="dashboard-messages-layout select-window">
+				<div class="select">
+				<?php
+
+				// show 'all_blogs'
+				$post_layout = get_post_meta( $post->ID, '_dashboard_layout', true );
+				if ( empty( $post_layout ) ) {
+					$post_layout = 'metabox';
+				}
+				$layouts = [
+					'metabox'		=> __( 'Metabox (Default)', 'wp-dashboard-messages' ),
+					'dismissable'	=> __( 'Dismissable', 'wp-dashboard-messages' ),
+				];
+				foreach ( $layouts as $value => $label ) {
+					?>
+					<div class="dashboard-messages-select-radio">
+						<?php
+						printf(
+							'<input type="radio" id="layout-%1$s" name="_dashboard_layout" value="%1$s" %2$s />',
+							esc_attr( $value ),
+							checked( $post_layout, $value, false )
+						);
+						?>
+						<label for="layout-<?php echo esc_attr( $value ); ?>" >
+							<?php
+							echo esc_html( $label );
+							?>
+						</label>
+					</div>
+					<?php
+
+				}
+
+				?>
+				</div>
+			</div>
+		</div><!-- .style -->
+
 		<div class="dashicon">
 			<h4><?php esc_html_e( 'Icon', 'wp-dashboard-messages' ); ?></h4>
 			<div class="dashboard-messages-icons select-window">
@@ -234,6 +278,7 @@ class PostTypeDashboardMessage extends PostType {
 				</div>
 			</div>
 		</div><!-- .icon -->
+
 		<div class="dashboard-messages-placements">
 			<div class="context">
 				<h4><?php esc_html_e( 'Context', 'wp-dashboard-messages' ); ?></h4>
@@ -324,15 +369,31 @@ class PostTypeDashboardMessage extends PostType {
 	private function handle_post( $post ) {
 
 		$blog_id = get_current_blog_id();
-
 		$post->blog_id 				= $blog_id;
-		$post->dashboard_uid		= sprintf( 'dashboard-message-%d-%d', $blog_id, $post->ID );
+		$post->dashboard_layout		= $this->sanitize_layout( get_post_meta( $post->ID, '_dashboard_layout', true ) );
+		$post->dashboard_uid		= sprintf(
+			'dashboard-message-%s-%d-%d',
+			sanitize_key( $post->dashboard_layout ),
+			$blog_id,
+			$post->ID
+		);
 		$post->dashboard_color		= get_post_meta( $post->ID, '_dashboard_color', true );
 		$post->dashboard_icon		= $this->sanitize_icon( get_post_meta( $post->ID, '_dashboard_icon', true ) );
 		$post->dashboard_context	= $this->sanitize_context( get_post_meta( $post->ID, '_dashboard_context', true ) );
 		$post->dashboard_priority	= $this->sanitize_priority( get_post_meta( $post->ID, '_dashboard_priority', true ) );
 
 		return apply_filters( 'dashboard_messages_handle_post', $post );
+	}
+
+	/**
+	 *	@param string $priority
+	 *	@return string
+	 */
+	public function sanitize_layout( $layout ) {
+		if ( in_array( $layout, [ 'metabox', 'dismissable' ] ) ) {
+			return $layout;
+		}
+		return 'metabox';
 	}
 
 	/**

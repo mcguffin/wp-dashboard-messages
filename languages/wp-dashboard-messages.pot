@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-05-11T10:47:03+00:00\n"
+"POT-Creation-Date: 2020-05-11T11:28:52+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: wp-dashboard-messages\n"
@@ -23,7 +23,7 @@ msgid "https://github.com/mcguffin/wp-dashboard-messages"
 msgstr ""
 
 #. Description of the plugin
-msgid "Add messages to other Users dashboards."
+msgid "Write messages on the WordPress dashboard."
 msgstr ""
 
 #. Author of the plugin
@@ -34,12 +34,21 @@ msgstr ""
 msgid "https://github.com/mcguffin"
 msgstr ""
 
-#: include/DashboardMessages/Admin/Admin.php:104
+#. translators: %s dashboard message title
+#: include/DashboardMessages/Admin/Admin.php:96
+msgid "Dismiss %s"
+msgstr ""
+
+#: include/DashboardMessages/Admin/Admin.php:101
+msgid "Dismiss"
+msgstr ""
+
+#: include/DashboardMessages/Admin/Admin.php:115
 msgid "Edit"
 msgstr ""
 
 #: include/DashboardMessages/Compat/WPMU.php:55
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:169
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:173
 msgid "Dashboard"
 msgstr ""
 
@@ -65,7 +74,7 @@ msgid "Show message on the entire network."
 msgstr ""
 
 #: include/DashboardMessages/Core/Core.php:70
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:287
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:332
 msgid "Default"
 msgstr ""
 
@@ -171,38 +180,50 @@ msgstr ""
 msgid "With Dashboard Messages an Administrator can put up Messages to the WordPress dashboard."
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:190
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:194
 msgid "Color Scheme"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:212
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:216
+msgid "Layout"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:227
+msgid "Metabox (Default)"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:228
+msgid "Dismissable"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:256
 msgid "Icon"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:219
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:263
 msgid "No Icon"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:239
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:284
 msgid "Context"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:248
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:293
 msgid "Normal"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:249
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:294
 msgid "Side"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:277
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:322
 msgid "Priority"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:286
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:331
 msgid "High"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:288
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:333
 msgid "Low"
 msgstr ""

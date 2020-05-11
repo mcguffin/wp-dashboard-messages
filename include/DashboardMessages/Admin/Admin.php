@@ -90,7 +90,18 @@ class Admin extends Core\Singleton {
 			if ( is_multisite() ) {
 				switch_to_blog( $message_post->blog_id );
 			}
-
+			if ( 'dismissable' === $message_post->dashboard_layout ) {
+				$aria_label = sprintf(
+					/* translators: %s dashboard message title */
+					__('Dismiss %s', 'wp-dashboard-messages' ),
+					$message_post->post_title
+				);
+				?>
+				<a class="dashboard-message-dismiss notice-dismiss" href="#" aria-label="<?php esc_attr_e( $aria_label ); ?>">
+					<?php esc_html_e( 'Dismiss', 'wp-dashboard-messages' ); ?>
+				</a>
+				<?php
+			}
 			if ( has_post_thumbnail( $message_post->ID ) ) {
 				?>
 				<div class="dashboard-message-thumbnail">
@@ -136,7 +147,7 @@ class Admin extends Core\Singleton {
 			$rules[ $post->dashboard_color ]['selector'][] = '#' . $post->dashboard_uid;
 		}
 		foreach ( $rules as $rule ) {
-			$css .= sprintf('%1$s { %2$s } %1$s a { color: currentColor; }' . "\n", implode( ',', $rule['selector'] ), $rule['css'] );
+			$css .= sprintf('%1$s { %2$s }' . "\n", implode( ',', $rule['selector'] ), $rule['css'] );
 		}
 
 		foreach ( $color_schemes as $scheme => $style ) {
