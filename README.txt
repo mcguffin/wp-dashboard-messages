@@ -9,7 +9,7 @@ Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Custom messages on Your WP Admin dashboard.
+Show Messages on the WP Admin Dashboard.
 
 == Description ==
 

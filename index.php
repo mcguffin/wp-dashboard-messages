@@ -1,9 +1,9 @@
 <?php
 
 /*
-Plugin Name: WP-Dashboard Messages
+Plugin Name: WP Dashboard Messages
 Plugin URI: https://github.com/mcguffin/wp-dashboard-messages
-Description: Write messages on the WordPress dashboard.
+Description: Show Messages on the WP Admin Dashboard.
 Author: Jörn Lund
 Version: 1.0.8
 Author URI: https://github.com/mcguffin

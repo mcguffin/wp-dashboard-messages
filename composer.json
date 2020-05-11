@@ -2,7 +2,7 @@
   "name": "mcguffin/wp-dashboard-messages",
   "type": "wordpress-plugin",
   "license": "GPL-2.0-or-later",
-  "description": "Add messages to other Users dashboards.",
+  "description": "Show Messages on the WP Admin Dashboard.",
   "homepage": "https://github.com/mcguffin/multisite-blog-alias",
   "require": {
     "composer/installers": "~1.2"
@@ -16,7 +16,8 @@
   "keywords": [
     "messages", 
     "plugin",
-    "wordpress"
+    "wordpress",
+    "wp-admin"
   ],
   "scripts": {
     "post-install-cmd": [

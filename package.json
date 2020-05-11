@@ -1,7 +1,7 @@
 {
   "name": "wp-dashboard-messages",
   "version": "1.0.8",
-  "description": "Add messages to other Users dashboards.",
+  "description": "Show Messages on the WP Admin Dashboard.",
   "private": true,
   "scripts": {
     "ver": "echo \"<?php return $(jq .version < ./package.json);\" > include/version.php",

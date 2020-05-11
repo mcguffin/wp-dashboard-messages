@@ -1,7 +1,7 @@
 WordPress Dashboard Messages
 ============================
 
-Display Messages on the WP Dashboard. Released in 2014 and rewritten from scratch in 2018.
+Show Messages on the WP Admin Dashboard.
 
 Features
 --------

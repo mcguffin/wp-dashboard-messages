@@ -62,7 +62,7 @@ class WPMU extends Core\PluginComponent {
 	 *	@filter map_meta_cap
 	 */
 	public function map_meta_cap( $caps, $cap, $user_id, $args = [] ) {
-		if ( 'edit_post' === $cap ) {
+		if ( in_array( $cap, [ 'delete_post', 'edit_post' ] ) ) {
 			// allow
 			if ( current_user_can( 'manage_network_options' ) || ! count( $args ) ) {
 				return $caps;
