@@ -1,0 +1,270 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP-Dashboard Messages v0.9.0b\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-dashboard-"
+"messages\n"
+"POT-Creation-Date: 2020-05-11T11:28:52+00:00\n"
+"PO-Revision-Date: 2020-05-11 15:38+0200\n"
+"Last-Translator: admin <joern@flyingletters.com>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#. Plugin Name of the plugin
+msgid "WP-Dashboard Messages"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/mcguffin/wp-dashboard-messages"
+msgstr ""
+
+#. Description of the plugin
+msgid "Write messages on the WordPress dashboard."
+msgstr ""
+
+#. Author of the plugin
+msgid "Jörn Lund"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/mcguffin"
+msgstr ""
+
+#. translators: %s dashboard message title
+#: include/DashboardMessages/Admin/Admin.php:96
+msgid "Dismiss %s"
+msgstr "%s ausblenden"
+
+#: include/DashboardMessages/Admin/Admin.php:101
+msgid "Dismiss"
+msgstr "Ausblenden"
+
+#: include/DashboardMessages/Admin/Admin.php:115
+msgid "Edit"
+msgstr "Bearbeiten"
+
+# @ default
+#: include/DashboardMessages/Compat/WPMU.php:55
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:173
+msgid "Dashboard"
+msgstr "Dashboard"
+
+# @ dashboardmessages
+#: include/DashboardMessages/Compat/WPMU.php:89
+#: include/DashboardMessages/Compat/WPMU.php:139
+msgid "Scope"
+msgstr "Reichweite"
+
+#: include/DashboardMessages/Compat/WPMU.php:101
+msgid "Network"
+msgstr "Netzwerk"
+
+#: include/DashboardMessages/Compat/WPMU.php:106
+msgid "This Blog"
+msgstr "Dieser Blog"
+
+# @ dashboardmessages
+#: include/DashboardMessages/Compat/WPMU.php:157
+msgid "Show message only on this blog."
+msgstr "Meldung nur auf diesem Blog anzeigen."
+
+# @ dashboardmessages
+#: include/DashboardMessages/Compat/WPMU.php:172
+msgid "Show message on the entire network."
+msgstr "Meldung auf allen Blogs im Netzwerk anzeigen."
+
+# @ default
+#: include/DashboardMessages/Core/Core.php:70
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:332
+msgid "Default"
+msgstr "Standard"
+
+#: include/DashboardMessages/Core/Core.php:74
+msgid "Success"
+msgstr "Erfolg"
+
+#: include/DashboardMessages/Core/Core.php:78
+msgid "Info"
+msgstr "Info"
+
+#: include/DashboardMessages/Core/Core.php:82
+msgid "Warning"
+msgstr "Warnung"
+
+#: include/DashboardMessages/Core/Core.php:86
+msgid "Error"
+msgstr "Fehler"
+
+# @ default
+#: include/DashboardMessages/Core/Core.php:90
+msgid "Yellow"
+msgstr "Gelb"
+
+# @ default
+#: include/DashboardMessages/Core/Core.php:94
+msgid "Purple"
+msgstr "Purpur"
+
+# @ default
+#: include/DashboardMessages/Core/Core.php:98
+msgid "Red"
+msgstr "Rot"
+
+# @ default
+#: include/DashboardMessages/Core/Core.php:102
+msgid "Green"
+msgstr "Grün"
+
+# @ default
+#: include/DashboardMessages/Core/Core.php:106
+msgid "Blue"
+msgstr "Blau"
+
+# @ default
+#: include/DashboardMessages/Core/Core.php:110
+msgid "Cyan"
+msgstr "Cyan"
+
+# @ dashboardmessages
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:55
+msgctxt "Post Type General Name"
+msgid "Dashboard Messages"
+msgstr "Dashboard Meldungen"
+
+# @ dashboardmessages
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:56
+msgctxt "Post Type Singular Name"
+msgid "Dashboard Message"
+msgstr "Dashboard Meldung"
+
+# @ dashboardmessages
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:57
+msgid "Dashboard Messages"
+msgstr "Dashboard Meldung"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:58
+msgid "Parent Message:"
+msgstr "Übergeordnete Meldung:"
+
+# @ dashboardmessages
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:59
+msgid "All Messages"
+msgstr "Alle Meldungen"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:60
+msgid "View Message"
+msgstr "Meldung ansehen"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:61
+msgid "Add New Message"
+msgstr "Neue Meldung hinzufügen"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:62
+msgid "Add New"
+msgstr "Neue Meldung"
+
+# @ dashboardmessages
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:63
+msgid "Edit Message"
+msgstr "Meldung bearbeiten"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:64
+msgid "Update Message"
+msgstr "Meldung aktualisieren"
+
+# @ dashboardmessages
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:65
+msgid "Search Message"
+msgstr "Meldung suchen"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:66
+msgid "Not found"
+msgstr "Nichts gefunden"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:67
+msgid "Not found in Trash"
+msgstr "Nichts im Papierkorb gefunden"
+
+# @ dashboardmessages
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:71
+msgid "Dashboard Message"
+msgstr "Dashboard Meldung"
+
+# @ dashboardmessages
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:72
+msgid ""
+"With Dashboard Messages an Administrator can put up Messages to the "
+"WordPress dashboard."
+msgstr ""
+"Meldungen auf dem WordPress-Dashboard anderer Blog-Benutzer hinterlassen."
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:194
+msgid "Color Scheme"
+msgstr "Farbeschema"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:216
+msgid "Layout"
+msgstr "Layout"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:227
+msgid "Metabox (Default)"
+msgstr "Metabox (Standard)"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:228
+msgid "Dismissable"
+msgstr "Mit Ausblenden-Button"
+
+# @ default
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:256
+msgid "Icon"
+msgstr "Icon"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:263
+msgid "No Icon"
+msgstr "Kein Icon"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:284
+msgid "Context"
+msgstr "Kontext"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:293
+msgid "Normal"
+msgstr "Normal"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:294
+msgid "Side"
+msgstr "Seite"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:322
+msgid "Priority"
+msgstr "Priorität"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:331
+msgid "High"
+msgstr "Hoch"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:333
+msgid "Low"
+msgstr "Niedrig"
+
+#~ msgid "All Items"
+#~ msgstr "Alle Beiträge"
+
+#~ msgid "View Item"
+#~ msgstr "Beitrag ansehen"
+
+#~ msgid "Edit Item"
+#~ msgstr "Nachricht bearbeiten"
+
+# @ dashboardmessages
+#~ msgid "Add messages to other User's dashbards."
+#~ msgstr "Nachrichten zum Dashboard anderer Benutzer hinzufügen."
