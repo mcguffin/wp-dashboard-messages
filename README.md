@@ -29,7 +29,7 @@ Installation
 cd into your plugin directory
 ```
 git clone git@github.com:mcguffin/wp-dashboard-messages.git
-cd acf-wp-objects
+cd wp-dashboard-messages
 npm install
 gulp
 ```
