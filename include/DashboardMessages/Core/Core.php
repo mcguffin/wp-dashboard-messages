@@ -24,9 +24,6 @@ class Core extends Plugin {
 	protected function __construct() {
 
 		add_action( 'plugins_loaded', [ $this, 'init_compat' ], 0 );
-		add_action( 'init', [ $this, 'init' ] );
-
-		add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_style' ] );
 
 		$args = func_get_args();
 		parent::__construct( ...$args );
@@ -135,15 +132,6 @@ class Core extends Plugin {
 	}
 
 	/**
-	 *	Load frontend styles and scripts
-	 *
-	 *	@action wp_enqueue_scripts
-	 */
-	public function wp_enqueue_style() {
-	}
-
-
-	/**
 	 *	Load Compatibility classes
 	 *
 	 *  @action plugins_loaded
@@ -159,15 +147,6 @@ class Core extends Plugin {
 			}
 		}
 
-	}
-
-
-	/**
-	 *	Init hook.
-	 *
-	 *  @action init
-	 */
-	public function init() {
 	}
 
 	/**
