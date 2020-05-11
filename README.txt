@@ -1,6 +1,6 @@
 === WP Dashboard Messages ===
 Contributors: podpirate
-Donate link:
+Donate link: https://noyb.eu/en/support-us
 Tags: dashboard, admin
 Requires at least: 4.8
 Requires PHP: 5.6
@@ -39,10 +39,7 @@ Please post an issue in the [GitHub-Repository](https://github.com/mcguffin/wp-d
 == Changelog ==
 
 = 1.1.0 =
- - feature: layout option dismissable notice
- - feature: support post thumbnails
- - fix: link colors
- - security: Don't allow blog admins to edit Network Messages.
+Release at wordpress.org
 
 == Screenshots ==
 1. Some random dashboard messages
@@ -51,5 +48,4 @@ Please post an issue in the [GitHub-Repository](https://github.com/mcguffin/wp-d
 
 == Upgrade notice ==
 
-= 0.9.0 =
-A plugin is born.
+On the whole upgrading should not be taken lightly.
