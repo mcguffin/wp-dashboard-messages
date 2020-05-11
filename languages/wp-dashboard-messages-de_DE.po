@@ -1,9 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP-Dashboard Messages v0.9.0b\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23T12:17:45+00:00\n"
-"PO-Revision-Date: 2018-11-23 13:27+0100\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-dashboard-"
+"messages\n"
+"POT-Creation-Date: 2020-05-11T10:47:03+00:00\n"
+"PO-Revision-Date: 2020-05-11 12:48+0200\n"
 "Last-Translator: admin <joern@flyingletters.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -11,89 +12,116 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: include/DashboardMessages/Admin/Admin.php:88
+#. Plugin Name of the plugin
+msgid "WP-Dashboard Messages"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/mcguffin/wp-dashboard-messages"
+msgstr ""
+
+#. Description of the plugin
+msgid "Add messages to other Users dashboards."
+msgstr ""
+
+#. Author of the plugin
+msgid "Jörn Lund"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/mcguffin"
+msgstr ""
+
+#: include/DashboardMessages/Admin/Admin.php:104
 msgid "Edit"
 msgstr "Bearbeiten"
 
+# @ default
+#: include/DashboardMessages/Compat/WPMU.php:55
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:169
+msgid "Dashboard"
+msgstr "Dashboard"
+
 # @ dashboardmessages
-#: include/DashboardMessages/Compat/WPMU.php:46
-#: include/DashboardMessages/Compat/WPMU.php:90
+#: include/DashboardMessages/Compat/WPMU.php:89
+#: include/DashboardMessages/Compat/WPMU.php:139
 msgid "Scope"
 msgstr "Reichweite"
 
-#: include/DashboardMessages/Compat/WPMU.php:58
+#: include/DashboardMessages/Compat/WPMU.php:101
 msgid "Network"
 msgstr "Netzwerk"
 
-#: include/DashboardMessages/Compat/WPMU.php:63
+#: include/DashboardMessages/Compat/WPMU.php:106
 msgid "This Blog"
 msgstr "Dieser Blog"
 
 # @ dashboardmessages
-#: include/DashboardMessages/Compat/WPMU.php:96
+#: include/DashboardMessages/Compat/WPMU.php:157
 msgid "Show message only on this blog."
 msgstr "Meldung nur auf diesem Blog anzeigen."
 
 # @ dashboardmessages
-#: include/DashboardMessages/Compat/WPMU.php:99
+#: include/DashboardMessages/Compat/WPMU.php:172
 msgid "Show message on the entire network."
 msgstr "Meldung auf allen Blogs im Netzwerk anzeigen."
 
 # @ default
-#: include/DashboardMessages/Core/Core.php:66
+#: include/DashboardMessages/Core/Core.php:70
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:287
 msgid "Default"
 msgstr "Standard"
 
-#: include/DashboardMessages/Core/Core.php:67
+#: include/DashboardMessages/Core/Core.php:74
 msgid "Success"
 msgstr "Erfolg"
 
-#: include/DashboardMessages/Core/Core.php:68
+#: include/DashboardMessages/Core/Core.php:78
 msgid "Info"
 msgstr "Info"
 
-#: include/DashboardMessages/Core/Core.php:69
+#: include/DashboardMessages/Core/Core.php:82
 msgid "Warning"
 msgstr "Warnung"
 
-#: include/DashboardMessages/Core/Core.php:70
+#: include/DashboardMessages/Core/Core.php:86
 msgid "Error"
 msgstr "Fehler"
 
 # @ default
-#: include/DashboardMessages/Core/Core.php:71
+#: include/DashboardMessages/Core/Core.php:90
 msgid "Yellow"
 msgstr "Gelb"
 
 # @ default
-#: include/DashboardMessages/Core/Core.php:72
+#: include/DashboardMessages/Core/Core.php:94
 msgid "Purple"
 msgstr "Purpur"
 
 # @ default
-#: include/DashboardMessages/Core/Core.php:73
+#: include/DashboardMessages/Core/Core.php:98
 msgid "Red"
 msgstr "Rot"
 
 # @ default
-#: include/DashboardMessages/Core/Core.php:74
+#: include/DashboardMessages/Core/Core.php:102
 msgid "Green"
 msgstr "Grün"
 
 # @ default
-#: include/DashboardMessages/Core/Core.php:75
+#: include/DashboardMessages/Core/Core.php:106
 msgid "Blue"
 msgstr "Blau"
 
 # @ default
-#: include/DashboardMessages/Core/Core.php:76
+#: include/DashboardMessages/Core/Core.php:110
 msgid "Cyan"
 msgstr "Cyan"
 
@@ -158,31 +186,54 @@ msgid "Not found in Trash"
 msgstr "Nichts im Papierkorb gefunden"
 
 # @ dashboardmessages
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:72
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:71
 msgid "Dashboard Message"
 msgstr "Dashboard Meldung"
 
 # @ dashboardmessages
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:73
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:72
 msgid ""
 "With Dashboard Messages an Administrator can put up Messages to the "
 "WordPress dashboard."
 msgstr ""
 "Meldungen auf dem WordPress-Dashboard anderer Blog-Benutzer hinterlassen."
 
-# @ default
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:154
-msgid "Dashboard"
-msgstr "Dashboard"
-
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:172
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:190
 msgid "Color Scheme"
 msgstr "Farbeschema"
 
 # @ default
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:192
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:212
 msgid "Icon"
 msgstr "Icon"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:219
+msgid "No Icon"
+msgstr "Kein Icon"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:239
+msgid "Context"
+msgstr "Kontext"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:248
+msgid "Normal"
+msgstr "Normal"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:249
+msgid "Side"
+msgstr "Seite"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:277
+msgid "Priority"
+msgstr "Priorität"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:286
+msgid "High"
+msgstr "Hoch"
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:288
+msgid "Low"
+msgstr "Niedrig"
 
 #~ msgid "All Items"
 #~ msgstr "Alle Beiträge"

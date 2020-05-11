@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-01-30T17:35:19+00:00\n"
+"POT-Creation-Date: 2020-05-11T10:47:03+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: wp-dashboard-messages\n"
@@ -34,78 +34,78 @@ msgstr ""
 msgid "https://github.com/mcguffin"
 msgstr ""
 
-#: include/DashboardMessages/Admin/Admin.php:95
+#: include/DashboardMessages/Admin/Admin.php:104
 msgid "Edit"
 msgstr ""
 
-#: include/DashboardMessages/Compat/WPMU.php:50
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:184
+#: include/DashboardMessages/Compat/WPMU.php:55
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:169
 msgid "Dashboard"
 msgstr ""
 
-#: include/DashboardMessages/Compat/WPMU.php:58
-#: include/DashboardMessages/Compat/WPMU.php:107
+#: include/DashboardMessages/Compat/WPMU.php:89
+#: include/DashboardMessages/Compat/WPMU.php:139
 msgid "Scope"
 msgstr ""
 
-#: include/DashboardMessages/Compat/WPMU.php:70
+#: include/DashboardMessages/Compat/WPMU.php:101
 msgid "Network"
 msgstr ""
 
-#: include/DashboardMessages/Compat/WPMU.php:75
+#: include/DashboardMessages/Compat/WPMU.php:106
 msgid "This Blog"
 msgstr ""
 
-#: include/DashboardMessages/Compat/WPMU.php:124
+#: include/DashboardMessages/Compat/WPMU.php:157
 msgid "Show message only on this blog."
 msgstr ""
 
-#: include/DashboardMessages/Compat/WPMU.php:138
+#: include/DashboardMessages/Compat/WPMU.php:172
 msgid "Show message on the entire network."
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:69
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:301
+#: include/DashboardMessages/Core/Core.php:70
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:287
 msgid "Default"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:70
+#: include/DashboardMessages/Core/Core.php:74
 msgid "Success"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:71
+#: include/DashboardMessages/Core/Core.php:78
 msgid "Info"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:72
+#: include/DashboardMessages/Core/Core.php:82
 msgid "Warning"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:73
+#: include/DashboardMessages/Core/Core.php:86
 msgid "Error"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:74
+#: include/DashboardMessages/Core/Core.php:90
 msgid "Yellow"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:75
+#: include/DashboardMessages/Core/Core.php:94
 msgid "Purple"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:76
+#: include/DashboardMessages/Core/Core.php:98
 msgid "Red"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:77
+#: include/DashboardMessages/Core/Core.php:102
 msgid "Green"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:78
+#: include/DashboardMessages/Core/Core.php:106
 msgid "Blue"
 msgstr ""
 
-#: include/DashboardMessages/Core/Core.php:79
+#: include/DashboardMessages/Core/Core.php:110
 msgid "Cyan"
 msgstr ""
 
@@ -163,46 +163,46 @@ msgstr ""
 msgid "Not found in Trash"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:72
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:71
 msgid "Dashboard Message"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:73
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:72
 msgid "With Dashboard Messages an Administrator can put up Messages to the WordPress dashboard."
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:204
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:190
 msgid "Color Scheme"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:226
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:212
 msgid "Icon"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:233
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:219
 msgid "No Icon"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:253
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:239
 msgid "Context"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:262
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:248
 msgid "Normal"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:263
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:249
 msgid "Side"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:291
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:277
 msgid "Priority"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:300
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:286
 msgid "High"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:302
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:288
 msgid "Low"
 msgstr ""

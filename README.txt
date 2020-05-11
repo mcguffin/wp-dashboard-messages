@@ -41,7 +41,8 @@ Either post it on [GitHub](https://github.com/mcguffin/wp-dashboard-messages) or
 == Changelog ==
 
 = 1.1.0 =
- - Don't allow blog admins to edit Network Messages.
+ - feature: support post thumbnails
+ - security: Don't allow blog admins to edit Network Messages.
 
 = 1.0.0 =
 4 years later: Rewrite from scratch
