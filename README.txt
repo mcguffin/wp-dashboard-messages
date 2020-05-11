@@ -4,7 +4,7 @@ Donate link:
 Tags: dashboard, admin
 Requires at least: 4.8
 Requires PHP: 5.6
-Tested up to: 4.9.8
+Tested up to: 5.4.1
 Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -39,6 +39,9 @@ Use the GitHub Repo rather than the WordPress Plugin. Do as follows:
 Either post it on [GitHub](https://github.com/mcguffin/wp-dashboard-messages) or—if you are working on a cloned repository—send me a pull request.
 
 == Changelog ==
+
+= 1.1.0 =
+ - Don't allow blog admins to edit Network Messages.
 
 = 1.0.0 =
 4 years later: Rewrite from scratch

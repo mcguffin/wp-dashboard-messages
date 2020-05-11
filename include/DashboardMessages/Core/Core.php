@@ -16,15 +16,17 @@ use DashboardMessages\PostType;
 
 class Core extends Plugin {
 
+	private $icons = null;
+
 	/**
 	 *	@inheritdoc
 	 */
 	protected function __construct() {
 
-		add_action( 'plugins_loaded' , array( $this , 'init_compat' ), 0 );
-		add_action( 'init' , array( $this , 'init' ) );
+		add_action( 'plugins_loaded', [ $this, 'init_compat' ], 0 );
+		add_action( 'init', [ $this, 'init' ] );
 
-		add_action( 'wp_enqueue_scripts' , array( $this , 'wp_enqueue_style' ) );
+		add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_style' ] );
 
 		$args = func_get_args();
 		parent::__construct( ...$args );
@@ -36,14 +38,13 @@ class Core extends Plugin {
 	 *
 	 *	@use public
 	 *
-	 *	@return array	Assoc containing all available color schemes.
-	 *					array(
-	 *						'color-scheme-slug'	=> array(
+	 *	@return array	Assoc containing available color schemes.
+	 *					[
+	 *						'color-scheme-slug'	=> [
 	 *							'label'	=> 'Funky',
 	 *							'css'	=> 'color:tamato;backgrond:cucumber;'
-	 *						)
-	 *					)
-	 *
+	 *						]
+	 *					]
 	 */
 	public function get_color_schemes() {
 
@@ -64,27 +65,59 @@ class Core extends Plugin {
 		$wp_gray_lightest	= '#fafafa';
 		$wp_white			= '#ffffff';
 
-
-		$colors = array(
-			''			=> array( 'label' => __( 'Default', 'wp-dashboard-messages' ),	'css' => ''), // white
-			'success'	=> array( 'label' => __( 'Success', 'wp-dashboard-messages' ),	'css' => "border-left:4px solid {$wp_green};"), // green
-			'info'		=> array( 'label' => __( 'Info', 'wp-dashboard-messages' ),		'css' => "border-left:4px solid {$wp_blue};"), // red
-			'warning' 	=> array( 'label' => __( 'Warning', 'wp-dashboard-messages' ),	'css' => "border-left:4px solid {$wp_yellow};"), // yellow
-			'error' 	=> array( 'label' => __( 'Error', 'wp-dashboard-messages' ),	'css' => "border-left:4px solid {$wp_red};"), // purple
-			'yellow' 	=> array( 'label' => __( 'Yellow', 'wp-dashboard-messages' ),	'css' => "background-color:{$wp_yellow};color:{$wp_white};"), // yellow
-			'purple' 	=> array( 'label' => __( 'Purple', 'wp-dashboard-messages' ),	'css' => "background-color:{$wp_red_lighter};color:{$wp_black};"), // purple
-			'red'		=> array( 'label' => __( 'Red', 'wp-dashboard-messages' ),		'css' => "background-color:{$wp_red};color:{$wp_white};"), // red
-			'green'		=> array( 'label' => __( 'Green', 'wp-dashboard-messages' ),	'css' => "background-color:{$wp_green};color:{$wp_white};"), // green
-			'blue'		=> array( 'label' => __( 'Blue', 'wp-dashboard-messages' ),		'css' => "background-color:{$wp_blue};color:{$wp_white};"), // blue
-			'cyan'		=> array( 'label' => __( 'Cyan', 'wp-dashboard-messages' ),		'css' => "background-color:{$wp_blue_lighter};color:{$wp_black};"), // cyan
-		);
+		$colors = [
+			'' => [
+				'label' => __( 'Default', 'wp-dashboard-messages' ),
+				'css' => '',
+			], // white
+			'success' => [
+				'label' => __( 'Success', 'wp-dashboard-messages' ),
+				'css' => "border-left:4px solid {$wp_green};",
+			], // green
+			'info' => [
+				'label' => __( 'Info', 'wp-dashboard-messages' ),
+				'css' => "border-left:4px solid {$wp_blue};",
+			], // red
+			'warning' => [
+				'label' => __( 'Warning', 'wp-dashboard-messages' ),
+				'css' => "border-left:4px solid {$wp_yellow};",
+			], // yellow
+			'error' => [
+				'label' => __( 'Error', 'wp-dashboard-messages' ),
+				'css' => "border-left:4px solid {$wp_red};",
+			], // purple
+			'yellow' => [
+				'label' => __( 'Yellow', 'wp-dashboard-messages' ),
+				'css' => "background-color:{$wp_yellow};color:{$wp_white};",
+			], // yellow
+			'purple' => [
+				'label' => __( 'Purple', 'wp-dashboard-messages' ),
+				'css' => "background-color:{$wp_red_lighter};color:{$wp_black};",
+			], // purple
+			'red' => [
+				'label' => __( 'Red', 'wp-dashboard-messages' ),
+				'css' => "background-color:{$wp_red};color:{$wp_white};",
+			], // red
+			'green' => [
+				'label' => __( 'Green', 'wp-dashboard-messages' ),
+				'css' => "background-color:{$wp_green};color:{$wp_white};",
+			], // green
+			'blue' => [
+				'label' => __( 'Blue', 'wp-dashboard-messages' ),
+				'css' => "background-color:{$wp_blue};color:{$wp_white};",
+			], // blue
+			'cyan' => [
+				'label' => __( 'Cyan', 'wp-dashboard-messages' ),
+				'css' => "background-color:{$wp_blue_lighter};color:{$wp_black};",
+			], // cyan
+		];
 
 		/**
 		 * Filter available color schemes
 		 *
 		 * @param array  $colors   Color schemes (see function doc)
 		 */
-		return apply_filters( 'dashboard_messages_color_schemes' , $colors );
+		return apply_filters( 'dashboard_messages_color_schemes', $colors );
 	}
 
 
@@ -94,9 +127,11 @@ class Core extends Plugin {
 	 *
 	 *	@return	array	Available Dashicons.
 	 */
-	public function get_dashicons( ) {
-		$icons = json_decode( file_get_contents( $this->get_asset_path( 'misc/dashicons.json' ) ), true );
-		return $icons;
+	public function get_dashicons() {
+		if ( is_null( $this->icons ) ) {
+			$this->icons = json_decode( file_get_contents( $this->get_asset_path( 'misc/dashicons.json' ) ), true );
+		}
+		return $this->icons;
 	}
 
 	/**
@@ -114,13 +149,13 @@ class Core extends Plugin {
 	 *  @action plugins_loaded
 	 */
 	public function init_compat() {
-		
+
 		if ( is_multisite() ) {
 			if ( ! function_exists('is_plugin_active_for_network') ) {
 				require_once ABSPATH . '/wp-admin/includes/plugin.php';
 			}
 			if ( is_plugin_active_for_network( $this->get_wp_plugin() ) ) {
-				Compat\WPMU::instance();				
+				Compat\WPMU::instance();
 			}
 		}
 
@@ -142,11 +177,14 @@ class Core extends Plugin {
 	 *	@return string URL
 	 */
 	public function get_asset_url( $asset ) {
-		$pi = pathinfo($asset);
-		if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG && in_array( $pi['extension'], ['css','js']) ) {
+
+		$pi = pathinfo( $asset );
+
+		if ( defined( 'SCRIPT_DEBUG') && SCRIPT_DEBUG && in_array( $pi['extension'], [ 'css', 'js' ] ) ) {
 			// add .dev suffix (files with sourcemaps)
 			$asset = sprintf('%s/%s.dev.%s', $pi['dirname'], $pi['filename'], $pi['extension'] );
 		}
+
 		return plugins_url( $asset, $this->get_plugin_file() );
 	}
 
@@ -158,13 +196,15 @@ class Core extends Plugin {
 	 *	@return string URL
 	 */
 	public function get_asset_path( $asset ) {
-		$pi = pathinfo($asset);
-		if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG && in_array( $pi['extension'], ['css','js']) ) {
+
+		$pi = pathinfo( $asset );
+
+		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG && in_array( $pi['extension'], [ 'css', 'js' ] ) ) {
 			// add .dev suffix (files with sourcemaps)
 			$asset = sprintf('%s/%s.dev.%s', $pi['dirname'], $pi['filename'], $pi['extension'] );
 		}
+
 		return $this->get_plugin_dir() . '/' . preg_replace( '/^(\/+)/', '', $asset );
-		return plugins_url( $asset, $this->get_plugin_file() );
 	}
 
 

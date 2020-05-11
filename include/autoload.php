@@ -14,14 +14,16 @@ if ( ! defined('ABSPATH') ) {
 
 function __autoload( $class ) {
 
-	if ( false === ( $pos = strpos( $class, '\\' ) ) ) {
+	$pos = strpos( $class, '\\' );
+
+	if ( false === $pos ) {
 		return;
 	}
 
 	$ds = DIRECTORY_SEPARATOR;
 	$top = substr( $class, 0, $pos );
 
-	if ( false === is_dir( __DIR__ .$ds . $top ) ) {
+	if ( false === is_dir( __DIR__ . $ds . $top ) ) {
 		// not our plugin.
 		return;
 	}

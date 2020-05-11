@@ -40,11 +40,11 @@ abstract class PostType extends Core\PluginComponent {
 
 		parent::__construct();
 
-		add_action( 'init' , array( $this , 'register_post_types' ) , 0 );
+		add_action( 'init', [ $this, 'register_post_types' ], 0 );
 
 		if ( ! $this->enable_block_editor ) {
 
-			add_filter( 'use_block_editor_for_post_type', array( $this, 'disable_block_editor' ), 10, 2);
+			add_filter( 'use_block_editor_for_post_type', [ $this, 'disable_block_editor' ], 10, 2);
 
 		}
 	}
@@ -71,24 +71,12 @@ abstract class PostType extends Core\PluginComponent {
 		return $this->post_type_slug;
 	}
 
-
-	/**
-	 *	Register Taxonomy for Posttype
-	 *
-	 *	@param Taxonomy $taxonomy
-	 *	@return PostType
-	 */
-	public function add_taxonomy( Taxonomy\Taxonomy $taxonomy ) {
-		register_taxonomy_for_object_type( $taxonomy->get_slug(), $this->get_slug() );
-		return $this;
-	}
-
 	/**
 	 *	Register Post Type
 	 *
 	 *	@action init
 	 */
-	abstract function register_post_types();
+	abstract public function register_post_types();
 
 	/**
 	 *	@inheritdoc
@@ -100,22 +88,24 @@ abstract class PostType extends Core\PluginComponent {
 		// flush rewrite rules
 		flush_rewrite_rules();
 
-		return array(
+		return [
 			'success'	=> true,
-			'messages'	=> array(),
-		);
+			'messages'	=> [],
+		];
 	}
 
 	/**
 	 *	@inheritdoc
 	 */
 	public function deactivate() {
+
 		// flush rewrite rules
 		flush_rewrite_rules();
-		return array(
+
+		return [
 			'success'	=> true,
-			'messages'	=> array(),
-		);
+			'messages'	=> [],
+		];
 	}
 
 	/**
@@ -124,22 +114,23 @@ abstract class PostType extends Core\PluginComponent {
 	public static function uninstall() {
 
 		$deleted_posts = 0;
-		$posts = get_posts(array(
+		$posts = get_posts( [
 			'post_type' 		=> $this->post_type_slug,
 			'post_status'		=> 'any',
 			'posts_per_page'	=> -1,
-		));
+		] );
 		foreach ( $posts as $post ) {
 			wp_delete_post( $post->ID, true );
 			$deleted_posts++;
 		}
 
-		return array(
+		return [
 			'success'	=> true,
-			'messages'	=> array(
-				sprintf( _n( 'Deleted %d Post',  'Deleted %d Posts', $deleted_posts, 'dashboard-messages' ), $deleted_posts ),
-			),
-		);
+			'messages'	=> [
+				/* translators: %d number of posts deleted during uninstall */
+				sprintf( _n( 'Deleted %d Post', 'Deleted %d Posts', $deleted_posts, 'dashboard-messages' ), $deleted_posts ),
+			],
+		];
 	}
 
 	/**
@@ -152,21 +143,25 @@ abstract class PostType extends Core\PluginComponent {
 
 	/**
 	 *	Add custom capabilities to admin role
+	 *
+	 *	@return boolean
 	 */
 	protected function add_custom_capabilities() {
+
 		if ( ! is_null( $this->post_type_caps ) ) {
-			$admin_role = get_role('administrator');
-			if ( ! is_null($admin_role) ) {
+
+			$admin_role = get_role( 'administrator' );
+
+			if ( ! is_null( $admin_role ) ) {
 				foreach ( $this->post_type_caps as $cap ) {
-					if ( ! $admin_role->has_cap($cap) ) {
-						$admin_role->add_cap($cap);
-						error_log('add cap: '.$cap);
+					if ( ! $admin_role->has_cap( $cap ) ) {
+						$admin_role->add_cap( $cap );
 					}
 				}
-			} else {
-				// error case!
+				return true;
 			}
 		}
+		return false;
 	}
 
 	/**
@@ -175,13 +170,14 @@ abstract class PostType extends Core\PluginComponent {
 	protected function remove_custom_capabilities() {
 		// all roles!
 		global $wp_roles;
+
 		$roles = $wp_roles->roles;
+
 		foreach ( array_keys( $wp_roles->roles ) as $role_slug ) {
-			$role = get_role($role_slug);
+			$role = get_role( $role_slug );
 			foreach ( $this->_post_type_caps as $cap ) {
-				if ( $role->has_cap($cap) ) {
-					$role->remove_cap($cap);
-					error_log('rm cap '.$cap.' role: '.$role_slug);
+				if ( $role->has_cap( $cap ) ) {
+					$role->remove_cap( $cap );
 				}
 			}
 		}

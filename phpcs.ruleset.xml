@@ -11,20 +11,20 @@
 	<exclude-pattern>vendor/*</exclude-pattern>
 	<exclude-pattern>*.min.js</exclude-pattern>
 	<exclude-pattern>js/*.js</exclude-pattern>
+	<exclude-pattern>gulpfile.js</exclude-pattern>
 	<exclude-pattern>css/*.css</exclude-pattern>
 
+	<rule ref="Generic.PHP.Syntax"/>
+	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
 	<!-- Include the WordPress ruleset, with exclusions. -->
-	<rule ref="WordPress.CodeAnalysis">
-	</rule>
-	<rule ref="WordPress.DB">
-	</rule>
-	<rule ref="WordPress.PHP">
-	</rule>
-	<rule ref="WordPress.Security">
-	</rule>
-	<rule ref="WordPress.Utils">
-	</rule>
-	<rule ref="WordPress.WP">
-		<exclude name="WordPress.WP.TimezoneChange"/>
+	<rule ref="WordPress">
+		<exclude name="Squiz.Commenting"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature"/>
+		
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+		<exclude name="Generic.Commenting.DocComment.MissingShort"/>
+		<exclude name="WordPress.WhiteSpace.DisallowInlineTabs"/>
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
 	</rule>
 </ruleset>

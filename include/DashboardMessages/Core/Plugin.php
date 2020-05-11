@@ -27,9 +27,9 @@ class Plugin extends PluginComponent {
 	private $_version = null;
 
 	/** @var string plugin components which might need upgrade */
-	private static $components = array(
+	private static $components = [
 		'DashboardMessages\Compat\WPMU',
-	);
+	];
 
 	/**
 	 *	@inheritdoc
@@ -38,19 +38,17 @@ class Plugin extends PluginComponent {
 
 		$this->plugin_file = $file;
 
-		register_activation_hook( $this->get_plugin_file(), array( $this , 'activate' ) );
-		register_deactivation_hook( $this->get_plugin_file(), array( $this , 'deactivate' ) );
-		register_uninstall_hook( $this->get_plugin_file(), array( __CLASS__, 'uninstall' ) );
+		register_activation_hook( $this->get_plugin_file(), [ $this, 'activate' ] );
+		register_deactivation_hook( $this->get_plugin_file(), [ $this, 'deactivate' ] );
+		register_uninstall_hook( $this->get_plugin_file(), [ __CLASS__, 'uninstall' ] );
 
-		add_action( 'admin_init', array( $this, 'maybe_upgrade' ) );
-		add_filter( 'extra_plugin_headers', array( $this, 'add_plugin_header' ) );
+		add_action( 'admin_init', [ $this, 'maybe_upgrade' ] );
 
-		add_action( 'plugins_loaded' , array( $this , 'load_textdomain' ) );
+		add_action( 'plugins_loaded', [ $this, 'load_textdomain' ] );
 
 		parent::__construct();
 	}
 
-	
 	/**
 	 *	@return string plugin version
 	 */
@@ -59,16 +57,6 @@ class Plugin extends PluginComponent {
 			$this->_version = include_once trailingslashit( $this->get_plugin_dir() ) . 'include/version.php';
 		}
 		return $this->_version;
-	}
-
-
-
-	/**
-	 *	@filter extra_plugin_headers
-	 */
-	public function add_plugin_header( $headers ) {
-		$headers['GithubRepo'] = 'Github Repository';
-		return $headers;
 	}
 
 	/**
@@ -136,7 +124,6 @@ class Plugin extends PluginComponent {
 			update_site_option( 'dashboard-messages_version', $new_version );
 
 		}
-
 	}
 
 	/**
@@ -178,14 +165,15 @@ class Plugin extends PluginComponent {
 	 */
 	public function upgrade( $new_version, $old_version ) {
 
-		$result = array(
+		$result = [
 			'success'	=> true,
-			'messages'	=> array(),
-		);
+			'messages'	=> [],
+		];
 
 		foreach ( self::$components as $component ) {
 			$comp = $component::instance();
 			$upgrade_result = $comp->upgrade( $new_version, $old_version );
+
 			$result['success'] 		&= $upgrade_result['success'];
 			$result['messages'][]	=  $upgrade_result['message'];
 		}

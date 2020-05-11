@@ -35,13 +35,13 @@ class PostTypeDashboardMessage extends PostType {
 	/**
 	 *	@inheritdoc
 	 */
-	protected function __construct( ) {
+	protected function __construct() {
 
 		parent::__construct();
 
-		add_action('add_meta_boxes',array( $this ,'add_meta_boxes' ) );
+		add_action( 'add_meta_boxes', [ $this, 'add_meta_boxes' ] );
 
-		add_action( 'save_post_' . $this->get_slug(), array( $this ,'save_post') ,10,2);
+		add_action( 'save_post_' . $this->get_slug(), [ $this, 'save_post' ], 10, 2 );
 
 	}
 
@@ -49,9 +49,9 @@ class PostTypeDashboardMessage extends PostType {
 	/**
 	 *	@inheritdoc
 	 */
-	public function register_post_types( ) {
+	public function register_post_types() {
 		// register post type dashboard_message
-		$labels = array(
+		$labels = [
 			'name'                => _x( 'Dashboard Messages', 'Post Type General Name', 'wp-dashboard-messages' ),
 			'singular_name'       => _x( 'Dashboard Message', 'Post Type Singular Name', 'wp-dashboard-messages' ),
 			'menu_name'           => __( 'Dashboard Messages', 'wp-dashboard-messages' ),
@@ -65,15 +65,14 @@ class PostTypeDashboardMessage extends PostType {
 			'search_items'        => __( 'Search Message', 'wp-dashboard-messages' ),
 			'not_found'           => __( 'Not found', 'wp-dashboard-messages' ),
 			'not_found_in_trash'  => __( 'Not found in Trash', 'wp-dashboard-messages' ),
-		);
+		];
 
-
-		$args = array(
+		$args = [
 			'label'					=> __( 'Dashboard Message', 'wp-dashboard-messages' ),
-			'description'			=> __( 'With Dashboard Messages an Administrator can put up Messages to the WordPress dashboard.' , 'wp-dashboard-messages' ),
+			'description'			=> __( 'With Dashboard Messages an Administrator can put up Messages to the WordPress dashboard.', 'wp-dashboard-messages' ),
 			'labels'				=> $labels,
-			'supports'				=> array( 'title' , 'editor', 'author' ),
-			'taxonomies'			=> array( ),
+			'supports'				=> [ 'title', 'editor', 'author' ],
+			'taxonomies'			=> [],
 			'menu_icon'				=> 'dashicons-megaphone',
 			'hierarchical'			=> false,
 			'public'				=> false,
@@ -87,11 +86,10 @@ class PostTypeDashboardMessage extends PostType {
 			'exclude_from_search'	=> false,
 			'publicly_queryable'	=> false,
 			'capability_type'		=> 'page',
-		);
+		];
+
 		register_post_type( $this->post_type_slug, $args );
 	}
-
-
 
 	/**
 	 *	Get local Dashboard Message Post objects
@@ -105,18 +103,17 @@ class PostTypeDashboardMessage extends PostType {
 			return $this->_messages;
 		}
 
-		$get_posts_args = apply_filters( 'dashboard_messages_query', array(
+		$get_posts_args = apply_filters( 'dashboard_messages_query', [
 			'posts_per_page'	=> -1,
 			'post_type'			=> 'dashboard_message',
 			'suppress_filters'	=> 0,
-		) );
+		] );
 
 		$posts = get_posts( $get_posts_args );
 
-		$posts = array_map( array( $this, 'handle_post' ), $posts );
+		$posts = array_map( [ $this, 'handle_post' ], $posts );
 
 		$this->_messages = apply_filters( 'dashboard_messages', $posts );
-
 
 		return $this->_messages;
 	}
@@ -132,14 +129,11 @@ class PostTypeDashboardMessage extends PostType {
 	public function save_post( $post_id, $post ) {
 
 		if ( ! check_ajax_referer( 'save-dashboard-message-post-' . $post_id, '_dashboard_post_nonce', false ) ) {
-			error_log('nonce!');
-			error_log(var_export($_POST,true));
 			return;
 		}
 
 		$core = Core\Core::instance();
 		$colors = $core->get_color_schemes();
-		$dashicons = $core->get_dashicons();
 
 		$param = wp_unslash( wp_parse_args( $_POST, [
 			'_dashboard_color'		=> false,
@@ -153,25 +147,15 @@ class PostTypeDashboardMessage extends PostType {
 		$dashboard_context	= wp_unslash( $param['_dashboard_context'] );
 		$dashboard_priority	= wp_unslash( $param['_dashboard_priority'] );
 
-		if ( $dashboard_color && isset( $colors[ $dashboard_color ] ) ) {
-			update_post_meta( $post_id, '_dashboard_color', $dashboard_color );
-		}
+		$dashboard_color	= $this->sanitize_color( $dashboard_color );
+		$dashboard_icon		= $this->sanitize_icon( $dashboard_icon );
+		$dashboard_context	= $this->sanitize_context( $dashboard_context );
+		$dashboard_priority	= $this->sanitize_priority( $dashboard_priority );
 
-		if ( $dashboard_icon && ( '' === $dashboard_icon || isset( $dashicons[ $dashboard_icon ] )) ) {
-			update_post_meta( $post_id , '_dashboard_icon' , $dashboard_icon );
-		}
-
-
-		if ( $dashboard_context && in_array( $dashboard_context, [ 'normal', 'side', 'column3', 'column4' ] ) ) {
-			// validate!
-			update_post_meta( $post_id , '_dashboard_context' , $dashboard_context );
-		}
-
-		if ( $dashboard_priority && in_array( $dashboard_priority, [ 'high', 'default', 'low' ] ) ) {
-			// validate!
-			update_post_meta( $post_id , '_dashboard_priority' , $dashboard_priority );
-		}
-
+		update_post_meta( $post_id, '_dashboard_color', $dashboard_color );
+		update_post_meta( $post_id, '_dashboard_icon', $dashboard_icon );
+		update_post_meta( $post_id, '_dashboard_context', $dashboard_context );
+		update_post_meta( $post_id, '_dashboard_priority', $dashboard_priority );
 
 	}
 
@@ -180,8 +164,10 @@ class PostTypeDashboardMessage extends PostType {
 	 *
 	 *	@action add_meta_boxes
 	 */
-	public function add_meta_boxes( ) {
-		add_meta_box( 'dashboard_options' , __( 'Dashboard', 'wp-dashboard-messages' ) , array( $this , 'dashboard_meta_box') , 'dashboard_message' , 'side' , 'default' );
+	public function add_meta_boxes() {
+
+		add_meta_box( 'dashboard_options', __( 'Dashboard', 'wp-dashboard-messages' ), [ $this, 'dashboard_meta_box' ], 'dashboard_message', 'side', 'default' );
+
 	}
 
 	/**
@@ -195,17 +181,17 @@ class PostTypeDashboardMessage extends PostType {
 		// show select color
 		$core = Core\Core::instance();
 		//
-		$post_color = get_post_meta( $post->ID , '_dashboard_color' , true );
-		$post_icon = get_post_meta( $post->ID , '_dashboard_icon' , true );
+		$post_color = get_post_meta( $post->ID, '_dashboard_color', true );
+		$post_icon = get_post_meta( $post->ID, '_dashboard_icon', true );
 
-		wp_nonce_field( 'save-dashboard-message-post-'.$post->ID, '_dashboard_post_nonce' );
+		wp_nonce_field( 'save-dashboard-message-post-' . $post->ID, '_dashboard_post_nonce' );
 
 		?><div class="color-scheme">
-			<h4><?php esc_html_e('Color Scheme','wp-dashboard-messages') ?></h4>
+			<h4><?php esc_html_e( 'Color Scheme', 'wp-dashboard-messages' ); ?></h4>
 			<div class="dashboard-messages-colors">
 				<?php
+
 				foreach ( $core->get_color_schemes() as $code => $item ) {
-					extract( $item );
 					$inp_id = 'colorselect-' . $code;
 					printf( '<input type="radio" name="_dashboard_color" id="%s" value="%s" %s >',
 						esc_attr( $inp_id ),
@@ -213,9 +199,9 @@ class PostTypeDashboardMessage extends PostType {
 						checked( $code, $post_color, false )
 					);
 					printf( '<label for="%s" class="dashboard-colorset-%s">%s</label>',
-						esc_attr( $inp_id ), 
+						esc_attr( $inp_id ),
 						esc_attr( $code ),
-						esc_html( $label ) 
+						esc_html( $item['label'] )
 					);
 				}
 				?>
@@ -223,24 +209,24 @@ class PostTypeDashboardMessage extends PostType {
 		</div><!-- .misc-pub-section -->
 		<hr />
 		<div class="dashicon">
-			<h4><?php esc_html_e('Icon','wp-dashboard-messages') ?></h4>
+			<h4><?php esc_html_e( 'Icon', 'wp-dashboard-messages' ); ?></h4>
 			<div class="dashboard-messages-icons select-window">
 				<div class="select">
 				<?php
 				foreach ( [ '' => '' ] + $core->get_dashicons( ) as $icon => $codepoint ) {
 
 					$inp_id = 'dashicon-' . $icon;
-					$icon_label = $icon ? ucwords( implode(' ',explode( '-', $icon ) ) ) : __('No Icon','wp-dashboard-messages');
+					$icon_label = $icon ? ucwords( implode( ' ', explode( '-', $icon ) ) ) : __( 'No Icon', 'wp-dashboard-messages' );
 
 					printf( '<input type="radio" name="_dashboard_icon" id="%s" value="%s" %s >',
 						esc_attr( $inp_id ),
 						esc_attr( $icon ),
 						checked( $icon, $post_icon, false )
 					);
-					printf( 
-						'<label for="%s"><span  class="dashicons dashicons-%s"></span>%s</label>', 
-						esc_attr( $inp_id ), 
-						esc_attr( $icon ), 
+					printf(
+						'<label for="%s"><span  class="dashicons dashicons-%s"></span>%s</label>',
+						esc_attr( $inp_id ),
+						esc_attr( $icon ),
 						esc_html( $icon_label )
 					);
 				}
@@ -250,37 +236,37 @@ class PostTypeDashboardMessage extends PostType {
 		</div><!-- .icon -->
 		<div class="dashboard-messages-placements">
 			<div class="context">
-				<h4><?php esc_html_e('Context','wp-dashboard-messages') ?></h4>
+				<h4><?php esc_html_e( 'Context', 'wp-dashboard-messages' ); ?></h4>
 				<?php
 
 				// show 'all_blogs'
-				$post_context = get_post_meta( $post->ID , '_dashboard_context', true );
+				$post_context = get_post_meta( $post->ID, '_dashboard_context', true );
 				if ( empty( $post_context ) ) {
 					$post_context = 'normal';
 				}
-				$contexts = array(
+				$contexts = [
 					'normal'	=> __( 'Normal', 'wp-dashboard-messages' ),
 					'side'		=> __( 'Side', 'wp-dashboard-messages' ),
 					'column3'	=> __( 'Column 3', 'wp-dasboard-messages' ),
 					'column4'	=> __( 'Column 4', 'wp-dasboard-messages' ),
-				);
+				];
 				foreach ( $contexts as $value => $label ) {
-				?>
-				<div class="dashboard-messages-select-radio">
-					<?php
-					printf( 
-						'<input type="radio" id="context-%1$s" name="_dashboard_context" value="%1$s" %2$s />', 
-						esc_attr( $value ), 
-						checked( $post_context, $value, false ) 
-					);
 					?>
-					<label for="context-<?php echo esc_attr( $value ); ?>" >
+					<div class="dashboard-messages-select-radio">
 						<?php
-						echo esc_html( $label );
+						printf(
+							'<input type="radio" id="context-%1$s" name="_dashboard_context" value="%1$s" %2$s />',
+							esc_attr( $value ),
+							checked( $post_context, $value, false )
+						);
 						?>
-					</label>
-				</div>
-				<?php
+						<label for="context-<?php echo esc_attr( $value ); ?>" >
+							<?php
+							echo esc_html( $label );
+							?>
+						</label>
+					</div>
+					<?php
 
 				}
 
@@ -288,36 +274,34 @@ class PostTypeDashboardMessage extends PostType {
 			</div>
 
 			<div class="priority">
-				<h4><?php esc_html_e('Priority','wp-dashboard-messages') ?></h4>
+				<h4><?php esc_html_e( 'Priority', 'wp-dashboard-messages' ); ?></h4>
 				<?php
 
 				// show 'all_blogs'
-				$post_prio = get_post_meta( $post->ID , '_dashboard_priority', true );
+				$post_prio = get_post_meta( $post->ID, '_dashboard_priority', true );
 				if ( empty( $post_prio ) ) {
 					$post_prio = 'high';
 				}
-				$prios = array(
+				$prios = [
 					'high'		=> __( 'High', 'wp-dashboard-messages' ),
 					'default'	=> __( 'Default', 'wp-dashboard-messages' ),
 					'low'		=> __( 'Low', 'wp-dashboard-messages' ),
-				);
+				];
 				foreach ( $prios as $value => $label ) {
-				?>
-				<div class="dashboard-messages-select-radio">
-					<?php
-					printf( 
-						'<input type="radio" id="context-%1$s" name="_dashboard_priority" value="%1$s" %2$s />', 
-						esc_attr( $value ), 
-						checked( $post_prio, $value, false ) 
-					);
 					?>
-					<label for="context-<?php echo esc_attr( $value ); ?>" >
+					<div class="dashboard-messages-select-radio">
 						<?php
-						echo esc_html( $label );
+						printf(
+							'<input type="radio" id="context-%1$s" name="_dashboard_priority" value="%1$s" %2$s />',
+							esc_attr( $value ),
+							checked( $post_prio, $value, false )
+						);
 						?>
-					</label>
-				</div>
-				<?php
+						<label for="context-<?php echo esc_attr( $value ); ?>" >
+							<?php echo esc_html( $label ); ?>
+						</label>
+					</div>
+					<?php
 
 				}
 
@@ -328,10 +312,6 @@ class PostTypeDashboardMessage extends PostType {
 		<?php
 
 		do_action( 'dashboard_messages_metabox', $post );
-
-		return;
-
-
 	}
 
 
@@ -342,17 +322,65 @@ class PostTypeDashboardMessage extends PostType {
 	 *	@param	id 		$blog_id	current blog ID
 	 */
 	private function handle_post( $post ) {
+
 		$blog_id = get_current_blog_id();
 
 		$post->blog_id 				= $blog_id;
 		$post->dashboard_uid		= sprintf( 'dashboard-message-%d-%d', $blog_id, $post->ID );
 		$post->dashboard_color		= get_post_meta( $post->ID, '_dashboard_color', true );
-		$post->dashboard_icon		= get_post_meta( $post->ID, '_dashboard_icon', true );
-		$post->dashboard_context	= get_post_meta( $post->ID, '_dashboard_context', true );
-		$post->dashboard_priority	= get_post_meta( $post->ID, '_dashboard_priority', true );
+		$post->dashboard_icon		= $this->sanitize_icon( get_post_meta( $post->ID, '_dashboard_icon', true ) );
+		$post->dashboard_context	= $this->sanitize_context( get_post_meta( $post->ID, '_dashboard_context', true ) );
+		$post->dashboard_priority	= $this->sanitize_priority( get_post_meta( $post->ID, '_dashboard_priority', true ) );
 
 		return apply_filters( 'dashboard_messages_handle_post', $post );
 	}
 
+	/**
+	 *	@param string $priority
+	 *	@return string
+	 */
+	public function sanitize_priority( $priority ) {
+		if ( in_array( $priority, [ 'high', 'default', 'low' ] ) ) {
+			return $priority;
+		}
+		return 'high';
+	}
+
+	/**
+	 *	@param string $context
+	 *	@return string
+	 */
+	public function sanitize_context( $context ) {
+		if ( in_array( $context, [ 'normal', 'side', 'column3', 'column4' ] ) ) {
+			return $context;
+		}
+		return 'normal';
+	}
+
+	/**
+	 *	@param string $icon
+	 *	@return string
+	 */
+	public function sanitize_icon( $icon ) {
+		$core = Core\Core::instance();
+		$icons = $core->get_dashicons();
+		if ( is_array( $icons ) && isset( $icons[ $icon ] ) ) {
+			return $icon;
+		}
+		return '';
+	}
+
+	/**
+	 *	@param string $color
+	 *	@return string
+	 */
+	public function sanitize_color( $color ) {
+		$core = Core\Core::instance();
+		$colors = $core->get_color_schemes();
+		if ( is_array( $colors ) && isset( $colors[ $color ] ) ) {
+			return $color;
+		}
+		return '';
+	}
 
 }
