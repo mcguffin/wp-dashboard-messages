@@ -82,13 +82,22 @@ class Admin extends Core\Singleton {
 	 *							'args'		=> Dashboard Message Post object,
 	 */
 	public function print_message_content( $str, $param ) {
+
 		$message_post = $param['args'];
+
 		if ( $message_post ) {
 
 			if ( is_multisite() ) {
 				switch_to_blog( $message_post->blog_id );
 			}
 
+			if ( has_post_thumbnail( $message_post->ID ) ) {
+				?>
+				<div class="dashboard-message-thumbnail">
+					<?php echo get_the_post_thumbnail( $message_post, 'full' ); ?>
+				</div>
+				<?php
+			}
 			echo wp_kses_post( apply_filters( 'the_content', $message_post->post_content ) );
 
 			if ( current_user_can_for_blog( $message_post->blog_id, 'edit_post', $message_post->ID ) ) {

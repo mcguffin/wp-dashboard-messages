@@ -143,6 +143,13 @@
 			margin-right:5px;
 		}
 	}
+	.dashboard-message-thumbnail {
+		margin:-11px -11px 0 -11px;
+		img {
+			max-width:100%;
+			height:auto;
+		}
+	}
 }
 
 th {

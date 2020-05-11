@@ -71,7 +71,7 @@ class PostTypeDashboardMessage extends PostType {
 			'label'					=> __( 'Dashboard Message', 'wp-dashboard-messages' ),
 			'description'			=> __( 'With Dashboard Messages an Administrator can put up Messages to the WordPress dashboard.', 'wp-dashboard-messages' ),
 			'labels'				=> $labels,
-			'supports'				=> [ 'title', 'editor', 'author' ],
+			'supports'				=> [ 'title', 'editor', 'author', 'thumbnail' ],
 			'taxonomies'			=> [],
 			'menu_icon'				=> 'dashicons-megaphone',
 			'hierarchical'			=> false,
