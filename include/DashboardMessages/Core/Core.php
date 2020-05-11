@@ -88,7 +88,7 @@ class Core extends Plugin {
 			], // purple
 			'yellow' => [
 				'label' => __( 'Yellow', 'wp-dashboard-messages' ),
-				'css' => "background-color:{$wp_yellow};color:{$wp_white};",
+				'css' => "background-color:{$wp_yellow};color:{$wp_black};",
 			], // yellow
 			'purple' => [
 				'label' => __( 'Purple', 'wp-dashboard-messages' ),

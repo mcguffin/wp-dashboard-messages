@@ -9,34 +9,32 @@ Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Put messages on Your Wordpress user's dashboards.
+Custom messages on Your WP Admin dashboard.
 
 == Description ==
-Put messages on Your Wordpress user's dashboards.
 
-- Translation ready
+= Features =
+ - Add Messages to to WP Admin Dashboard
+ - Select from different styles and layouts
+ - Multisite Supported (Network-wide messages)
+ - Developer friendly hooks
 
 == Installation ==
 
-Just follow the standard [WordPress plugin installation procedere](http://codex.wordpress.org/Managing_Plugins).
+Just follow the [Automatic Plugin Installation](https://wordpress.org/support/article/managing-plugins/#automatic-plugin-installation) procedere.
 
 == Frequently asked questions ==
 
 = I found a bug. Where should I post it? =
 
-I personally prefer GitHub. The plugin code is here: [GitHub](https://github.com/mcguffin/wp-dashboard-messages)
+Please use the issues section in the [GitHub-Repository](https://github.com/mcguffin/wp-dashboard-messages/issues).
 
-= I want to use the latest files. How can I do this? =
+I will most likely not maintain the forum support forum on wordpress.org. Anyway, other users might have an answer for you, so it's worth a shot.
 
-Use the GitHub Repo rather than the WordPress Plugin. Do as follows:
-1. If you haven't already done: [Install git](https://help.github.com/articles/set-up-git)
-2. in the console cd into Your 'wp-content/plugins' directory
-3. type 'git clone git@github.com:mcguffin/wp-dashboard-messages.git'
-4. If you want to update to the latest files (be careful, might be untested on Your WP-Version) type 'git pull'.
+= I'd like to suggest a feature. Where should I post it? =
 
-= I found a bug and fixed it. How can I let You know? =
+Please post an issue in the [GitHub-Repository](https://github.com/mcguffin/wp-dashboard-messages/issues).
 
-Either post it on [GitHub](https://github.com/mcguffin/wp-dashboard-messages) or—if you are working on a cloned repository—send me a pull request.
 
 == Changelog ==
 
@@ -46,11 +44,10 @@ Either post it on [GitHub](https://github.com/mcguffin/wp-dashboard-messages) or
  - fix: link colors
  - security: Don't allow blog admins to edit Network Messages.
 
-= 1.0.0 =
-4 years later: Rewrite from scratch
-
-= 0.9.0 =
-Initial Release
+== Screenshots ==
+1. Some random dashboard messages
+2. Post Editor metabox
+3. Network admins can publish messages either on the current blog or on the entire network.
 
 == Upgrade notice ==
 

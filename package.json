@@ -8,7 +8,8 @@
     "postinstall": "composer install",
     "sec-audit": "./vendor/squizlabs/php_codesniffer/bin/phpcs . --report=code --standard=./phpcs-security.ruleset.xml -n -s > ./phpcs-report.txt || exit 0",
     "audit": "./vendor/squizlabs/php_codesniffer/bin/phpcs . --report=code --standard=./phpcs.ruleset.xml -n -s > ./phpcs-report.txt || exit 0",
-    "audit-fix": "./vendor/squizlabs/php_codesniffer/bin/phpcbf . --standard=./phpcs.ruleset.xml || exit 0"
+    "audit-fix": "./vendor/squizlabs/php_codesniffer/bin/phpcbf . --standard=./phpcs.ruleset.xml || exit 0",
+    "dev": "gulp"
   },
   "repository": {
     "type": "git",

@@ -146,6 +146,11 @@
 	a {
 		color: currentColor;
 	}
+	img, video, audio {
+		max-width: 100%;
+		height:auto;
+	}
+	
 	.dashboard-message-thumbnail {
 		margin:-11px -11px 0 -11px;
 		img {
