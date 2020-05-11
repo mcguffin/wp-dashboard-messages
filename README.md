@@ -10,8 +10,6 @@ Features
 
 ![Some random messages](.wporg/screenshot-1.png)
 
-![Post Editor metabox](.wporg/screenshot-2.png)
-
 For specific target groups you can combine this plugin with
 [WP Access Areas](https://wordpress.org/plugins/wp-access-areas/).
 
