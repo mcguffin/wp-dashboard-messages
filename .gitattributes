@@ -9,3 +9,4 @@ wp-plugin-boilerplate.json export-ignore
 *.md export-ignore
 phpcs* export-ignore
 composer* export-ignore
+.wporg export-ignore
