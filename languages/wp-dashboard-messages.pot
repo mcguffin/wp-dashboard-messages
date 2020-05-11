@@ -1,21 +1,21 @@
 # Copyright (C) 2020 Jörn Lund
-# This file is distributed under the same license as the WP-Dashboard Messages plugin.
+# This file is distributed under the same license as the WP Dashboard Messages plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP-Dashboard Messages 1.0.8\n"
+"Project-Id-Version: WP Dashboard Messages 1.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-dashboard-messages\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-05-11T11:28:52+00:00\n"
+"POT-Creation-Date: 2020-05-11T13:19:56+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: wp-dashboard-messages\n"
 
 #. Plugin Name of the plugin
-msgid "WP-Dashboard Messages"
+msgid "WP Dashboard Messages"
 msgstr ""
 
 #. Plugin URI of the plugin
@@ -23,7 +23,7 @@ msgid "https://github.com/mcguffin/wp-dashboard-messages"
 msgstr ""
 
 #. Description of the plugin
-msgid "Write messages on the WordPress dashboard."
+msgid "Show Messages on the WP Admin Dashboard."
 msgstr ""
 
 #. Author of the plugin
