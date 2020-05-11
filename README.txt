@@ -41,7 +41,9 @@ Either post it on [GitHub](https://github.com/mcguffin/wp-dashboard-messages) or
 == Changelog ==
 
 = 1.1.0 =
+ - feature: layout option dismissable notice
  - feature: support post thumbnails
+ - fix: link colors
  - security: Don't allow blog admins to edit Network Messages.
 
 = 1.0.0 =
