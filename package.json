@@ -20,6 +20,11 @@
   "bugs": {
     "url": "https://github.com//wp-dashboard-messages/issues"
   },
+  "browserslist": [
+    "last 3 versions",
+    "> 0.25%",
+    "IE 10"
+  ],
   "homepage": "https://github.com//wp-dashboard-messages#readme",
   "devDependencies": {},
   "dependencies": {
