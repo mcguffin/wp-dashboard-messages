@@ -37,10 +37,34 @@
 	}
 	.select {
 		flex:1 0;
+		> .search {
+			display: none;
+			flex:0 0 100%;
+			position: sticky;
+			top:32px;
+			@media screen and (max-width:782px) {
+				top:47px;
+			}
+			@media screen and (max-width:600px) {
+				top:0;
+			}
+			background: #fff;
+			//border-bottom: 1px solid $wp-gray-lighter;
+			outline:1px solid $wp-gray;
+			z-index: 1;
+			[type="search"] {
+				flex:1 1 auto;
+				padding:5px;
+				margin:5px;
+				font-size:1.25em;
+			}
+		}
 	}
 	:checked + label,
 	&.active label {
-		display:flex;
+		&:not(.-off) {
+			display:flex;
+		}
 	}
 	&.active {
 		display:block;
@@ -57,9 +81,15 @@
 		.select {
 			background:#fff;
 			max-width:80vw;
+			@media screen and (max-width:782px) {
+				max-width:100vw;
+			}
 			display: flex;
 			flex-wrap: wrap;
 			margin:50px auto;
+			> .search {
+				display: flex;
+			}
 		}
 		label {
 			min-width:200px;
