@@ -1,9 +1,17 @@
 WordPress Dashboard Messages
 ============================
 
+1.1.1
+-----
+ - UI: add search input to dashicon selector
+ - UI: update dashicons
+ - Fix some style issues
+ - First release on wporg
+
 1.1.0
 -----
- - Layout-option dismissable
+ - Layout-options
+ - allow post thumbnails
  - Security: don't allow blog admins to edit network messages
 
 1.0.2
