@@ -90,18 +90,6 @@ class Admin extends Core\Singleton {
 			if ( is_multisite() ) {
 				switch_to_blog( $message_post->blog_id );
 			}
-			if ( 'dismissable' === $message_post->dashboard_layout ) {
-				$aria_label = sprintf(
-					/* translators: %s dashboard message title */
-					__('Dismiss %s', 'wp-dashboard-messages' ),
-					$message_post->post_title
-				);
-				?>
-				<a class="dashboard-message-dismiss notice-dismiss" href="#" aria-label="<?php esc_attr_e( $aria_label ); ?>">
-					<?php esc_html_e( 'Dismiss', 'wp-dashboard-messages' ); ?>
-				</a>
-				<?php
-			}
 			if ( has_post_thumbnail( $message_post->ID ) ) {
 				?>
 				<div class="dashboard-message-thumbnail">
@@ -115,6 +103,15 @@ class Admin extends Core\Singleton {
 			if ( current_user_can_for_blog( $message_post->blog_id, 'edit_post', $message_post->ID ) ) {
 				edit_post_link( __( 'Edit', 'wp-dashboard-messages' ), '<p>', '</p>', $message_post->ID );
 			}
+
+			if ( 'dismissable' === $message_post->dashboard_layout ) {
+				?>
+				<button type="button" class="dashboard-message-dismiss notice-dismiss">
+					<span class="screen-reader-text"><?php esc_html_e( 'Dismiss', 'wp-dashboard-messages' ); ?></span>
+				</button>
+				<?php
+			}
+
 
 			if ( is_multisite() ) {
 				restore_current_blog( );

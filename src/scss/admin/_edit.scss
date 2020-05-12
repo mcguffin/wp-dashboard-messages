@@ -1,3 +1,10 @@
+// display logic
+.layout[data-value="dismissable"] {
+	& ~ .dashicon {
+		display: none;
+	}
+}
+
 .dashboard-messages-colors,
 .dashboard-messages-icons {
 	display:flex;

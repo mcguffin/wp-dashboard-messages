@@ -32,57 +32,11 @@
 	}
 
 	.dashboard-message-thumbnail {
-		margin:-11px -11px 0 -11px;
+		margin:-11px -12px 0 -12px;
 		img {
 			max-width:100%;
 			height:auto;
 			display: block;
-		}
-	}
-	.notice-dismiss {
-		position: absolute;
-		right:6px;
-		top:6px;
-		padding: 10px 15px 10px 21px;
-		font-size: 13px;
-		line-height: 1.23076923;
-		text-decoration: none;
-		color:#fff;
-		text-shadow:1px 1px 1px #333;
-		
-		@media screen and (max-width: 600px ) {
-			overflow: hidden;
-			text-indent: 40px;
-			white-space: nowrap;
-			width: 20px;
-			height: 20px;
-			padding: 5px;
-			top: 5px;
-			right: 5px;
-		}
-		&::before {
-			content: $dashicon-dismiss;
-			position: absolute;
-			top: 8px;
-			left: 0;
-			transition: all .1s ease-in-out;
-			display: block;
-			font: normal 16px/20px dashicons;
-			height: 20px;
-			text-align: center;
-			width: 20px;
-			color:currentColor;
-			@media screen and (max-width: 600px ) {
-				font-size: 20px;
-				top: 5px;
-				left: -35px;
-			}
-		}
-		&:focus,
-		&:hover {
-			&::before {
-				color:$wp-red;
-			}
 		}
 	}
 }
@@ -95,6 +49,17 @@
 			border-style: none;
 			position: static;
 			margin-top:0; 
+			& > :first-child {
+				// give dismiss btn some space ...
+				&:not(.dashboard-message-thumbnail) {
+					margin-right:26px;
+					// but not for media
+					> img, > iframe, > video, > audio {
+						margin-right:-26px;
+						max-width:calc( 100% + 26px );
+					}
+				}
+			}
 		}
 	}
 	.js &.postbox .handlediv, .hndle {

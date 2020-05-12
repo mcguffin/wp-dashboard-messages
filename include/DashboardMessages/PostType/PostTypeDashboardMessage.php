@@ -212,21 +212,23 @@ class PostTypeDashboardMessage extends PostType {
 			</div>
 		</div><!-- .misc-pub-section -->
 
-		<div class="layout">
+
+		<?php
+
+		$post_layout = get_post_meta( $post->ID, '_dashboard_layout', true );
+		if ( empty( $post_layout ) ) {
+			$post_layout = 'metabox';
+		}
+		$layouts = [
+			'metabox'		=> __( 'Metabox (Default)', 'wp-dashboard-messages' ),
+			'dismissable'	=> __( 'Dismissable', 'wp-dashboard-messages' ),
+		];
+		?>
+		<div class="layout" data-value="<?php esc_attr_e( $post_layout ); ?>">
 			<h4><?php esc_html_e( 'Layout', 'wp-dashboard-messages' ); ?></h4>
-			<div class="dashboard-messages-layout select-window">
-				<div class="select">
+			<div class="dashboard-messages-layout">
 				<?php
 
-				// show 'all_blogs'
-				$post_layout = get_post_meta( $post->ID, '_dashboard_layout', true );
-				if ( empty( $post_layout ) ) {
-					$post_layout = 'metabox';
-				}
-				$layouts = [
-					'metabox'		=> __( 'Metabox (Default)', 'wp-dashboard-messages' ),
-					'dismissable'	=> __( 'Dismissable', 'wp-dashboard-messages' ),
-				];
 				foreach ( $layouts as $value => $label ) {
 					?>
 					<div class="dashboard-messages-select-radio">
@@ -248,7 +250,6 @@ class PostTypeDashboardMessage extends PostType {
 				}
 
 				?>
-				</div>
 			</div>
 		</div><!-- .style -->
 

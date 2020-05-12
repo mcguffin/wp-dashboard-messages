@@ -14,11 +14,12 @@
 		$(document).on('keyup',closeDashOnEsc);
 	}
 	$(document)
-		.on('click','[type="radio"]',function(e){
+		// dashicon select
+		.on('click','.dashboard-messages-icons [type="radio"]',function(e){
 			// hide
 			closeDash();			
 		})
-		.on('click','.select-window:not(.active)',function(e) {
+		.on('click','.dashboard-messages-icons:not(.active)',function(e) {
 			openDash();
 			e.preventDefault();
 		})
@@ -31,6 +32,10 @@
 				);
 			})
 		})
+		.on('change','[name="_dashboard_layout"]',function(e){
+			$(this).closest('[data-value]').attr( 'data-value', $('[name="_dashboard_layout"]:checked').val() )
+		})
+		// dismiss massage
 		.on('click', '.dashboard-message-dismiss', function(e) {
 			e.preventDefault();
 			var id = $(this).closest('.postbox').attr('id');
