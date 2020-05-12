@@ -3,7 +3,8 @@ WordPress Dashboard Messages
 
 1.1.0
 -----
- - Layout-option dismissable
+ - Layout-options
+ - allow post thumbnails
  - Security: don't allow blog admins to edit network messages
 
 1.0.2
