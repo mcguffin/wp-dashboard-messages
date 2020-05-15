@@ -19,6 +19,11 @@ Show Messages on the WP Admin Dashboard.
  - Multisite Supported (Network-wide messages)
  - Developer friendly hooks
 
+ 
+= Development =
+Please head over to the source code [on Github](https://github.com/mcguffin/wp-dashboard-messages).
+
+
 == Installation ==
 
 Just follow the [Automatic Plugin Installation](https://wordpress.org/support/article/managing-plugins/#automatic-plugin-installation) procedere.
