@@ -40,7 +40,7 @@ abstract class PostType extends Core\PluginComponent {
 
 		parent::__construct();
 
-		add_action( 'init', [ $this, 'register_post_types' ], 0 );
+		add_action( 'init', [ $this, 'register_post_types' ] );
 
 		if ( ! $this->enable_block_editor ) {
 
