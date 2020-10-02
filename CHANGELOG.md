@@ -1,6 +1,13 @@
 WordPress Dashboard Messages
 ============================
 
+1.1.1
+-----
+ - UI: add search input to dashicon selector
+ - UI: update dashicons
+ - Fix some style issues
+ - First release on wporg
+
 1.1.0
 -----
  - Layout-options

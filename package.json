@@ -1,14 +1,16 @@
 {
   "name": "wp-dashboard-messages",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Show Messages on the WP Admin Dashboard.",
   "private": true,
   "scripts": {
     "ver": "echo \"<?php return $(jq .version < ./package.json);\" > include/version.php",
+    "dashicons": "node ./src/run/dashicons.js",
     "postinstall": "composer install",
     "sec-audit": "./vendor/squizlabs/php_codesniffer/bin/phpcs . --report=code --standard=./phpcs-security.ruleset.xml -n -s > ./phpcs-report.txt || exit 0",
     "audit": "./vendor/squizlabs/php_codesniffer/bin/phpcs . --report=code --standard=./phpcs.ruleset.xml -n -s > ./phpcs-report.txt || exit 0",
     "audit-fix": "./vendor/squizlabs/php_codesniffer/bin/phpcbf . --standard=./phpcs.ruleset.xml || exit 0",
+    "rollback": "git reset --hard HEAD~ && git push origin +master",
     "dev": "gulp"
   },
   "repository": {
@@ -20,6 +22,11 @@
   "bugs": {
     "url": "https://github.com//wp-dashboard-messages/issues"
   },
+  "browserslist": [
+    "last 3 versions",
+    "> 0.25%",
+    "IE 10"
+  ],
   "homepage": "https://github.com//wp-dashboard-messages#readme",
   "devDependencies": {},
   "dependencies": {
@@ -54,7 +61,8 @@
     },
     "wporg": {
       "assets": ".wporg",
-      "svn_user": "podpirate"
+      "svn_user": "podpirate",
+      "svn": "https://plugins.svn.wordpress.org/wp-dashboard-messages/"
     }
   }
 }

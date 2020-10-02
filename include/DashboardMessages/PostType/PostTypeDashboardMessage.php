@@ -212,21 +212,23 @@ class PostTypeDashboardMessage extends PostType {
 			</div>
 		</div><!-- .misc-pub-section -->
 
-		<div class="layout">
+
+		<?php
+
+		$post_layout = get_post_meta( $post->ID, '_dashboard_layout', true );
+		if ( empty( $post_layout ) ) {
+			$post_layout = 'metabox';
+		}
+		$layouts = [
+			'metabox'		=> __( 'Metabox (Default)', 'wp-dashboard-messages' ),
+			'dismissable'	=> __( 'Dismissable', 'wp-dashboard-messages' ),
+		];
+		?>
+		<div class="layout" data-value="<?php esc_attr_e( $post_layout ); ?>">
 			<h4><?php esc_html_e( 'Layout', 'wp-dashboard-messages' ); ?></h4>
-			<div class="dashboard-messages-layout select-window">
-				<div class="select">
+			<div class="dashboard-messages-layout">
 				<?php
 
-				// show 'all_blogs'
-				$post_layout = get_post_meta( $post->ID, '_dashboard_layout', true );
-				if ( empty( $post_layout ) ) {
-					$post_layout = 'metabox';
-				}
-				$layouts = [
-					'metabox'		=> __( 'Metabox (Default)', 'wp-dashboard-messages' ),
-					'dismissable'	=> __( 'Dismissable', 'wp-dashboard-messages' ),
-				];
 				foreach ( $layouts as $value => $label ) {
 					?>
 					<div class="dashboard-messages-select-radio">
@@ -248,7 +250,6 @@ class PostTypeDashboardMessage extends PostType {
 				}
 
 				?>
-				</div>
 			</div>
 		</div><!-- .style -->
 
@@ -256,25 +257,28 @@ class PostTypeDashboardMessage extends PostType {
 			<h4><?php esc_html_e( 'Icon', 'wp-dashboard-messages' ); ?></h4>
 			<div class="dashboard-messages-icons select-window">
 				<div class="select">
-				<?php
-				foreach ( [ '' => '' ] + $core->get_dashicons( ) as $icon => $codepoint ) {
+					<div class="search">
+						<input type="search" placeholder="<?php esc_attr_e( 'Search', 'wp-dashboard-messages' ); ?>" />
+					</div>
+					<?php
+					foreach ( [ '' => '' ] + $core->get_dashicons( ) as $icon => $codepoint ) {
 
-					$inp_id = 'dashicon-' . $icon;
-					$icon_label = $icon ? ucwords( implode( ' ', explode( '-', $icon ) ) ) : __( 'No Icon', 'wp-dashboard-messages' );
+						$inp_id = 'dashicon-' . $icon;
+						$icon_label = $icon ? ucwords( implode( ' ', explode( '-', $icon ) ) ) : __( 'No Icon', 'wp-dashboard-messages' );
 
-					printf( '<input type="radio" name="_dashboard_icon" id="%s" value="%s" %s >',
-						esc_attr( $inp_id ),
-						esc_attr( $icon ),
-						checked( $icon, $post_icon, false )
-					);
-					printf(
-						'<label for="%s"><span  class="dashicons dashicons-%s"></span>%s</label>',
-						esc_attr( $inp_id ),
-						esc_attr( $icon ),
-						esc_html( $icon_label )
-					);
-				}
-				?>
+						printf( '<input type="radio" name="_dashboard_icon" id="%s" value="%s" %s >',
+							esc_attr( $inp_id ),
+							esc_attr( $icon ),
+							checked( $icon, $post_icon, false )
+						);
+						printf(
+							'<label for="%s"><span  class="dashicons dashicons-%s"></span>%s</label>',
+							esc_attr( $inp_id ),
+							esc_attr( $icon ),
+							esc_html( $icon_label )
+						);
+					}
+					?>
 				</div>
 			</div>
 		</div><!-- .icon -->

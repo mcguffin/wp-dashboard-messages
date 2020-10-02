@@ -1,27 +1,24 @@
 WordPress Dashboard Messages
 ============================
 
-Show Messages on the WP Admin Dashboard.
+This is the official github repository of the [WP Dashboard Messages](https://wordpress.org/plugins/wp-access-areas/) plugin.
 
-Features
---------
- - Select colorset and dashicon
- - WP Multisite support for network-wide messages
+You can place Messages on the WP Admin Dashboard, including but not limited to cat pictures.
 
 ![Some random messages](.wporg/screenshot-1.png)
 
-For specific target groups you can combine this plugin with
-[WP Access Areas](https://wordpress.org/plugins/wp-access-areas/).
+Features
+--------
+ - Select colorset, layout and dashicon
+ - Multisite support for network-wide messages
 
-Current Status
---------------
-The plugin has been submitted to the wordpress plugin repository and is currently undergoing the review process. Once approved it will be available under [https://wordpress.org/plugins/wp-dashboard-messages](https://wordpress.org/plugins/wp-dashboard-messages).
+For specific target groups – like user roles – you can combine this plugin with
+[WP Access Areas](https://wordpress.org/plugins/wp-access-areas/).
 
 Installation
 ------------
-### Production (using Github Updater – recommended for Multisite)
- - Install [Andy Fragen's GitHub Updater](https://github.com/afragen/github-updater) first.
- - In WP Admin go to Settings / GitHub Updater / Install Plugin. Enter `mcguffin/wp-dashboard-messages` as a Plugin-URI.
+### Production
+Just follow the [Automatic Plugin Installation](https://wordpress.org/support/article/managing-plugins/#automatic-plugin-installation) procedere.
 
 ### Development
 cd into your plugin directory

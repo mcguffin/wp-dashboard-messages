@@ -5,7 +5,7 @@ Tags: dashboard, admin
 Requires at least: 4.8
 Requires PHP: 5.6
 Tested up to: 5.4.1
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,6 +18,11 @@ Show Messages on the WP Admin Dashboard.
  - Select from different styles and layouts
  - Multisite Supported (Network-wide messages)
  - Developer friendly hooks
+
+ 
+= Development =
+Please head over to the source code [on Github](https://github.com/mcguffin/wp-dashboard-messages).
+
 
 == Installation ==
 
