@@ -1,6 +1,12 @@
 WordPress Dashboard Messages
 ============================
 
+1.1.2
+-----
+ - Feature: Set message expiration
+ - Style: Fix image width
+ - Minor Security hardening
+
 1.1.1
 -----
  - UI: add search input to dashicon selector

@@ -52,7 +52,7 @@ class WPMU extends Core\PluginComponent {
 	 *	@action add_meta_boxes
 	 */
 	public function add_meta_boxes() {
-		add_meta_box( 'dashboard_network_options', __( 'Dashboard', 'wp-dashboard-messages' ), [ $this, 'dashboard_meta_box' ], 'dashboard_message', 'side', 'default' );
+		add_meta_box( 'dashboard_network_options', __( 'Message Scope', 'wp-dashboard-messages' ), [ $this, 'dashboard_meta_box' ], 'dashboard_message', 'side', 'default' );
 	}
 
 

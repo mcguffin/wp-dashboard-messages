@@ -43,6 +43,50 @@ class PostTypeDashboardMessage extends PostType {
 
 		add_action( 'save_post_' . $this->get_slug(), [ $this, 'save_post' ], 10, 2 );
 
+		add_filter( 'manage_dashboard_message_posts_columns', [ $this, 'add_expiration_column' ] );
+
+		add_filter( 'manage_dashboard_message_posts_custom_column', [ $this, 'manage_expiration_column' ], 10, 2 );
+
+	}
+
+	public function add_expiration_column( $columns ) {
+		$columns['expiration'] = __( 'Expires', 'wp-dashboard-messages' );
+		
+		return $columns;
+	}
+	public function manage_expiration_column( $column, $post_id ) {
+		if ( 'expiration' === $column ) {
+			$post = get_post( $post_id );
+			$dashboard_expires = intval( get_post_meta( $post_id, '_dashboard_expires', true ) );
+			$dashboard_expires_period = intval( get_post_meta( $post_id, '_dashboard_expires_period', true ) );
+
+			if ( ( $dashboard_expires * $dashboard_expires_period ) <= 0 ) {
+				esc_html_e( '– Never –', 'wp-dashboard-messages' );
+				return;
+			}
+			$expire_timestamp = intval( mysql2date( 'U', $post->post_date ) + ( $dashboard_expires_period * $dashboard_expires ) );
+			$expire_timestamp_gmt = intval( mysql2date( 'U', $post->post_date_gmt ) + ( $dashboard_expires_period * $dashboard_expires ) );
+			$expire_time = date_i18n( get_option('date_format') . ' ' . get_option('time_format'), $expire_timestamp );
+
+			if ( $expire_timestamp_gmt > time() ) {
+				echo esc_html( 
+					sprintf( 
+						/* translators: Expiration date and time */
+						__( 'Will expire %s', 'wp-dashboard-messages' ),
+						$expire_time
+					)
+				);
+			} else {
+				echo esc_html( 
+					sprintf( 
+						/* translators: Expiration date and time */
+						__( 'Has expired %s', 'wp-dashboard-messages' ),
+						$expire_time
+					)
+				);
+				
+			}
+		}
 	}
 
 
@@ -107,6 +151,20 @@ class PostTypeDashboardMessage extends PostType {
 			'posts_per_page'	=> -1,
 			'post_type'			=> 'dashboard_message',
 			'suppress_filters'	=> 0,
+			'meta_query'		=> [
+				'relation' => 'OR',
+				[
+					'key'		=> '_dashboard_expires_gmt',
+					'value'		=> strftime( '%Y-%m-%d %H:%M:%S', time() ),
+					'compare'	=> '>',
+//					'type'		=> 'DATETIME',
+				],
+				[
+					'key'	=> '_dashboard_expires_gmt',
+					'compare' => 'NOT EXISTS',
+					'value'	=> 1,
+				],
+			],
 		] );
 
 		$posts = get_posts( $get_posts_args );
@@ -148,19 +206,35 @@ class PostTypeDashboardMessage extends PostType {
 		$dashboard_icon		= wp_unslash( $param['_dashboard_icon'] );
 		$dashboard_context	= wp_unslash( $param['_dashboard_context'] );
 		$dashboard_priority	= wp_unslash( $param['_dashboard_priority'] );
+		$dashboard_expires	= wp_unslash( $param['_dashboard_expires'] );
+		$dashboard_expires_period	= wp_unslash( $param['_dashboard_expires_period'] );
 
 		$dashboard_layout	= $this->sanitize_layout( $dashboard_layout );
 		$dashboard_color	= $this->sanitize_color( $dashboard_color );
 		$dashboard_icon		= $this->sanitize_icon( $dashboard_icon );
 		$dashboard_context	= $this->sanitize_context( $dashboard_context );
 		$dashboard_priority	= $this->sanitize_priority( $dashboard_priority );
+		$dashboard_expires	= intval( $dashboard_expires );
+		$dashboard_expires_period = intval( $dashboard_expires_period );
 
+		
 		update_post_meta( $post_id, '_dashboard_layout', $dashboard_layout );
 		update_post_meta( $post_id, '_dashboard_color', $dashboard_color );
 		update_post_meta( $post_id, '_dashboard_icon', $dashboard_icon );
 		update_post_meta( $post_id, '_dashboard_context', $dashboard_context );
 		update_post_meta( $post_id, '_dashboard_priority', $dashboard_priority );
+		update_post_meta( $post_id, '_dashboard_expires', $dashboard_expires );
+		update_post_meta( $post_id, '_dashboard_expires_period', $dashboard_expires_period );
 
+		// expiration
+		if ( ( $dashboard_expires * $dashboard_expires_period ) > 0 ) {
+			$timestamp = mysql2date( 'U', $post->post_date_gmt );
+			$timestamp += $dashboard_expires * $dashboard_expires_period;
+			$dashboard_expires_gmt = strftime( '%Y-%m-%d %H:%M:00', $timestamp );
+			update_post_meta( $post_id, '_dashboard_expires_gmt', $dashboard_expires_gmt );
+		} else {
+			delete_post_meta( $post_id, '_dashboard_expires_gmt' );
+		}
 	}
 
 	/**
@@ -211,8 +285,6 @@ class PostTypeDashboardMessage extends PostType {
 				?>
 			</div>
 		</div><!-- .misc-pub-section -->
-
-
 		<?php
 
 		$post_layout = get_post_meta( $post->ID, '_dashboard_layout', true );
@@ -355,6 +427,42 @@ class PostTypeDashboardMessage extends PostType {
 				}
 
 				?>
+			</div>
+		</div>
+		<?php
+			$expire = intval( get_post_meta( $post->ID, '_dashboard_expires', true ) );
+			$period = intval( get_post_meta( $post->ID, '_dashboard_expires_period', true ) );
+
+			$expirations = [
+				0						=> __( '– Never –', 'wp-dashboard-messages' ),
+				MINUTE_IN_SECONDS 		=> __( 'Minutes', 'wp-dashboard-messages' ),
+				HOUR_IN_SECONDS 		=> __( 'Hours', 'wp-dashboard-messages' ),
+				DAY_IN_SECONDS			=> __( 'Days', 'wp-dashboard-messages' ),
+				WEEK_IN_SECONDS			=> __( 'Weeks', 'wp-dashboard-messages' ),
+				MONTH_IN_SECONDS		=> __( 'Months', 'wp-dashboard-messages' ),
+				YEAR_IN_SECONDS			=> __( 'Years', 'wp-dashboard-messages' ),
+			];
+		?>
+		<div class="dashboard-messages-expiration">
+			<h4><?php esc_html_e( 'Expire Message after:', 'wp-dashboard-messages' ); ?></h4>
+			<div class="expiration">
+				<div class="expiration-col">
+					<input type="number" min="0" name="_dashboard_expires" value="<?php echo intval( $expire ); ?>" />
+				</div>
+				<div class="expiration-col">
+					<select name="_dashboard_expires_period">
+						<?php
+							foreach ( $expirations as $time => $label ) {
+								printf( 
+									'<option value="%1$d" %2$s>%3$s</option>',
+									$time,
+									selected( $time, $period, false ),
+									$label
+								);
+							}
+						?>
+					</select>
+				</div>
 			</div>
 		</div>
 

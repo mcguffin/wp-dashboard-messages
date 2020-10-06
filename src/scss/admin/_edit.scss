@@ -166,6 +166,27 @@
 	padding:0 0 10px 0;
 }
 
+.dashboard-messages-expiration {
+	.expiration {
+		display: flex;
+		max-width:100%;
+	}
+	.expiration-col {
+		padding:0 5px;
+		max-width:50%;
+		flex:1;
+		&:first-of-type {
+			padding-left:0;
+		}
+		&:last-of-type {
+			padding-right:0;
+		}
+	}
+	[type="number"],
+	select {
+		width:100%;
+	}
+}
 th {
 	&#scope {
 		width:100px;

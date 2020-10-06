@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-05-12T12:47:30+00:00\n"
+"POT-Creation-Date: 2020-10-06T10:52:54+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: wp-dashboard-messages\n"
@@ -19,7 +19,7 @@ msgid "WP Dashboard Messages"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://github.com/mcguffin/wp-dashboard-messages"
+msgid "https://wordpress.org/plugins/wp-dashboard-messages"
 msgstr ""
 
 #. Description of the plugin
@@ -43,8 +43,7 @@ msgid "Dismiss"
 msgstr ""
 
 #: include/DashboardMessages/Compat/WPMU.php:55
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:173
-msgid "Dashboard"
+msgid "Message Scope"
 msgstr ""
 
 #: include/DashboardMessages/Compat/WPMU.php:89
@@ -69,7 +68,7 @@ msgid "Show message on the entire network."
 msgstr ""
 
 #: include/DashboardMessages/Core/Core.php:67
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:336
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:408
 msgid "Default"
 msgstr ""
 
@@ -113,116 +112,167 @@ msgstr ""
 msgid "Cyan"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:55
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:53
+msgid "Expires"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:64
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:437
+msgid "– Never –"
+msgstr ""
+
+#. translators: Expiration date and time
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:75
+msgid "Will expire %s"
+msgstr ""
+
+#. translators: Expiration date and time
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:83
+msgid "Has expired %s"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:99
 msgctxt "Post Type General Name"
 msgid "Dashboard Messages"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:56
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:100
 msgctxt "Post Type Singular Name"
 msgid "Dashboard Message"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:57
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:101
 msgid "Dashboard Messages"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:58
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:102
 msgid "Parent Message:"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:59
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:103
 msgid "All Messages"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:60
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:104
 msgid "View Message"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:61
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:105
 msgid "Add New Message"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:62
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:106
 msgid "Add New"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:63
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:107
 msgid "Edit Message"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:64
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:108
 msgid "Update Message"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:65
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:109
 msgid "Search Message"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:66
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:110
 msgid "Not found"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:67
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:111
 msgid "Not found in Trash"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:71
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:115
 msgid "Dashboard Message"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:72
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:116
 msgid "With Dashboard Messages an Administrator can put up Messages to the WordPress dashboard."
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:194
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:247
+msgid "Dashboard"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:268
 msgid "Color Scheme"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:223
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:295
 msgid "Metabox (Default)"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:224
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:296
 msgid "Dismissable"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:228
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:300
 msgid "Layout"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:257
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:329
 msgid "Icon"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:261
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:333
 msgid "Search"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:267
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:339
 msgid "No Icon"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:288
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:360
 msgid "Context"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:297
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:369
 msgid "Normal"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:298
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:370
 msgid "Side"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:326
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:398
 msgid "Priority"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:335
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:407
 msgid "High"
 msgstr ""
 
-#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:337
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:409
 msgid "Low"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:438
+msgid "Minutes"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:439
+msgid "Hours"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:440
+msgid "Days"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:441
+msgid "Weeks"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:442
+msgid "Months"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:443
+msgid "Years"
+msgstr ""
+
+#: include/DashboardMessages/PostType/PostTypeDashboardMessage.php:447
+msgid "Expire Message after:"
 msgstr ""
