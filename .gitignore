@@ -53,4 +53,4 @@ node_modules
 vendor/
 
 # phpcs
-phpcs-report.txt
+phpcs-*report.txt
