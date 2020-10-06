@@ -14,7 +14,11 @@
 	a {
 		color: currentColor;
 	}
-	img, video, audio {
+	figure {
+		margin-left:0;
+		margin-right:0;
+	}
+	img, video, audio, figure {
 		max-width: 100%;
 		height:auto;
 	}
