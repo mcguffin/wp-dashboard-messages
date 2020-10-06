@@ -224,7 +224,7 @@ class PostTypeDashboardMessage extends PostType {
 			'dismissable'	=> __( 'Dismissable', 'wp-dashboard-messages' ),
 		];
 		?>
-		<div class="layout" data-value="<?php esc_attr_e( $post_layout ); ?>">
+		<div class="layout" data-value="<?php echo esc_attr( $post_layout ); ?>">
 			<h4><?php esc_html_e( 'Layout', 'wp-dashboard-messages' ); ?></h4>
 			<div class="dashboard-messages-layout">
 				<?php

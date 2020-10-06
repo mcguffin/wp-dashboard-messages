@@ -98,7 +98,7 @@ class Admin extends Core\Singleton {
 				<?php
 			}
 			$content = get_the_content( null, false, $message_post );
-			echo apply_filters( 'the_content', $content );
+			echo wp_kses_post( apply_filters( 'the_content', $content ) );
 
 			if ( current_user_can_for_blog( $message_post->blog_id, 'edit_post', $message_post->ID ) ) {
 				edit_post_link( __( 'Edit', 'wp-dashboard-messages' ), '<p>', '</p>', $message_post->ID );
