@@ -455,9 +455,9 @@ class PostTypeDashboardMessage extends PostType {
 							foreach ( $expirations as $time => $label ) {
 								printf( 
 									'<option value="%1$d" %2$s>%3$s</option>',
-									$time,
+									esc_attr( $time ),
 									selected( $time, $period, false ),
-									$label
+									esc_html( $label )
 								);
 							}
 						?>
