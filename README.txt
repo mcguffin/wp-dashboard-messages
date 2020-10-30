@@ -45,6 +45,7 @@ Please post an issue in the [GitHub-Repository](https://github.com/mcguffin/wp-d
 
 = 1.1.3 =
 * Upgrade dashicons
+* Add black color scheme 
 * Improve Dashboard stylesheet for WP 5.5+
 * Load legacy stylesheets for WP < 5.5
 

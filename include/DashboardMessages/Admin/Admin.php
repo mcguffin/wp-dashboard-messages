@@ -148,14 +148,6 @@ class Admin extends Core\Singleton {
 		}
 		foreach ( $rules as $rule ) {
 			$css .= sprintf('%1$s { %2$s }' . "\n", implode( ',', $rule['selector'] ), $rule['css'] );
-			$styles = $this->parse_css( $rule['css'] );
-			if ( isset( $styles[ 'color' ] ) ) {
-				$sel = array_map( function($s) {
-					return sprintf('%1$s.postbox .notice-dismiss:not(:hover):not(:focus)::before,%1$s.postbox .toggle-indicator,%1$s.postbox .handle-order-higher, %1$s.postbox .handle-order-lower', $s );
-				}, $rule['selector'] );
-				
-				$css .= sprintf('%1$s { color:%2$s; }' . "\n", implode( ',', $sel ), $styles['color'] );
-			}
 		}
 
 		foreach ( $color_schemes as $scheme => $style ) {

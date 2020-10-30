@@ -33,6 +33,18 @@
 				margin-bottom:12px !important;
 			}			
 		}
+		.notice-dismiss {
+			&,
+			&::before {
+				color:currentColor;
+			}
+		}
+		.handle-order-lower,
+		.handle-order-higher,
+		.toggle-indicator,
+		.handlediv {
+			color:currentColor;
+		}
 	}
 	& > .postbox-header {
 		.hndle {

@@ -67,6 +67,10 @@ class Core extends Plugin {
 				'label' => __( 'Default', 'wp-dashboard-messages' ),
 				'css' => '',
 			], // white
+			'black' => [
+				'label' => __( 'Black', 'wp-dashboard-messages' ),
+				'css' => "background-color:{$wp_black};color:{$wp_white};",
+			], // black
 			'success' => [
 				'label' => __( 'Success', 'wp-dashboard-messages' ),
 				'css' => "border-left:4px solid {$wp_green};",
