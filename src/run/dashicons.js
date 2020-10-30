@@ -1,8 +1,8 @@
 const https = require('https')
 const fs = require('fs')
 
-//const cp_url = 'https://raw.githubusercontent.com/WordPress/dashicons/master/codepoints.json';
-const cp_url = 'https://raw.githubusercontent.com/WordPress/dashicons/5d77d5df36e5abd3ac83492c98bf74753d876a91/codepoints.json'; // last version known to be without gutenberg icons
+const cp_url = 'https://raw.githubusercontent.com/WordPress/dashicons/master/codepoints.json';
+//const cp_url = 'https://raw.githubusercontent.com/WordPress/dashicons/5d77d5df36e5abd3ac83492c98bf74753d876a91/codepoints.json'; // last version known to be without gutenberg icons
 const scss_path = './src/scss/variables/_dashicons.scss';
 const json_path = './misc/dashicons.json';
 let data = '';
