@@ -125,6 +125,8 @@ class Admin extends Core\Singleton {
 	 *	@action admin_print_scripts
 	 */
 	public function enqueue_assets() {
+		global $wp_version;
+		
 		$core = Core\Core::instance();
 		$posttype = PostType\PostTypeDashboardMessage::instance();
 		$posts = $posttype->get_posts();
@@ -146,6 +148,14 @@ class Admin extends Core\Singleton {
 		}
 		foreach ( $rules as $rule ) {
 			$css .= sprintf('%1$s { %2$s }' . "\n", implode( ',', $rule['selector'] ), $rule['css'] );
+			$styles = $this->parse_css( $rule['css'] );
+			if ( isset( $styles[ 'color' ] ) ) {
+				$sel = array_map( function($s) {
+					return sprintf('%1$s.postbox .notice-dismiss:not(:hover):not(:focus)::before,%1$s.postbox .toggle-indicator,%1$s.postbox .handle-order-higher, %1$s.postbox .handle-order-lower', $s );
+				}, $rule['selector'] );
+				
+				$css .= sprintf('%1$s { color:%2$s; }' . "\n", implode( ',', $sel ), $styles['color'] );
+			}
 		}
 
 		foreach ( $color_schemes as $scheme => $style ) {
@@ -168,6 +178,23 @@ class Admin extends Core\Singleton {
 
 		wp_enqueue_script( 'dashboard-messages-edit', $this->core->get_asset_url( 'js/admin/edit.js' ), [], $core->version() );
 
+	}
+
+	/**
+	 *	@param String $css
+	 *	@return Array map css prop to value
+	 */
+	private function parse_css( $css ) {
+		$styles = [];
+		$css_props = array_filter( explode( ';', $css ) );
+		foreach ( $css_props as $line ) {
+			@list( $prop, $value ) = explode( ':', $line );
+			if ( !isset( $value ) ) {
+				continue;
+			}
+			$styles[trim($prop)] = trim($value);
+		}
+		return $styles;
 	}
 
 }
