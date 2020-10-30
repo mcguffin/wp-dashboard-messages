@@ -1,6 +1,12 @@
 WordPress Dashboard Messages
 ============================
 
+1.1.3
+-----
+ - Upgrade dashicons
+ - Improve Dashboard stylesheets for WP >= 5.5
+ - Load legacy stylesheets for WP < 5.5
+
 1.1.2
 -----
  - Feature: Set message expiration

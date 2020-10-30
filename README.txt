@@ -43,6 +43,21 @@ Please post an issue in the [GitHub-Repository](https://github.com/mcguffin/wp-d
 
 == Changelog ==
 
+= 1.1.3 =
+* Upgrade dashicons
+* Improve Dashboard stylesheet for WP 5.5+
+* Load legacy stylesheets for WP < 5.5
+
+= 1.1.2 =
+* Feature: Set message expiration
+* Style: Fix image width
+* Minor Security hardening
+
+= 1.1.1 =
+* UI: add search input to dashicon selector
+* UI: update dashicons
+* Fix some style issues
+
 = 1.1.0 =
 Release at wordpress.org
 
