@@ -160,8 +160,11 @@ class Admin extends Core\Singleton {
 		}
 
 		wp_add_inline_style( 'common', $css, 'after' );
-
-		wp_enqueue_style( 'dashboard-messages-edit', $this->core->get_asset_url( '/css/admin/edit.css' ), [], $core->version() );
+		$css_asset = '/css/admin/edit.css';
+		if ( version_compare( $wp_version, '5.5.0', '<' ) ) {
+			$css_asset = '/css/admin/edit-legacy.css';
+		}
+		wp_enqueue_style( 'dashboard-messages-edit', $this->core->get_asset_url( $css_asset ), [], $core->version() );
 
 		wp_enqueue_script( 'dashboard-messages-edit', $this->core->get_asset_url( 'js/admin/edit.js' ), [], $core->version() );
 

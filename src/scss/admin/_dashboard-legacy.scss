@@ -34,11 +34,7 @@
 			}			
 		}
 	}
-	& > .postbox-header {
-		.hndle {
-			justify-content: flex-start;
-		}
-	}
+
 	.dashboard-message-thumbnail {
 		margin:-11px -12px 0 -12px;
 		img {
@@ -50,7 +46,7 @@
 }
 [id^="dashboard-message-dismissable-"] {
 	.dashboard-message-thumbnail {
-		margin:-37px -12px 0 -12px;
+		margin:0 -12px;
 	}
 	&.postbox {
 		.inside {
