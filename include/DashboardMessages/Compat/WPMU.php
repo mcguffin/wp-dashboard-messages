@@ -25,6 +25,10 @@ class WPMU extends Core\PluginComponent {
 	 */
 	protected function __construct() {
 
+		if ( ! is_multisite() ) {
+			return;
+		}
+
 		if ( is_main_site() ) {
 
 			//	add_filter( 'dashboard_messages_query', [ $this, 'exclude_network_args' ] );
