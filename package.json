@@ -28,17 +28,17 @@
     "IE 10"
   ],
   "homepage": "https://github.com//wp-dashboard-messages#readme",
-  "devDependencies": {},
   "dependencies": {
+    "@selfisekai/gulp-sass": "^4.2.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-concat": "^2.6.1",
     "gulp-rename": "^2.0.0",
-    "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
     "gulp-util": "^3.0.8",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "sass": "^1.30.0"
   },
   "wporg": {
     "steps": [

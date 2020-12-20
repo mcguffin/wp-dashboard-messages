@@ -4,10 +4,6 @@ WordPress Dashboard Messages ToDo
 Ideas
 -----
 
-Time-limited messages.  
- - Show message between *date time* and *date time*
- - Hide message after *time* hours/days/weeks.
-
 Network: Add scope 'specific blogs only'.
 
 Network-Admin: Option to prohibit writing messages for blog admins.

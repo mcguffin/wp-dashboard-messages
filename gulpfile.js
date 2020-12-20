@@ -5,7 +5,7 @@ var request = require('request');
 var fs = require('fs');
 var gulputil = require('gulp-util');
 var rename = require('gulp-rename');
-var sass = require('gulp-sass');
+var sass = require('@selfisekai/gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 
