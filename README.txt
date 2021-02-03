@@ -40,6 +40,15 @@ I will most likely not maintain the forum support forum on wordpress.org. Anyway
 
 Please post an issue in the [GitHub-Repository](https://github.com/mcguffin/wp-dashboard-messages/issues).
 
+= The plugin works pretty well for me. Any way I can show my appreciation? =
+
+Thanks! As a well trained person living in a rich country there is only little I could wish for.
+Well, to be honest there is something. As a well known fact today's internet is dominated by only a few major corporations, monitoring all of your behaviour gaining more and more power that way.
+
+Only few organizations have the guts to stand up against this power. In europe—in Austria to be precise—there is *None of you Business* who take whatever legal action they can to put mass surveillance corporations in their place. 
+
+So, if that little piece of software was able to help you, you can do me—and yourself—a favor and place a donation at [NOYB](https://noyb.eu/en/support-us).
+
 
 == Changelog ==
 
