@@ -4,7 +4,7 @@ Donate link: https://noyb.eu/en/support-us
 Tags: dashboard, admin
 Requires at least: 4.8
 Requires PHP: 5.6
-Tested up to: 5.6
+Tested up to: 5.8
 Stable tag: 1.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -14,9 +14,10 @@ Show Messages on the WP Admin Dashboard.
 == Description ==
 
 = Features =
- - Add Messages to to WP Admin Dashboard
+ - Add Messages to WP Admin Dashboard
+ - Expiring Messages
  - Select from different styles and layouts
- - Multisite Supported (Network-wide messages)
+ - Multisite Support (Network-wide messages)
  - Developer friendly hooks
 
  
@@ -51,6 +52,10 @@ So, if that little piece of software was able to help you, you can do me—and y
 
 
 == Changelog ==
+
+= 1.1.5 =
+* Test with WordPress 5.8
+* PHP 8 compatibility
 
 = 1.1.4 =
 * Fix PHP fatal error after plugin upgrade
