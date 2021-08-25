@@ -1,6 +1,6 @@
 {
   "name": "wp-dashboard-messages",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Show Messages on the WP Admin Dashboard.",
   "private": true,
   "scripts": {
@@ -29,16 +29,7 @@
   ],
   "homepage": "https://github.com//wp-dashboard-messages#readme",
   "dependencies": {
-    "@selfisekai/gulp-sass": "^4.2.0",
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.1",
-    "gulp-concat": "^2.6.1",
-    "gulp-rename": "^2.0.0",
-    "gulp-sourcemaps": "^2.6.5",
-    "gulp-uglify": "^3.0.2",
-    "gulp-util": "^3.0.8",
-    "request": "^2.88.0",
-    "sass": "^1.30.0"
+    "request": "^2.88.0"
   },
   "wporg": {
     "steps": [
@@ -66,5 +57,16 @@
       "svn_user": "podpirate",
       "svn": "https://plugins.svn.wordpress.org/wp-dashboard-messages/"
     }
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-util": "^3.0.8",
+    "sass": "^1.38.1"
   }
 }
