@@ -30,9 +30,9 @@
 	<rule ref="WordPress.Utils">
 	</rule>
 	<rule ref="WordPress.WP">
-		<!--exclude name="WordPress.WP.TimezoneChange"/-->
-		<!--exclude name="WordPress.WP.I18n.MixedOrderedPlaceholders"/-->
-		<!--exclude name="WordPress.WP.I18n.UnorderedPlaceholders"/-->
-		<!--exclude name="WordPress.WP.I18n.NonSingularStringLiteralText"/-->
+		<exclude name="WordPress.WP.TimezoneChange"/>
+		<exclude name="WordPress.WP.I18n.MixedOrderedPlaceholders"/>
+		<exclude name="WordPress.WP.I18n.UnorderedPlaceholders"/>
+		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralText"/>
 	</rule>
 </ruleset>
