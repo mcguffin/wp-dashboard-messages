@@ -5,7 +5,7 @@ Plugin Name: WP Dashboard Messages
 Plugin URI: https://wordpress.org/plugins/wp-dashboard-messages
 Description: Show Messages on the WP Admin Dashboard.
 Author: Jörn Lund
-Version: 1.1.5
+Version: 1.1.6
 Author URI: https://github.com/mcguffin
 License: GPL3
 Requires WP: 4.8
