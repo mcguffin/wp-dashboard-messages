@@ -4,7 +4,7 @@ Donate link: https://noyb.eu/en/support-us
 Tags: dashboard, admin
 Requires at least: 4.8
 Requires PHP: 5.6
-Tested up to: 5.8
+Tested up to: 6.0
 Stable tag: 1.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -52,6 +52,10 @@ So, if that little piece of software was able to help you, you can do me—and y
 
 
 == Changelog ==
+
+= 1.1.6 =
+* Test with WordPress 6.0
+* Fix deprecation notice in PHP 8.1
 
 = 1.1.5 =
 * Test with WordPress 5.8

@@ -155,7 +155,7 @@ class PostTypeDashboardMessage extends PostType {
 				'relation' => 'OR',
 				[
 					'key'		=> '_dashboard_expires_gmt',
-					'value'		=> strftime( '%Y-%m-%d %H:%M:%S', time() ),
+					'value'		=> date( 'Y-m-d H:i:s', time() ),
 					'compare'	=> '>',
 //					'type'		=> 'DATETIME',
 				],
@@ -230,7 +230,7 @@ class PostTypeDashboardMessage extends PostType {
 		if ( ( $dashboard_expires * $dashboard_expires_period ) > 0 ) {
 			$timestamp = mysql2date( 'U', $post->post_date_gmt );
 			$timestamp += $dashboard_expires * $dashboard_expires_period;
-			$dashboard_expires_gmt = strftime( '%Y-%m-%d %H:%M:00', $timestamp );
+			$dashboard_expires_gmt = date( 'Y-m-d H:i:00', $timestamp );
 			update_post_meta( $post_id, '_dashboard_expires_gmt', $dashboard_expires_gmt );
 		} else {
 			delete_post_meta( $post_id, '_dashboard_expires_gmt' );
