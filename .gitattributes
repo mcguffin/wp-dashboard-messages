@@ -10,3 +10,5 @@ wp-plugin-boilerplate.json export-ignore
 phpcs* export-ignore
 composer* export-ignore
 .wporg export-ignore
+.wp-release-info.json export-ignore
+.editorconfig export-ignore
