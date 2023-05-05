@@ -26,7 +26,7 @@ cd into your plugin directory
 git clone git@github.com:mcguffin/wp-dashboard-messages.git
 cd wp-dashboard-messages
 npm install
-gulp
+npm run dev
 ```
 
 Plugin-API
