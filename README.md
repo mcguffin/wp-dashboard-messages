@@ -1,7 +1,7 @@
 WordPress Dashboard Messages
 ============================
 
-This is the official github repository of the [WP Dashboard Messages](https://wordpress.org/plugins/wp-access-areas/) plugin.
+This is the official github repository of the [WP Dashboard Messages](https://wordpress.org/plugins/wp-dashboard-messages/) plugin.
 
 You can place Messages on the WP Admin Dashboard, including but not limited to cat pictures.
 
@@ -13,7 +13,7 @@ Features
  - Multisite support for network-wide messages
 
 For specific target groups – like user roles – you can combine this plugin with
-[WP Access Areas](https://wordpress.org/plugins/wp-access-areas/).
+[WP Access Areas](https://wordpress.org/plugins/wp-dashboard-messages/).
 
 Installation
 ------------
