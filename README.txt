@@ -4,7 +4,7 @@ Donate link: https://noyb.eu/en/support-us
 Tags: dashboard, admin
 Requires at least: 4.8
 Requires PHP: 5.6
-Tested up to: 6.2
+Tested up to: 6.4
 Stable tag: 1.1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -20,7 +20,7 @@ Show Messages on the WP Admin Dashboard.
  - Multisite Support (Network-wide messages)
  - Developer friendly hooks
 
- 
+
 = Development =
 Please head over to the source code [on Github](https://github.com/mcguffin/wp-dashboard-messages).
 
@@ -46,7 +46,7 @@ Please post an issue in the [GitHub-Repository](https://github.com/mcguffin/wp-d
 Thanks! As a well trained person living in a rich country there is only little I could wish for.
 Well, to be honest there is something. As a well known fact today's internet is dominated by only a few major corporations, monitoring all of your behaviour gaining more and more power that way.
 
-Only few organizations have the guts to stand up against this power. In europe—in Austria to be precise—there is *None of you Business* who take whatever legal action they can to put mass surveillance corporations in their place. 
+Only few organizations have the guts to stand up against this power. In europe—in Austria to be precise—there is *None of you Business* who take whatever legal action they can to put mass surveillance corporations in their place.
 
 So, if that little piece of software was able to help you, you can do me—and yourself—a favor and place a donation at [NOYB](https://noyb.eu/en/support-us).
 
@@ -66,7 +66,7 @@ So, if that little piece of software was able to help you, you can do me—and y
 
 = 1.1.3 =
 * Upgrade dashicons
-* Add black color scheme 
+* Add black color scheme
 * Improve Dashboard stylesheet for WP 5.5+
 * Load legacy stylesheets for WP < 5.5
 
