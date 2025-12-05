@@ -25,13 +25,13 @@
 	iframe {
 		max-width: 100%;
 	}
-	
+
 	&.postbox {
 		.inside {
-			padding:0 12px;			
+			padding:0 12px;
 			> :last-child:not(.dashboard-message-thumbnail) {
 				margin-bottom:12px !important;
-			}			
+			}
 		}
 		.notice-dismiss {
 			&,
@@ -59,31 +59,30 @@
 			display: block;
 		}
 	}
-}
-[id^="dashboard-message-dismissable-"] {
-	.dashboard-message-thumbnail {
-		margin:-37px -12px 0 -12px;
-	}
-	&.postbox {
-		.inside {
-			border-style: none;
-			position: static;
-			margin-top:0; 
-			& > :first-child {
-				// give dismiss btn some space ...
-				&:not(.dashboard-message-thumbnail) {
-					margin-right:26px;
-					// but not for media
-					> img, > iframe, > video, > audio {
-						margin-right:-26px;
-						max-width:calc( 100% + 26px );
+	&:has(.dashboard-message-dismiss) {
+		.dashboard-message-thumbnail {
+			margin:-27px -12px 0 -12px;
+		}
+		&.postbox {
+			.inside {
+				border-style: none;
+				position: static;
+				margin-top:0;
+				& > :first-child {
+					// give dismiss btn some space ...
+					&:not(.dashboard-message-thumbnail) {
+						margin-right:26px;
+						// but not for media
+						> img, > iframe, > video, > audio {
+							margin-right:-26px;
+							max-width:calc( 100% + 26px );
+						}
 					}
 				}
 			}
 		}
+		.js &.postbox .handlediv, .hndle {
+			display: none;
+		}
 	}
-	.js &.postbox .handlediv, .hndle {
-		display: none;
-	}
-	
 }
