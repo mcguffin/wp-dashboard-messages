@@ -1,0 +1,9 @@
+{
+  "id": "https://github.com/mcguffin/wp-dashboard-messages/raw/master/.wp-release-info.json",
+  "slug": "wp-dashboard-messages",
+  "version": "1.1.7",
+  "url": "https://wordpress.org/plugins/wp-dashboard-messages",
+  "package": "https://github.com/mcguffin/wp-dashboard-messages/releases/download/1.1.7/wp-dashboard-messages.zip",
+  "tested": "6.9",
+  "requires_php": "5.6"
+}
